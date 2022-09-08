@@ -7,6 +7,9 @@
     top: 80px;
     padding: var(--padding-main);
     padding-top: 30px;
+    padding-bottom: 20px;
+    background-color: white;
+    z-index: 2;
     
 }
 
@@ -37,6 +40,12 @@
     font-size: 12px;
     color: var(--grey-text-light);
 }
+
+.header__touch__types button:hover{
+    border-bottom: solid 2px black;
+    cursor: pointer;
+}
+
 
 .header__touch__types img{
     height: 24px;

@@ -34,9 +34,9 @@
 }
 
 @media (min-width:743px){
-    .header__touch{
-        display: none;
-    }
+    // .header__touch{
+    //     display: none;
+    // }
 
     .footer_touch{
         display: none;
@@ -54,6 +54,18 @@
     }  
 
     .footer{
+        display: none;
+    }
+
+    .header__touch{
+        padding: var(--padding-list)
+    }
+
+    .header__touch__types{
+        column-gap: 10px;
+    }
+
+    .header__touch__filter{
         display: none;
     }
 
