@@ -16,9 +16,9 @@ const Header = ()=>{
                 <SearchBar first='En cualquier lugar del mundo' second='Cualquier semana' third='Cuantos?'/>
                 <NavBar/>
             </header> 
-            <section>
+            {/* <section>
                 <Outlet/>
-            </section>          
+            </section>           */}
         </div>
     )
 }

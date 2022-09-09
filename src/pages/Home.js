@@ -4,6 +4,7 @@ import CardMain from '../components/CardMain';
 import ButtonMapa from '../components/ButtonMapa';
 import Footer from '../components/Footer';
 import FooterTouch from '../components/FooterToch';
+import Header from '../components/Header';
 
 const data = [
     {
@@ -91,6 +92,7 @@ const data = [
 const Home = () => {
     return (
         <div>
+            <Header/>
             <FilterTypes />
             <div className='main'>
                 {data.map((element) => {
