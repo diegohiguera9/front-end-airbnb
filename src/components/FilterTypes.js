@@ -17,25 +17,23 @@ const FilterTypes = ()=>{
         return rObj
     })
     
-    console.log(images)
-    
     return(
         <div className='header__touch'>
             <div className="header__touch__types">
                 {images.map(
                     element => {
                         return(
-                            <div>
-                            <button>
-                                    <img src={element.file}></img>
-                                    <span>{element.name}</span>
-                            </button>
+                            <div key={element.name}>
+                                <button>
+                                        <img src={element.file}></img>
+                                        <span>{element.name}</span>
+                                </button>
                             </div>
                         )})}
             </div>
             <div className='header__touch__filter'>
                 <button>
-                    <div class="flecha">
+                    <div className="flecha">
                         <button className="flecha__button">
                             <img src={flecha}></img>
                         </button>

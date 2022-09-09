@@ -33,16 +33,6 @@
 
 }
 
-@media (min-width:743px){
-    // .header__touch{
-    //     display: none;
-    // }
-
-    .footer_touch{
-        display: none;
-    }
-}
-
 @media (max-width:743px){
 
     .header{
@@ -58,7 +48,8 @@
     }
 
     .header__touch{
-        padding: var(--padding-list)
+        padding: var(--padding-list);
+        padding-top: 20px
     }
 
     .header__touch__types{
