@@ -1,0 +1,17 @@
+
+.dateButton {
+    background-color: #FFF;
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    padding: 0;
+    margin: 0;
+    border: solid white 1px;
+  }
+  .selected {
+    border: solid black 2px;
+  }
+  
+  .dateButton:hover {
+    border: solid gray 1px;
+  }

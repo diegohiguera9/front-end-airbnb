@@ -1,0 +1,20 @@
+
+.dateButtonType {
+  background-color: #aaa;
+  width: 100px;
+  height: 25px;
+  border-radius: 15px;
+  padding: 0;
+  margin: 0;
+  border: solid #aaa 0;
+}
+
+.dateButtonType:hover {
+  background-color: #FFF;
+
+}
+
+.selected {
+  background-color: #FFF;
+  border: solid white 1px;
+}
