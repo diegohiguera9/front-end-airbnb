@@ -1,6 +1,6 @@
-import ButtonRound from "./ButtonRound";
+import ButtonRound from "./ButtonModal";
 import "../styles/components/CalendarSearch.scss"
-import ButtonRound2 from "./ButtonRound2";
+
 
 
 const CalendarSearch = () => {
@@ -10,8 +10,8 @@ const CalendarSearch = () => {
             <div className="containerMapa">
                 <div className="itemCalendario">
                     <div className="itemSelector">
-                        <ButtonRound2 selected={"selected"} texto={"Elige las fechas"}/>
-                        <ButtonRound2 texto={"Fechas flexibles"}/>
+                        <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Elige las fechas"}/>
+                        <ButtonRound clase={"dateButtonType"} texto={"Fechas flexibles"}/>
                     </div>
                 </div>
                 <div className="itemCalendario">
@@ -19,10 +19,10 @@ const CalendarSearch = () => {
                     <img src={ process.env.PUBLIC_URL +'image/septiembre.png'} alt="calendario septiembre" width="250" height="200" />
                 </div>
                 <div className="itemCalendario">
-                    <ButtonRound selected={"selected"} texto={"Fechas exactas"}/>
-                    <ButtonRound texto={ "± 1 día"}/>
-                    <ButtonRound texto={"± 3 días"}/>
-                    <ButtonRound texto={"± 7 días"}/>
+                    <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Fechas exactas"}/>
+                    <ButtonRound clase={"dateButton"} texto={ "± 1 día"}/>
+                    <ButtonRound clase={"dateButton"} texto={"± 3 días"}/>
+                    <ButtonRound clase={"dateButton"} texto={"± 7 días"}/>
                  
                 </div>
             </div>

@@ -1,0 +1,54 @@
+.dateButton {
+  background-color: #FFF;
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  padding: 0;
+  margin: 0;
+  border: solid white 1px;
+
+  &.selected {
+    border: solid black 2px;
+  }
+
+  &:hover {
+    border: solid gray 1px;
+  }
+
+}
+
+.dateButtonType {
+  background-color: #aaa;
+  width: 100px;
+  height: 25px;
+  border-radius: 15px;
+  padding: 0;
+  margin: 0;
+  border: solid #aaa 0;
+
+  &:hover {
+    background-color: #FFF;
+
+  }
+
+  &.selected {
+    background-color: #FFF;
+    border: solid white 1px;
+  }
+}
+
+
+.whiteButton {
+  background-color: #FFF;
+  width: 90%;
+  height: 40px;
+  padding: 0 10px;
+  margin: 0;
+  
+  &.whiteButton:hover {
+    background-color: #eee;
+  
+  }
+}
+
+
