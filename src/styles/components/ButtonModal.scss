@@ -53,3 +53,23 @@
 
   }
 }
+
+.roundButton {
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  width: 40px;
+  background-color: #FFF;
+  margin: 10px 10px;
+  border-radius: 150px;
+  padding: 7px;
+  border: solid darkgray 1px;
+
+  &:hover {
+    cursor: pointer;
+  }
+  &.hidden {
+    visibility: hidden;
+  }
+}
+

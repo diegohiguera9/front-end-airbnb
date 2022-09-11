@@ -1,6 +1,7 @@
 import CalendarSearch from "../components/ModalCalendarSearch";
 import ModalMenu from "../components/ModalMenu";
 import ModalLogin from "../components/ModalLogin";
+import ModalPersonas from "../components/ModalPersonas";
 
 const Modal = () => {
 
@@ -10,6 +11,7 @@ const Modal = () => {
             <CalendarSearch/>
             <ModalMenu/>
             <ModalLogin/>
+            <ModalPersonas/>
         </ >
     )
 
