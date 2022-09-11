@@ -1,5 +1,6 @@
 import CalendarSearch from "../components/ModalCalendarSearch";
 import ModalMenu from "../components/ModalMenu";
+import ModalLogin from "../components/ModalLogin";
 
 const Modal = () => {
 
@@ -8,6 +9,7 @@ const Modal = () => {
             <h1> Pruebas de modales</h1>
             <CalendarSearch/>
             <ModalMenu/>
+            <ModalLogin/>
         </ >
     )
 
