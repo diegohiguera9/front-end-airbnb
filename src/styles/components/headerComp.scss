@@ -1,4 +1,4 @@
-.elementName{
+.rentElementName{
     width: 100%;
     height: 30px;
    //display: flex;
@@ -11,43 +11,48 @@
     }
 }
 
-.elementsSections{
+.rentElementsSections{
     width: 1120px;
     height: 28;
     display: flex;
     justify-content: space-between;
+    
 
-    .section{
+    .rentSection{
         display: flex;
         justify-content: flex-start;
         font-size: 14px;
-        }
-    svg{
-        cursor: pointer;
-        padding: 8px 8px 8px 0px;
-        display: block;
-        height: 14px;
-        width: 14px;
-        fill: currentColor;
         
-        
+        .sectionSvg{
+            cursor: pointer;
+            padding: 8px 8px 8px 0px;
+            display: block;
+            height: 14px;
+            width: 14px;
+            fill: currentColor;
+            box-sizing: revert;
+            
+            }
+        .noFill{
+            padding: 8px 8px 8px 0px;
+            fill: none;
+            height: 16px;
+            width: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+            overflow: visible;
+            box-sizing: revert;
         }
-    .noFill{
-        fill: none;
-        height: 16px;
-        width: 16px;
-        stroke: currentColor;
-        stroke-width: 2;
-        overflow: visible;
-    }
-    button{
-        cursor: pointer;
-        padding: 8px 8px 8px 0px;
-        outline: none;
-        border: none;
-        background: transparent;
-        }
-    span{
-        padding: 8px 8px 8px 0px;
+        button{
+            cursor: pointer;
+            padding: 8px 8px 8px 0px;
+            outline: none;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            }
+        span{
+            padding: 8px 8px 8px 0px;
+            }
         }
     }

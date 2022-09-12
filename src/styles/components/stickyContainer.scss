@@ -1,114 +1,101 @@
-.bannerContainer{
-    display: flex;
-    justify-content: end;
-    height: 100%;
+.bannerContainer {
+  display: flex;
+  justify-content: end;
+  height: 100%;
 }
-.styckyContainer{
-    position:sticky;
-    top: 80px;
-    height: 663px;
+.styckyContainer {
+  position: sticky;
+  top: 80px;
+  height: 663px;
 }
-.bookContainer{
-    height: 521px;
-    width: 372.33px;
-    margin-top: 48px;
-    
-    top: 128px;
-    border-radius: 12px;
-    border: 1px solid rgb(226, 224, 224);
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
-    
+.bookContainer {
+  height: 521px;
+  width: 372.33px;
+  margin-top: 48px;
+  top: 128px;
+  border-radius: 12px;
+  border: 1px solid rgb(226, 224, 224);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px 0px;
 }
-.report{
-    position: relative
+.report {
+  position: relative;
+}
+.bookIt {
+  height: 473px;
+  width: 324.33px;
+  padding: 24px;
+  box-sizing: revert;
+}
 
-}
-.bookIt{
-    height: 473px;
-    width: 324.33px;
-    padding: 24px;
-    
-    
-}
-.section{
+.estimatePricing {
+  margin-bottom: 24px;
+  height: 52px;
+
+  .span1 {
+    font-weight: normal;
+    font-size: 22px;
+  }
+  .span2 {
+    font-weight: lighter;
+    font-size: 16px;
+  }
+  .rentSection {
     display: flex;
     justify-content: flex-start;
     font-size: 14px;
-    svg{
-        cursor: pointer;
-        padding: 8px 8px 8px 0px;
-        display: block;
-        height: 14px;
-        width: 14px;
-        fill: currentColor;
-        
-        
-        }
-    }
 
-.noFill{
-    fill: none;
-    height: 16px;
-    width: 16px;
-    stroke: currentColor;
-    stroke-width: 2;
-    overflow: visible;
-}
-button{
-    cursor: pointer;
-    padding: 8px 8px 8px 0px;
-    outline: none;
-    border: none;
-    background: transparent;
+    .sectionSvg {
+      cursor: pointer;
+      padding: 8px 8px 8px 0px;
+      display: block;
+      height: 14px;
+      width: 14px;
+      fill: currentColor;
+      box-sizing: revert;
     }
-span{
-    padding: 8px 8px 8px 0px;
+    .noFill {
+      padding: 8px 8px 8px 0px;
+      fill: none;
+      height: 16px;
+      width: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      overflow: visible;
+      box-sizing: revert;
     }
-.estimatePricing{
-    margin-bottom: 24px;
-    height: 52px;
+    button {
+      cursor: pointer;
+      padding: 8px 8px 8px 0px;
+      outline: none;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+    }
+    span {
+      padding: 8px 8px 8px 0px;
+    }
+  }
 }
-.light{
-    color: rgb(163, 163, 163);
-    font-size: 14px;
-    font-weight:lighter;
-}
-.span1{
-    font-weight: normal;
-    font-size: 22px;
-    
-    
-}
-.span2{
-    font-weight: lighter;
-    font-size: 16px;
+.light {
+  color: rgb(163, 163, 163);
+  font-size: 14px;
+  font-weight: lighter;
 }
 
-.checkFlex{
+.checkinCheckout {
+  margin-bottom: 16px;
+}
+.checkContainer {
+  height: 112px;
+  width: 322.33px;
+  border-radius: 8px;
+  border: 1px solid rgb(136, 136, 136);
+  position: relative;
+
+  .checkFlex {
     display: flex;
-    
-}
-.checkinCheckout{
-    margin-bottom: 16PX;
-}
-.checkContainer{
-    height: 112px;
-    width: 322.33px;
-    border-radius: 8px;
-    border: 1px solid rgb(136, 136, 136);
-    position: relative;
-}
-
-.checkFlexI{
-    height: 56px;
-    width: 160.67px;
-    position: relative;
-    text-align: start;
-}
-#i2{
-    border-left: 1px solid rgb(136, 136, 136);
-}
-.checkBtn{
+  }
+  .checkBtn {
     display: flex;
     width: 322.33px;
     height: 100%;
@@ -119,138 +106,142 @@ span{
     border: none;
     justify-content: space-between;
 
-    svg{
-        display: block;
-        fill: none;
-        height: 16px; 
-        width: 16px; 
-        stroke: currentcolor; 
-        stroke-width: 4; 
-        overflow: visible;
+    svg {
+      display: block;
+      fill: none;
+      height: 16px;
+      width: 16px;
+      stroke: currentcolor;
+      stroke-width: 4;
+      overflow: visible;
+      box-sizing: revert;
     }
-}
-.check{
+  }
+  .checkFlexI {
+    height: 56px;
+    width: 160.67px;
+    position: relative;
+    text-align: start;
+  }
+  #i2 {
+    border-left: 1px solid rgb(136, 136, 136);
+  }
+  .check {
     position: absolute;
     top: 12px;
     left: 12px;
-    
     font-weight: bold;
     font-size: 10px;
-    font-family: 'Roboto', sans-serif;
-}
-.checktext{
+  }
+  .checkText {
     padding: 26px 12px 10px;
     font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-}
-.chekI{
-    border-top:1px solid rgb(136, 136, 136);
+  }
+  .chekI {
+    border-top: 1px solid rgb(136, 136, 136);
     width: 322.33px;
     height: 56px;
-}
+  }
 
-#guests{
+  #guests {
     position: absolute;
-    font-family: 'Roboto', sans-serif;
-    
-}
-.guestsSvg{
+    font-family: "Roboto", sans-serif;
+  }
+  .guestsSvg {
     display: flex;
     align-self: center;
-    padding-right: 12px ;
+    padding-right: 12px;
+  }
 }
-.reserve{
-    height: 48px;
-    width: 324.33px;
-}
-.reserveBtn{
+
+.reserve {
+  height: 48px;
+  width: 324.33px;
+  .reserveBtn {
     height: 100%;
     width: 100%;
     background-color: rgb(255, 56, 92);
     border: none;
     border-radius: 8px;
-}
-.reserveit{
+  }
+  .reserveIt {
     color: white;
     font-size: 16px;
     font-weight: lighter;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
+  }
 }
-.message{
-    display: flex;
-    height: 26px;
-    margin-top: 8px;
-    justify-content: center;
-    align-items: flex-end;
-}
-.messagestyle{
+
+.message {
+  display: flex;
+  height: 26px;
+  margin-top: 8px;
+  justify-content: center;
+  align-items: flex-end;
+  .messageStyle {
     font-size: 14px;
     font-weight: lighter;
+  }
 }
-.totals{
-    height: 161px;
-    width: 100%;
-    margin-top: 24px;
+
+.totals {
+  height: 161px;
+  width: 100%;
+  margin-top: 24px;
 }
-.section1{
-    width: 100%;
-    height: 92px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-
-
-}
-.values{
+.section1 {
+  width: 100%;
+  height: 92px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .values {
     display: flex;
     justify-content: space-between;
-}
-
-.valuesBtn{
+  }
+  .valuesBtn {
     border: none;
     background-color: transparent;
     font-size: 16px;
     padding-left: 0px;
     font-weight: lighter;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     padding: 0px;
-    
-}
-.valueResult{
+  }
+  .valueResult {
     font-weight: lighter;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     padding: 0px;
+  }
 }
-.section2{
-    width: 100%;
-    height: 20px;
-    margin-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
+.section2 {
+  width: 100%;
+  height: 20px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
 }
-.report{
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-}
-.reportBtn{
+.report {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  .reportBtn {
     background-color: transparent;
     border: none;
     width: 147px;
     color: rgb(115, 114, 114);
     font-size: 14px;
-
-}
-.reportFlex{
+  }
+  .reportFlex {
     display: flex;
     justify-content: space-between;
-    svg{
-        display: block;
-        height: 16px;
-        width: 16px;
-        fill: currentColor;
+    svg {
+      display: block;
+      height: 16px;
+      width: 16px;
+      fill: currentColor;
     }
+  }
 }
