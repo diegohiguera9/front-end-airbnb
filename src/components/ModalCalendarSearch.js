@@ -1,22 +1,29 @@
 import ButtonRound from "./ButtonModal";
 import "../styles/components/CalendarSearch.scss"
-
+import { RangeCalendar } from '@mantine/dates';
+import { useState } from 'react';
+import dayjs from 'dayjs';
 
 
 const CalendarSearch = () => {
 
+    const [calendarOne, setCalendarOne] = useState(null);
+   
+
     return (
         <div>
+             
             <div className="containerMapa">
                 <div className="itemCalendario">
                     <div className="itemSelector">
                         <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Elige las fechas"}/>
-                        <ButtonRound clase={"dateButtonType"} texto={"Fechas flexibles"}/>
+                        <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Fechas flexibles"}/>
                     </div>
                 </div>
-                <div className="itemCalendario">
-                    <img src={ process.env.PUBLIC_URL +'image/agosto.png'} alt="calendario agosto" width="250" height="200" />
-                    <img src={ process.env.PUBLIC_URL +'image/septiembre.png'} alt="calendario septiembre" width="250" height="200" />
+                <div >
+             
+                <RangeCalendar   minDate={new Date()} amountOfMonths={2} value={calendarOne} onChange={setCalendarOne} />
+         
                 </div>
                 <div className="itemCalendario">
                     <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Fechas exactas"}/>
