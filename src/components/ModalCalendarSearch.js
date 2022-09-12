@@ -17,7 +17,7 @@ const CalendarSearch = () => {
                 <div className="itemCalendario">
                     <div className="itemSelector">
                         <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Elige las fechas"}/>
-                        <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Fechas flexibles"}/>
+                        <ButtonRound clase={"dateButtonType"} selected={""} texto={"Fechas flexibles"}/>
                     </div>
                 </div>
                 <div >
