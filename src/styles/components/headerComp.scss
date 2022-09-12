@@ -1,0 +1,53 @@
+.elementName{
+    width: 100%;
+    height: 30px;
+   //display: flex;
+    //justify-content: flex-start;
+
+    h1 {
+        font-weight: normal;
+        font-size: 26px;
+        
+    }
+}
+
+.elementsSections{
+    width: 1120px;
+    height: 28;
+    display: flex;
+    justify-content: space-between;
+
+    .section{
+        display: flex;
+        justify-content: flex-start;
+        font-size: 14px;
+        }
+    svg{
+        cursor: pointer;
+        padding: 8px 8px 8px 0px;
+        display: block;
+        height: 14px;
+        width: 14px;
+        fill: currentColor;
+        
+        
+        }
+    .noFill{
+        fill: none;
+        height: 16px;
+        width: 16px;
+        stroke: currentColor;
+        stroke-width: 2;
+        overflow: visible;
+    }
+    button{
+        cursor: pointer;
+        padding: 8px 8px 8px 0px;
+        outline: none;
+        border: none;
+        background: transparent;
+        }
+    span{
+        padding: 8px 8px 8px 0px;
+        }
+    }

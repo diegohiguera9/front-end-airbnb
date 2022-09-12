@@ -3,6 +3,7 @@ import * as React from 'react';
 import { BrowserRouter, Routes, Route, Link, useLocation, Navigate} from 'react-router-dom';
 import Home from './pages/Home';
 import Modal from './pages/Modal';
+import RentElement from './pages/RentElement';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home/>}/>
           <Route exact path='/modal' element={<Modal/>}/>
+          <Route exact path='/rent' element={<RentElement/>}/>
         </Routes>
       </BrowserRouter>
     </div>
