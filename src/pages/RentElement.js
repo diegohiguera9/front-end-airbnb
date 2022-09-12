@@ -9,17 +9,20 @@ import StickyContainer from "../components/StickyContainer";
 
 const Element = () => {
   return (
-    <div className="rentElement">
-      <div className="elementContainer">
+    <main className="rentMain">
+      <div className="rentElement">
+      <div className="rentElementContainer">
         <HeaderName1 children={"Elemento 1"} />
         <HeaderSections1 rating={"1.11"} reviews={"10 Reviews"} location={"Centro,Bogotá D.C.,Colombia"}/>
         <ImgContainer1 children={"1"}/>
-        <div className="infoContainer">
+        <div className="rentInfoContainer">
             <General host={"Jhon"} guest={"10 guest"} bedrooms={"10 bedrooms"} beds={"10 beds"} baths={"10 baths"} cancel={"8 Agust"}/>
-            <StickyContainer/>
+            <StickyContainer rating={"1.11"} reviews={"10 Reviews"}/>
         </div>
       </div>
     </div>
+    </main>
+    
     
   );
 };

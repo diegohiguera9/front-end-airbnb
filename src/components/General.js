@@ -2,13 +2,13 @@ import "../styles/components/general.scss";
 const General = (props) => {
   return (
     <div className="generalInfo">
-      <div className="hostData">
-        <div className="data">
-          <div className="host">
+      <div className="rentHostData">
+        <div className="rentData">
+          <div className="rentHost">
             <h2>Entire home hosted by {props.host}</h2>
           </div>
-          <div className="list">
-            <ol className="dataList">
+          <div className="rentList">
+            <ol className="rentDataList">
               <li>
                 <span>{props.guest}</span>
               </li>
@@ -27,9 +27,9 @@ const General = (props) => {
             </ol>
           </div>
         </div>
-        <div className="profileImg">
-          <button className="profileBtn">
-            <div className="profileI">
+        <div className="rentProfileImg">
+          <button className="rentProfileBtn">
+            <div className="rentProfileI">
               <img
                 className="pimg"
                 aria-hidden="true"
@@ -43,7 +43,7 @@ const General = (props) => {
           </button>
         </div>
       </div>
-      <hr />
+      <hr className="hr2" />
       <div className="highlightsContainer">
         <div className="highlightsStyleContainer">
           <div className="highlight" id="hight1">
@@ -105,7 +105,7 @@ const General = (props) => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="hr2"/>
       <div className="highlightsStyleContainer">
         <div>
           <h2>
@@ -124,7 +124,7 @@ const General = (props) => {
           </button>
         </div>
       </div>
-      <hr />
+      <hr className="hr2" />
       <div>
         <div className="traduction">
           <div className="traductionsvg">
@@ -149,9 +149,9 @@ const General = (props) => {
         </div>
       </div>
       <div>
-        <div className="description">
+        <div className="rentDescription">
           <div>
-            <span className="descriptionTxt">
+            <span className="rentDescriptionTxt">
               Beautiful residence of minimalist construction. Open dining room
               and living room with cement and wood finishes. Large garden with
               mirror pool and jacuzzi with capacity for 10 people. The entire
@@ -186,7 +186,7 @@ const General = (props) => {
           </div>
         </div>
       </div>
-      <hr />
+      <hr className="hr2" />
     </div>
   );
 };
