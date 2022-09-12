@@ -1,4 +1,4 @@
-import "./styles/components/stickyContainer.scss";
+import "../styles/components/stickyContainer.scss";
 const StickyContainer = () => {
   return (
     <div className="bannerContainer">

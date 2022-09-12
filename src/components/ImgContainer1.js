@@ -1,4 +1,4 @@
-import "./styles/components/imgContainer.scss";
+import "../styles/components/imgContainer.scss";
 const ImgContainer =({children})=>{
     return(
         

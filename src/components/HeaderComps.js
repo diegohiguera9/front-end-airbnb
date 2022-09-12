@@ -1,4 +1,4 @@
-import "./styles/components/headerComp.scss";
+import "../styles/components/headerComp.scss";
 
 const HeaderName1 =({children})=>{
     return(

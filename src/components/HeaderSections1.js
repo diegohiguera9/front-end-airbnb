@@ -1,4 +1,4 @@
-import "./styles/components/headerComp.scss";
+import "../styles/components/headerComp.scss";
 const HeaderSections1 =(props)=>{
     return(
         <div className="elementsSections">

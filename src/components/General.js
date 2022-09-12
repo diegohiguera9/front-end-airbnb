@@ -1,4 +1,4 @@
-import "./styles/components/general.scss";
+import "../styles/components/general.scss";
 const General = (props) => {
   return (
     <div className="generalInfo">
