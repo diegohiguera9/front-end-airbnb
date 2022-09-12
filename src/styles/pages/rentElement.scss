@@ -1,0 +1,26 @@
+.rentElement{
+    width: 1120px;
+    height: auto;
+    padding-top: 24px;
+}
+.elementContainer{
+    width: 100%;
+    height: 100%;
+}
+.infoContainer{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 100%;
+    min-height: 2124px;
+    
+    
+}
+hr{
+    margin: 0px;
+    border-top: 1px solid rgb(226, 226, 226);
+    width: 637px;
+}
+.hr1{
+    width: 100%;
+    margin-top: 24px ;
+}
