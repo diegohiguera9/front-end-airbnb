@@ -19,9 +19,9 @@ function CardCarousel(props) {
     const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
     return (
-        <div className='container__main__CC'>
             <Carousel
                 className='carousel__main'
+                slidesToScroll={1}
                 withControls={mobile ? false : true}
                 breakpoints={[
                     { maxWidth: 'sm', slideGap: '15px' },
@@ -44,12 +44,11 @@ function CardCarousel(props) {
                 {data.map((item, index) => {
                     return (
                         <Carousel.Slide key={index} className='carousel__list__button__heart'>
-                            <img src={item} alt="" />
+                            <img src={item} alt={index} />
                         </Carousel.Slide>
                     )
                 })}
             </Carousel>
-        </div >
     );
 }
 

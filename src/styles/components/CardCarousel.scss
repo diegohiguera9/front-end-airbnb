@@ -1,13 +1,6 @@
 .carousel__list__button__heart{
     max-width: 100%;
     aspect-ratio: 1.05;
-    display: inline-block;
-    position: relative;
-    font-family: 'Cereal Medium';
-    padding: 0px;
-    margin-bottom: 10px;
-    border: none; 
-    overflow: hidden;
 
     & img{
         height: 100%;
@@ -16,4 +9,8 @@
         border-radius: 15px;
         margin-bottom: 10px;
     }
+}
+
+.container__carousel__main{
+    display: flex;
 }
