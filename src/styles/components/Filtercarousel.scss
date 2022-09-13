@@ -1,0 +1,40 @@
+.container__carousel{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    column-gap: 10px;
+    align-items: center;
+    position: fixed;
+    top: 80px;
+    padding: var(--padding-main);
+    padding-top: 30px;
+    padding-bottom: 20px;
+    background-color: white;
+    z-index: 2;
+}
+
+.filter__carousel{
+    width: 100%;
+    
+    &__item{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: max-content;
+        white-space: nowrap;
+        row-gap: 8px;
+        background-color: transparent;
+        font-size: 12px;
+        color: rgb(185, 179, 179);
+
+        & img{
+            height: 24px;
+            width: 24px;
+        }
+    }
+
+    &__item:hover{
+        cursor: pointer;
+        border-bottom: solid 1px black;
+    }
+}
