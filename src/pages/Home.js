@@ -1,5 +1,4 @@
 import '../styles/pages/Home.scss'
-import FilterTypes from '../components/FilterTypes';
 import CardMain from '../components/CardMain';
 import ButtonMapa from '../components/ButtonMapa';
 import Footer from '../components/Footer';
