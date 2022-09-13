@@ -1,4 +1,6 @@
 import "../styles/components/general.scss";
+import Amenities from "./Amenities";
+import GeneralBeds from "./GeneralBeds";
 const General = (props) => {
   return (
     <div className="generalInfo">
@@ -105,7 +107,7 @@ const General = (props) => {
           </div>
         </div>
       </div>
-      <hr className="hr2"/>
+      <hr className="hr2" />
       <div className="highlightsStyleContainer">
         <div>
           <h2>
@@ -173,7 +175,6 @@ const General = (props) => {
                     role="presentation"
                     aria-hidden="true"
                     focusable="false"
-                    
                   >
                     <path
                       d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"
@@ -186,6 +187,10 @@ const General = (props) => {
           </div>
         </div>
       </div>
+      <hr className="hr2" />
+      <GeneralBeds />
+      <hr className="hr2" />
+      <Amenities/>
       <hr className="hr2" />
     </div>
   );
