@@ -19,7 +19,7 @@
 
     #rentImg1 {
       background-image: url("../fotosH/1.webp");
-      background-size: contain;
+      
       border-radius: 10px 0px 0px 10px;
     }
   }
@@ -27,6 +27,7 @@
     height: auto;
     width: auto;
     background-position: center;
+    background-size: cover;
   }
   .secondaryImg {
     display: grid;
@@ -83,4 +84,11 @@
     width: 16px;
     fill: currentColor;
   }
+}
+@media(max-width: 1128px){
+
+  .rentContainerImg{
+    height: 418px;
+  }
+
 }

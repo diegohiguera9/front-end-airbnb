@@ -1,7 +1,7 @@
 .rentHostData {
   padding: 48px 0px 24px;
   height: 56px;
-  width: 581px;
+  width: 87%;
   margin: 0px;
   display: flex;
   justify-content: space-between;
@@ -9,9 +9,9 @@
 }
 
 .rentData {
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between;*/
   height: auto;
   margin: 0px;
 
@@ -34,7 +34,7 @@
 }
 
 .rentProfileImg {
-  align-items: flex-end;
+  
 
   .rentProfileBtn {
     height: 56px;

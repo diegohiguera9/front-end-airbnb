@@ -1,16 +1,19 @@
 .bannerContainer {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   height: 100%;
-}
-.styckyContainer {
+  
+
+  .styckyContainer {
   position: sticky;
   top: 80px;
   height: 663px;
+  width: 372.33px;
+  
 }
 .bookContainer {
   height: 521px;
-  width: 372.33px;
+  /*width: 372.33px;*/
   margin-top: 48px;
   top: 128px;
   border-radius: 12px;
@@ -22,7 +25,7 @@
 }
 .bookIt {
   height: 473px;
-  width: 324.33px;
+  /*width: 324.33px;*/
   padding: 24px;
   box-sizing: revert;
 }
@@ -87,18 +90,19 @@
 }
 .checkContainer {
   height: 112px;
-  width: 322.33px;
+  /*width: 322.33px;*/
   border-radius: 8px;
   border: 1px solid rgb(136, 136, 136);
   position: relative;
   box-sizing: revert;
 
   .checkFlex {
-    display: flex;
+   /*display: flex;*/
+
   }
   .checkBtn {
     display: flex;
-    width: 322.33px;
+    width: 100%;
     height: 100%;
     position: relative;
     margin: 0px;
@@ -120,7 +124,7 @@
   }
   .checkFlexI {
     height: 56px;
-    width: 160.67px;
+    width: 50%;
     position: relative;
     text-align: start;
   }
@@ -140,7 +144,7 @@
   }
   .chekI {
     border-top: 1px solid rgb(136, 136, 136);
-    width: 322.33px;
+    /*width: 322.33px;*/
     height: 56px;
   }
 
@@ -157,7 +161,7 @@
 
 .reserve {
   height: 48px;
-  width: 324.33px;
+  /*width: 324.33px;*/
   .reserveBtn {
     height: 100%;
     width: 100%;
@@ -208,12 +212,19 @@
     font-weight: lighter;
     font-family: "Roboto", sans-serif;
     padding: 0px;
+    .nightValues{
+      display: flex;
+      text-align: left;
+      
+    }
   }
   .valueResult {
     font-weight: lighter;
     font-family: "Roboto", sans-serif;
     font-size: 16px;
     padding: 0px;
+    text-align: right;
+    
   }
 }
 .section2 {
@@ -245,4 +256,13 @@
       fill: currentColor;
     }
   }
+}
+}
+
+@media(max-width: 1128px){
+
+  .styckyContainer{
+    width: 95% !important;
+  }
+
 }
