@@ -20,65 +20,76 @@ const CalendarSearch = () => {
                         <ButtonRound clase={"dateButtonType"} selected={""} texto={"Fechas flexibles"} />
                     </div>
                 </div>
-                <div >
+                <div className="mutablePick">
+                    <div >
 
-                    <RangeCalendar
+                        <RangeCalendar
 
-                        styles={(theme) => ({
-                            day: {
-                                "&[data-selected]": {
-                                    backgroundColor: theme.colors.dark[4],
-                                    borderRadius: 100,
-                                    position: "relative",
-                                },
+                            styles={(theme) => ({
+                                day: {
+                                    "&[data-selected]": {
+                                        backgroundColor: theme.colors.dark[4],
+                                        borderRadius: 100,
+                                        position: "relative",
+                                    },
 
-                                "&[data-in-range]": {
-                                    backgroundColor: theme.colors.gray[2],
-                                },
-
-                                "&[data-first-in-range]": {
-                                    backgroundColor: theme.colors.dark[4],
-                                    borderRadius: 100,
-                                    position: "relative",
-
-                                    "&::after": {
-                                        content: '""',
+                                    "&[data-in-range]": {
                                         backgroundColor: theme.colors.gray[2],
-                                        position: "absolute",
-                                        right: 0,
-                                        left: 20,
-                                        top: 0,
-                                        bottom: 0,
-                                        zIndex: -1,
                                     },
-                                },
 
-                                "&[data-last-in-range]": {
-                                    backgroundColor: theme.colors.dark[4],
-                                    borderRadius: 100,
-                                    "&::after": {
-                                        content: '""',
-                                        backgroundColor: theme.colors.gray[2],  
-                                        position: "absolute",
-                                        left: 0,
-                                        right: 20,
-                                        top: 0,
-                                        bottom: 0,
-                                        zIndex: -1,
+                                    "&[data-first-in-range]": {
+                                        backgroundColor: theme.colors.dark[4],
+                                        borderRadius: 100,
+                                        position: "relative",
+
+                                        "&::after": {
+                                            content: '""',
+                                            backgroundColor: theme.colors.gray[2],
+                                            position: "absolute",
+                                            right: 0,
+                                            left: 20,
+                                            top: 0,
+                                            bottom: 0,
+                                            zIndex: -1,
+                                        },
+                                    },
+
+                                    "&[data-last-in-range]": {
+                                        backgroundColor: theme.colors.dark[4],
+                                        borderRadius: 100,
+                                        "&::after": {
+                                            content: '""',
+                                            backgroundColor: theme.colors.gray[2],
+                                            position: "absolute",
+                                            left: 0,
+                                            right: 20,
+                                            top: 0,
+                                            bottom: 0,
+                                            zIndex: -1,
+                                        },
                                     },
                                 },
-                            },
-                        })}
-                        className="
+                            })}
+                            className="
                         RangeCalendarModal" minDate={new Date()} amountOfMonths={2} value={calendarOne} onChange={setCalendarOne} />
 
-                </div>
-                <div className="itemCalendario">
-                    <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Fechas exactas"} />
-                    <ButtonRound clase={"dateButton"} texto={"± 1 día"} />
-                    <ButtonRound clase={"dateButton"} texto={"± 3 días"} />
-                    <ButtonRound clase={"dateButton"} texto={"± 7 días"} />
+                    </div>
+                    <div className="itemCalendario">
+                        <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Fechas exactas"} />
+                        <ButtonRound clase={"dateButton"} texto={"± 1 día"} />
+                        <ButtonRound clase={"dateButton"} texto={"± 3 días"} />
+                        <ButtonRound clase={"dateButton"} texto={"± 7 días"} />
 
+                    </div>
+                </div>
+                <div className="mutableFlex">
+                    <p>¿Cuánto tiempo quieres quedarte?</p>
+                    <div className="itemSelector">
+                        <ButtonRound clase={"dateButton"} selected={""} texto={"Fin de semana"} />
+                        <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Semana"} />
+                        <ButtonRound clase={"dateButton"} selected={""} texto={"Mes"} />
+                    </div>
+                    <p>¿Cuándo quieres ir?¿Cuándo quieres ir?</p>
                 </div>
             </div>
 
