@@ -13,7 +13,7 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.20);
 }
 
-.header__search button {
+.header__search__button {
     background: transparent;
     height: 46px;
     padding: 0 16px;
@@ -47,15 +47,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.header__search button:first-of-type {
-    padding-left: 24px;
-}
-.header__search button:last-of-type {
-    padding-right: 7px;
-    font-family: 'Cereal Light';
-    color: #717171;
 }
 
 .header__search span {

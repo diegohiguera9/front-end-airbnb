@@ -25,3 +25,10 @@
         height: 15px;
     }
 }
+
+@media (max-width:743px){
+
+    .header__types__filtros__button{
+        display: none;
+    }
+}

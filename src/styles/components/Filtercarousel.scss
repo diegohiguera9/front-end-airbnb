@@ -38,3 +38,11 @@
         border-bottom: solid 1px black;
     }
 }
+
+@media (max-width:743px){
+
+    .container__carousel{
+        padding: 0 24px;
+        padding-top: 20px;
+    }
+}
