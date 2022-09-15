@@ -3,34 +3,82 @@ import "../styles/components/CalendarSearch.scss"
 import { RangeCalendar } from '@mantine/dates';
 import { useState } from 'react';
 import dayjs from 'dayjs';
-
+import { useMantineTheme } from '@mantine/core'
 
 const CalendarSearch = () => {
 
-    const [calendarOne, setCalendarOne] = useState(null);
-   
+    const [calendarOne, setCalendarOne] = useState([null, null]);
+    const theme = useMantineTheme();
 
     return (
         <div>
-             
+
             <div className="containerMapa">
                 <div className="itemCalendario">
                     <div className="itemSelector">
-                        <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Elige las fechas"}/>
-                        <ButtonRound clase={"dateButtonType"} selected={""} texto={"Fechas flexibles"}/>
+                        <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Elige las fechas"} />
+                        <ButtonRound clase={"dateButtonType"} selected={""} texto={"Fechas flexibles"} />
                     </div>
                 </div>
                 <div >
-             
-                <RangeCalendar   minDate={new Date()} amountOfMonths={2} value={calendarOne} onChange={setCalendarOne} />
-         
+
+                    <RangeCalendar
+
+                        styles={(theme) => ({
+                            day: {
+                                "&[data-selected]": {
+                                    backgroundColor: theme.colors.dark[4],
+                                    borderRadius: 100,
+                                    position: "relative",
+                                },
+
+                                "&[data-in-range]": {
+                                    backgroundColor: theme.colors.gray[2],
+                                },
+
+                                "&[data-first-in-range]": {
+                                    backgroundColor: theme.colors.dark[4],
+                                    borderRadius: 100,
+                                    position: "relative",
+
+                                    "&::after": {
+                                        content: '""',
+                                        backgroundColor: theme.colors.gray[2],
+                                        position: "absolute",
+                                        right: 0,
+                                        left: 20,
+                                        top: 0,
+                                        bottom: 0,
+                                        zIndex: -1,
+                                    },
+                                },
+
+                                "&[data-last-in-range]": {
+                                    backgroundColor: theme.colors.dark[4],
+                                    borderRadius: 100,
+                                    "&::after": {
+                                        content: '""',
+                                        backgroundColor: theme.colors.gray[2],  
+                                        position: "absolute",
+                                        left: 0,
+                                        right: 20,
+                                        top: 0,
+                                        bottom: 0,
+                                        zIndex: -1,
+                                    },
+                                },
+                            },
+                        })}
+                        className="
+                        RangeCalendarModal" minDate={new Date()} amountOfMonths={2} value={calendarOne} onChange={setCalendarOne} />
+
                 </div>
                 <div className="itemCalendario">
-                    <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Fechas exactas"}/>
-                    <ButtonRound clase={"dateButton"} texto={ "± 1 día"}/>
-                    <ButtonRound clase={"dateButton"} texto={"± 3 días"}/>
-                    <ButtonRound clase={"dateButton"} texto={"± 7 días"}/>
-                 
+                    <ButtonRound clase={"dateButton"} selected={"selected"} texto={"Fechas exactas"} />
+                    <ButtonRound clase={"dateButton"} texto={"± 1 día"} />
+                    <ButtonRound clase={"dateButton"} texto={"± 3 días"} />
+                    <ButtonRound clase={"dateButton"} texto={"± 7 días"} />
+
                 </div>
             </div>
 
