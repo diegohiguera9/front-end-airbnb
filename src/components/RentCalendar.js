@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const RentCalendar = () => {
   const [rentCalendarOne, setRentCalendarOne] = useState([null,null]);
-  const [dateHeader, setDateHeader] = useState("");
+  const [dateHeader, setDateHeader] = useState("Add your travel dates for exact pricing");
 
   const clearCalendar = () => {
     setRentCalendarOne([null, null]);
@@ -15,7 +15,7 @@ const RentCalendar = () => {
   const textDateHeader = () => {
     if (rentCalendarOne[0] === null && rentCalendarOne[1] === null) {
       setDateHeader("Add your travel dates for exact pricing");
-      
+      console.log(dateHeader+ " ");
     } else if (rentCalendarOne[0] && rentCalendarOne[1] === null) {
       setDateHeader("Minimum stay: 2 nights");
     } else if (rentCalendarOne[0] && rentCalendarOne[1]) {
@@ -29,16 +29,13 @@ const RentCalendar = () => {
   return (
     <div >
       <div className="rentCalendar" >
-        <div>{dateHeader}</div>
+        <div children={dateHeader}></div>
         <div>
           <RangeCalendar
             minDate={new Date()}
             amountOfMonths={2}
             value={rentCalendarOne}
-            onChange={()=>{
-              setRentCalendarOne();
-              textDateHeader();
-            }}
+            onChange={setRentCalendarOne}
             styles={(theme) => ({
               day: {
                 "&[data-selected]": {
