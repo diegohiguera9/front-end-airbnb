@@ -33,7 +33,7 @@
             box-sizing: revert;
             
             }
-        .noFill{
+        .nFill{
             padding: 8px 8px 8px 0px;
             fill: none;
             height: 16px;
@@ -43,6 +43,7 @@
             overflow: visible;
             box-sizing: revert;
         }
+        
         button{
             cursor: pointer;
             padding: 8px 8px 8px 0px;
@@ -50,7 +51,12 @@
             border: none;
             background: transparent;
             font-size: 14px;
+            border-radius: 5px;
             }
+        .hove:hover{
+            background-color: rgb(235, 232, 232);
+            
+        }
         span{
             padding: 8px 8px 8px 0px;
             }
