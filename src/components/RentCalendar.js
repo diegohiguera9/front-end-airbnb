@@ -3,33 +3,45 @@ import "../styles/components/amenities.scss";
 import RentCalendarBtn from "./RentCalendarBtn";
 import AmenitieTag from "./AmenitieTag";
 import { RangeCalendar } from "@mantine/dates";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const RentCalendar = () => {
   const [rentCalendarOne, setRentCalendarOne] = useState([null,null]);
+  const [dateTitle, setDateTitle] = useState("Select check-in date")
   const [dateHeader, setDateHeader] = useState("Add your travel dates for exact pricing");
+  
 
   const clearCalendar = () => {
     setRentCalendarOne([null, null]);
   };
   const textDateHeader = () => {
     if (rentCalendarOne[0] === null && rentCalendarOne[1] === null) {
+      setDateTitle("Select check-in date");
       setDateHeader("Add your travel dates for exact pricing");
-      console.log(dateHeader+ " ");
+      
     } else if (rentCalendarOne[0] && rentCalendarOne[1] === null) {
+      setDateTitle("Select checkout date");
       setDateHeader("Minimum stay: 2 nights");
     } else if (rentCalendarOne[0] && rentCalendarOne[1]) {
-      const sDates = rentCalendarOne.map((item) => {
+            if(rentCalendarOne[0] && rentCalendarOne[1]){
+              let rentDates = rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
+              rentDates = rentDates / (1000 * 3600 * 24);
+              setDateTitle(`${rentDates} nights in Bogota`);
+            }
+            const sDates = rentCalendarOne.map((item) => {
         return [`${item.getMonth()}, ${item.getDate()}, ${item.getFullYear()}`];
       });
       return setDateHeader(`${sDates[0]} - ${sDates[1]}`);
     }
   };
-
+  useEffect(() => {
+    textDateHeader();
+  },rentCalendarOne);
   return (
     <div >
       <div className="rentCalendar" >
-        <div children={dateHeader}></div>
+        <div className="dateTitle" children={dateTitle}/>
+        <div className="dateHeader" children={dateHeader}/>
         <div>
           <RangeCalendar
             minDate={new Date()}

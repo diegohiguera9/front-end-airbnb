@@ -1,5 +1,12 @@
 .rentCalendar{
     padding: 48px 0px;
+    .dateTitle{
+      font-size: 22px;
+    }
+    .dateHeader{
+      height: 40px;
+      padding: 8px 0px 0px;
+    }
 }
 .rentCalendarBtns {
   display: flex;
