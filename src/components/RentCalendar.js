@@ -4,15 +4,20 @@ import RentCalendarBtn from "./RentCalendarBtn";
 import AmenitieTag from "./AmenitieTag";
 import { RangeCalendar } from "@mantine/dates";
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeDate } from "../store/reducer/calendarReducer";
 
 const RentCalendar = () => {
-  const [rentCalendarOne, setRentCalendarOne] = useState([null,null]);
-  const [dateTitle, setDateTitle] = useState("Select check-in date")
-  const [dateHeader, setDateHeader] = useState("Add your travel dates for exact pricing");
+  const rentCalendarOne = useSelector((state)=>state.calendarReducer.dates);
+  const dispatch = useDispatch()
+  
+  //const [rentCalendarOne, setRentCalendarOne] = useState([null,null]);
+  const [dateTitle, setDateTitle] = useState("")
+  const [dateHeader, setDateHeader] = useState("");
   
 
   const clearCalendar = () => {
-    setRentCalendarOne([null, null]);
+    dispatch(changeDate([null,null]))
   };
   const textDateHeader = () => {
     if (rentCalendarOne[0] === null && rentCalendarOne[1] === null) {
@@ -35,8 +40,9 @@ const RentCalendar = () => {
     }
   };
   useEffect(() => {
-    textDateHeader();
-  },rentCalendarOne);
+   textDateHeader();
+  },[rentCalendarOne]);
+  
   return (
     <div >
       <div className="rentCalendar" >
@@ -47,7 +53,7 @@ const RentCalendar = () => {
             minDate={new Date()}
             amountOfMonths={2}
             value={rentCalendarOne}
-            onChange={setRentCalendarOne}
+            onChange={(e)=>dispatch(changeDate(e))}
             styles={(theme) => ({
               day: {
                 "&[data-selected]": {
