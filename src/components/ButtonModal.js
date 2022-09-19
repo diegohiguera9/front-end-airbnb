@@ -1,7 +1,7 @@
 import "../styles/components/ButtonModal.scss"
-const ButtonModal = ({texto,selected="",clase}) => {
+const ButtonModal = ({notAble,texto,selected="",clase,click,setClick}) => {
     return (
-        <button className={`${clase} ${selected}`} >
+        <button disabled={notAble} onClick={setClick} className={`${clase} ${selected}`} >
             {texto}      
         </button >
     )

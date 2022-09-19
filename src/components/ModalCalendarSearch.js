@@ -9,6 +9,9 @@ const CalendarSearch = () => {
     const [viewCalendar, setViewCalendar] = useState(true)
 
     const [calendarOne, setCalendarOne] = useState([null, null]);
+<<<<<<< HEAD
+ 
+=======
     // const [hiddenClass, setHiddenClass] = useState({
     //     flex: "",
     //     pick: "",
@@ -17,6 +20,7 @@ const CalendarSearch = () => {
         flex: "",
         pick: "",
     }
+>>>>>>> 2fb9c46b773dfbd58f103f20282b872f9b43916f
     const [buttonRoundSelected, setButtonRoundSelected] = useState({
         flex: "",
         pick: "selected",
@@ -27,20 +31,12 @@ const CalendarSearch = () => {
                 flex: "",
                 pick: "selected",
             })
-          /*  setHiddenClass({
-                flex: "hidden",
-                pick: "",
-            })*/
             setViewCalendar(true)
         } else {
             setButtonRoundSelected({
                 flex: "selected",
                 pick: "",
-            })/*
-            setHiddenClass({
-                flex: "",
-                pick: "hidden",
-            })*/
+            })
             setViewCalendar(false)
         }
     }
@@ -60,7 +56,7 @@ const CalendarSearch = () => {
                     </div>
                 </div>
                 { viewCalendar ? (
-                <div className={`mutablePick ${hiddenClass.pick}`}>
+                <div className={`mutablePick`}>
                     <div >
 
                         <RangeCalendar
@@ -123,7 +119,7 @@ const CalendarSearch = () => {
                     </div>
                 </div>
                 ) : (
-                <div className={`mutableFlex ${hiddenClass.flex}`}>
+                <div className={`mutableFlex`}>
                     <p>¿Cuánto tiempo quieres quedarte?</p>
                     <div className="itemSelector">
                         <ButtonRound clase={"dateButton"} selected={""} texto={"Fin de semana"} />
