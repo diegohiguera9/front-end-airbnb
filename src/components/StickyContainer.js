@@ -1,5 +1,27 @@
 import "../styles/components/stickyContainer.scss";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 const StickyContainer = (props) => {
+  const rentCalendar = useSelector((state) => state.calendarReducer.dates);
+  const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
+
+  const text = () => {
+        if (rentCalendar[0] && rentCalendar[1] === null) {
+      const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
+      setTextDate([date1, "Add Date"]);
+      console.log(1)
+    } else if (rentCalendar[0] && rentCalendar[1]) {
+      const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
+      const date2 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
+      setTextDate([date1, date2]);
+      console.log(2)
+    }
+  };
+
+  useEffect(() => {
+    text();
+  }, [rentCalendar]);
+
   return (
     <div className="bannerContainer">
       <div className="styckyContainer">
@@ -21,10 +43,7 @@ const StickyContainer = (props) => {
                       role="presentation"
                       focusable="false"
                     >
-                      <path
-                        d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"
-                        
-                      ></path>
+                      <path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"></path>
                     </svg>
                     <span>
                       <b>{props.rating}</b>
@@ -42,11 +61,11 @@ const StickyContainer = (props) => {
                     <button className="checkBtn">
                       <div className="checkFlexI">
                         <div className="check">CHECK-IN</div>
-                        <div className="checkText">9/10/2022</div>
+                        <div className="checkText">{texDate[0]}</div>
                       </div>
                       <div className="checkFlexI" id="i2">
                         <div className="check">CHECKOUT</div>
-                        <div className="checkText">9/11/2022</div>
+                        <div className="checkText">{texDate[1]}</div>
                       </div>
                     </button>
                   </div>
