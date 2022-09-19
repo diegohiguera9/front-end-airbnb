@@ -20,6 +20,7 @@ const StickyContainer = (props) => {
 
   useEffect(() => {
     text();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rentCalendar]);
 
   return (

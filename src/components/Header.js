@@ -3,7 +3,7 @@ import SearchBar from './SearchBar';
 import NavBar from './NavBar';
 import logo from '../styles/icons/logo.svg';
 import soloLogo from '../styles/icons/airbnb-1.svg';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Popover } from '@mantine/core';
 import '../styles/components/popover.scss'
@@ -13,7 +13,6 @@ import ReplaceSearchPop from './ReplaceSearchPop';
 
 const Header = () => {
     const [opened, setOpened] = useState(false);
-    const classPopwraper = opened ? 'pop__wraper__dark' : 'pop__wraper'
     return (
         <div>
             <header className="header">

@@ -1,6 +1,5 @@
 import '../styles/components/CardMain.scss'
 import CardCarousel from '../components/CardCarousel';
-import {Link} from 'react-router-dom';
 
 const CardMain = (props) => {
     return (
