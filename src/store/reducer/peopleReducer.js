@@ -4,18 +4,14 @@ export const DECREMENT = "DECREMENT"
 
 
 //action creator
-export const increment = (value, who) => {
-    console.log(value,who)
-    
+export const increment = (value, who) => {   
     return {
-        
         type: INCREMENT,
         who: who,
         payload:  value +1
     }
 }
 export const decrement = (value, who) => {
-    console.log(value,who)
     return {
         type: DECREMENT,
         who: who,
@@ -28,10 +24,10 @@ export const decrement = (value, who) => {
 const initialState = {
     countPeople:
     {
-        adults: 2,
-        children: 1,
-        babies: 1,
-        pets: 4,
+        adults: 1,
+        children: 0,
+        babies: 0,
+        pets: 0,
     },
 
    
