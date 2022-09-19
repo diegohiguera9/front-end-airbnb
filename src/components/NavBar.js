@@ -8,7 +8,7 @@ import ModalMenu from "../components/ModalMenu";
 const NavBar = () => {
     return (
         <div className="header__nav">
-            <a href="" className="header__nav__button-greyHover">Hazte anfitrion</a>
+            <button className="header__nav__button-greyHover">Hazte anfitrion</button>
             <button className="header__nav__button-language-greyHover">
                 <img src={globe} alt="Globe" />
             </button>

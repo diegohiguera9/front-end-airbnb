@@ -3,7 +3,7 @@ import "../styles/components/amenities.scss";
 import RentCalendarBtn from "./RentCalendarBtn";
 import AmenitieTag from "./AmenitieTag";
 import { RangeCalendar } from "@mantine/dates";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDate, changeTitle, changeDateHead } from "../store/reducer/calendarReducer";
 
@@ -41,6 +41,7 @@ const RentCalendar = () => {
   };
   useEffect(() => {
     textDateHeader();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rentCalendarOne]);
 
   return (

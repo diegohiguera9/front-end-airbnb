@@ -9,10 +9,14 @@ const CalendarSearch = () => {
     const [viewCalendar, setViewCalendar] = useState(true)
 
     const [calendarOne, setCalendarOne] = useState([null, null]);
-    const [hiddenClass, setHiddenClass] = useState({
+    // const [hiddenClass, setHiddenClass] = useState({
+    //     flex: "",
+    //     pick: "",
+    // })
+    const hiddenClass= {
         flex: "",
         pick: "",
-    })
+    }
     const [buttonRoundSelected, setButtonRoundSelected] = useState({
         flex: "",
         pick: "selected",

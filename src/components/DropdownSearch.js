@@ -4,7 +4,6 @@ import { Popover } from '@mantine/core';
 import { useState } from 'react';
 
 const DropdownSearch = () => {
-    const [opened, setOpened] = useState(false);
     const [clase, setClase] = useState({
         0: false,
         1: false,
