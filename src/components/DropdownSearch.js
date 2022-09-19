@@ -2,6 +2,9 @@ import '../styles/components/DropdownSearch.scss'
 import DropdownSearchButton from './DropdownSearchButton'
 import { Popover } from '@mantine/core';
 import { useState } from 'react';
+import ModalCalendarSearch from "./ModalCalendarSearch";
+import ModalPersonas from "./ModalPersonas";
+import ModalLocation from "./ModalLocation";
 
 const DropdownSearch = () => {
     const [opened, setOpened] = useState(false);
@@ -37,7 +40,7 @@ const DropdownSearch = () => {
                         </button>
                     </Popover.Target>
                     <Popover.Dropdown>
-                        <div>POPOVER DENTRO DEL POPOVER</div>
+                        <ModalLocation></ModalLocation>
                     </Popover.Dropdown>
                 </Popover>
 
@@ -51,7 +54,7 @@ const DropdownSearch = () => {
                         </button>
                     </Popover.Target>
                     <Popover.Dropdown>
-                        <div>POPOVER DENTRO DEL POPOVER</div>
+                        <ModalCalendarSearch></ModalCalendarSearch>
                     </Popover.Dropdown>
                 </Popover>
 
@@ -65,12 +68,15 @@ const DropdownSearch = () => {
                         </button>
                     </Popover.Target>
                     <Popover.Dropdown>
-                        <div>POPOVER DENTRO DEL POPOVER</div>
+                        <ModalCalendarSearch></ModalCalendarSearch>
                     </Popover.Dropdown>
                 </Popover>
 
                 <Popover
-                    width={'100px'}
+                    width="dropdown"
+                    position="bottom-end"
+                    radius="xl"
+                    shadow="none"
                     opened={clase[3]}
                 >
                     <Popover.Target>
@@ -84,7 +90,7 @@ const DropdownSearch = () => {
                         </button>
                     </Popover.Target>
                     <Popover.Dropdown>
-                        <div>POPOVER DENTRO DEL POPOVER</div>
+                        <ModalPersonas></ModalPersonas>
                     </Popover.Dropdown>
                 </Popover>
 

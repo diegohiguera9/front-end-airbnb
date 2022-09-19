@@ -1,10 +1,7 @@
 
-.item {
+.itemPersona {
     display: flex;
     flex-direction: row;
-    border-radius: 10px;
-    border: solid #eee 2px;
-    background: #ffffff;
     color: darkgray;
     text-align: left;
     width: 340px;
@@ -14,3 +11,11 @@
     padding: 0px 10px;
   }
   
+  .container {
+    font-family: "Roboto";
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+   font-size: 14px;
+  }
