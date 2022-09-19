@@ -4,7 +4,7 @@ import searchIcon from '../styles/icons/searchIcon.svg';
 const SearchBar = (props)=>{
     return(
     <div className="header__search">
-        <button>
+         <button>
             <div className="header__search__cualquier">
                 {props.first}
             </div>
