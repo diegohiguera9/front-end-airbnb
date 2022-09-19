@@ -7,7 +7,6 @@ import ModalPersonas from "./ModalPersonas";
 import ModalLocation from "./ModalLocation";
 
 const DropdownSearch = () => {
-    const [opened, setOpened] = useState(false);
     const [clase, setClase] = useState({
         0: false,
         1: false,

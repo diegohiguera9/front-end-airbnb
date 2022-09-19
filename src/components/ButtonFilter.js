@@ -6,7 +6,7 @@ const ButtonFilter = ()=>{
     <div className="header__types__filtros">
         <button className="header__types__filtros__button">
             <div className="header__types__filtrosicon">
-                <img src={sliders}></img>
+                <img src={sliders} alt='next'></img>
             </div>
             <span>Filtros</span>
         </button>
