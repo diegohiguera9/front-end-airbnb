@@ -1,14 +1,45 @@
 import ButtonRound from "./ButtonModal";
 import "../styles/components/CalendarSearch.scss"
+import "../styles/components/ButtonModal.scss"
 import { RangeCalendar } from '@mantine/dates';
 import { useState } from 'react';
-import dayjs from 'dayjs';
-import { useMantineTheme } from '@mantine/core'
+
 
 const CalendarSearch = () => {
+    const [viewCalendar, setViewCalendar] = useState(true)
 
     const [calendarOne, setCalendarOne] = useState([null, null]);
-    const theme = useMantineTheme();
+    const [hiddenClass, setHiddenClass] = useState({
+        flex: "",
+        pick: "",
+    })
+    const [buttonRoundSelected, setButtonRoundSelected] = useState({
+        flex: "",
+        pick: "selected",
+    })
+    const handleClickType = (who) => {
+        if (who === "pick") {
+            setButtonRoundSelected({
+                flex: "",
+                pick: "selected",
+            })
+          /*  setHiddenClass({
+                flex: "hidden",
+                pick: "",
+            })*/
+            setViewCalendar(true)
+        } else {
+            setButtonRoundSelected({
+                flex: "selected",
+                pick: "",
+            })/*
+            setHiddenClass({
+                flex: "",
+                pick: "hidden",
+            })*/
+            setViewCalendar(false)
+        }
+    }
 
     return (
         <div>
@@ -16,11 +47,16 @@ const CalendarSearch = () => {
             <div className="containerMapa">
                 <div className="itemCalendario">
                     <div className="itemSelector">
-                        <ButtonRound clase={"dateButtonType"} selected={"selected"} texto={"Elige las fechas"} />
-                        <ButtonRound clase={"dateButtonType"} selected={""} texto={"Fechas flexibles"} />
+                        <button onClick={() => handleClickType("pick")} className={`dateButtonType ${buttonRoundSelected.pick}`} >Elige las fechas </button >
+                        <button onClick={() => handleClickType("flex")} className={`dateButtonType ${buttonRoundSelected.flex}`} >Fechas flexibles</button >
+                        {
+                            //<ButtonRound clase={""} selected={`${buttonRoundSelected.pick}`} texto={""} />
+                            //<ButtonRound clase={"dateButtonType"} selected={`${buttonRoundSelected.flex}`} texto={"Fechas flexibles"} />
+                        }
                     </div>
                 </div>
-                <div className="mutablePick">
+                { viewCalendar ? (
+                <div className={`mutablePick ${hiddenClass.pick}`}>
                     <div >
 
                         <RangeCalendar
@@ -82,7 +118,8 @@ const CalendarSearch = () => {
 
                     </div>
                 </div>
-                <div className="mutableFlex">
+                ) : (
+                <div className={`mutableFlex ${hiddenClass.flex}`}>
                     <p>¿Cuánto tiempo quieres quedarte?</p>
                     <div className="itemSelector">
                         <ButtonRound clase={"dateButton"} selected={""} texto={"Fin de semana"} />
@@ -91,6 +128,7 @@ const CalendarSearch = () => {
                     </div>
                     <p>¿Cuándo quieres ir?¿Cuándo quieres ir?</p>
                 </div>
+            )}
             </div>
 
         </div >
