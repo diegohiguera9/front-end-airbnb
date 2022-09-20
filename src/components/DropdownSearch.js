@@ -5,8 +5,31 @@ import { useState } from 'react';
 import ModalCalendarSearch from "./ModalCalendarSearch";
 import ModalPersonas from "./ModalPersonas";
 import ModalLocation from "./ModalLocation";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { format } from 'date-fns'
+
+
 
 const DropdownSearch = () => {
+    const rentCalendar = useSelector((state) => state.calendarReducer.dates);
+    const [fecha1,setFecha1] = useState(null)
+    const [fecha2,setFecha2] = useState(null) 
+    
+
+    const addFechas = () => {
+            if (rentCalendar[0] !== null) 
+                setFecha1(rentCalendar[0] !== null ?format(rentCalendar[0], 'dd MMM.')  : "")
+            if (rentCalendar[1] !== null) 
+                setFecha2(rentCalendar[1] !== null ?format(rentCalendar[1], 'dd MMM.')  : "")
+                    
+    }
+
+    useEffect(() => {
+        addFechas();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [rentCalendar]);
+    
     const [clase, setClase] = useState({
         0: false,
         1: false,
@@ -25,6 +48,7 @@ const DropdownSearch = () => {
             )
         })
     }
+    
     return (
         <div className='wraper__searchbar__pop'>
             <div className="searchbar__pop">
@@ -33,10 +57,20 @@ const DropdownSearch = () => {
                     opened={clase[0]}
                 >
                     <Popover.Target>
-                        <button onClick={() => handleClick('0')}>
-                            <DropdownSearchButton text={['Donde', 'Explora destinos']} styles={{ width: '300px', paddingLeft: '20px' }} clase={clase[0] ? 'selected' : ''} />
-
-                        </button>
+                        <div>
+                            <button onClick={() => handleClick('0')}>
+                                <DropdownSearchButton text={['Donde', 'Explora destinos']} styles={{ width: '300px', paddingLeft: '20px' }} clase={clase[0] ? 'selected' : ''} />
+                                {// && rentCalendar[1]
+                                }
+                            </button>
+                            <button onClick={() => handleClick('2')}>
+                            {
+                               fecha1 ?
+                                    (<DropdownSearchButton text={['Salida', `${fecha1}`]} styles={{ width: '100px', }} clase={clase[2] ? 'selected' : ''} />)
+                                    : (<DropdownSearchButton text={['Salida', 'fecha']} styles={{ width: '100px', }} clase={clase[2] ? 'selected' : ''} />)
+                            }
+                            </button>
+                        </div>
                     </Popover.Target>
                     <Popover.Dropdown>
                         <ModalLocation></ModalLocation>
@@ -44,26 +78,20 @@ const DropdownSearch = () => {
                 </Popover>
 
                 <Popover
-                    width={'100px'}
-                    opened={clase[1]}
-                >
-                    <Popover.Target>
-                        <button onClick={() => handleClick('1')}>
-                            <DropdownSearchButton text={['Llegada', 'fecha']} styles={{ width: '100px', }} clase={clase[1] ? 'selected' : ''} />
-                        </button>
-                    </Popover.Target>
-                    <Popover.Dropdown>
-                        <ModalCalendarSearch></ModalCalendarSearch>
-                    </Popover.Dropdown>
-                </Popover>
-
-                <Popover
-                    width={'100px'}
+                    width="dropdown"
+                    position="bottom-center"
+                    radius="xl"
+                    shadow="none"
                     opened={clase[2]}
                 >
                     <Popover.Target>
                         <button onClick={() => handleClick('2')}>
-                            <DropdownSearchButton text={['Salida', 'fecha']} styles={{ width: '100px', }} clase={clase[2] ? 'selected' : ''} />
+                            {
+                               fecha2 ?
+                                    (<DropdownSearchButton text={['Salida', `${fecha2}`]} styles={{ width: '100px', }} clase={clase[2] ? 'selected' : ''} />)
+                                    : (<DropdownSearchButton text={['Salida', 'fecha']} styles={{ width: '100px', }} clase={clase[2] ? 'selected' : ''} />)
+                            }
+
                         </button>
                     </Popover.Target>
                     <Popover.Dropdown>

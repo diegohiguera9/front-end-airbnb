@@ -1,7 +1,6 @@
 import "../styles/components/ModalPersonas.scss"
 import ModalPersonasP1 from "./ModalPersonasP1";
 import ModalPersonasP2 from "./ModalPersonasP2";
-
 import { useSelector } from "react-redux";
 
 
