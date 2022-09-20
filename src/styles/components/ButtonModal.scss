@@ -8,10 +8,10 @@ button{
 }
 .dateButton {
   background-color: #FFF;
-  width: 100px;
+  width: 120px;
   height: 30px;
   border-radius: 15px;
-  padding: 0;
+  padding: 2px;
   margin: 0;
   border: solid white 1px;
   cursor: pointer;
@@ -27,7 +27,7 @@ button{
 }
 
 .dateButtonType {
-  background-color: #aaa;
+  background-color: #e1e1e1;
   width: 120px;
   height: 25px;
   border-radius: 15px;
@@ -65,12 +65,12 @@ button{
 .roundButton {
   font-size: 20px;
   font-weight: bold;
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   background-color: #FFF;
   margin: 10px 10px;
   border-radius: 150px;
-  padding: 7px;
+  padding: 0;
   border: solid darkgray 1px;
 
   &:hover {

@@ -35,8 +35,6 @@ const initialState = {
 
 //reducer
 const peopleReducer = (state = initialState, action) => {
-    console.log(action.payload)
-    console.log(state)
     switch (action.type) {
         case INCREMENT:
             return {
