@@ -2,6 +2,7 @@
 export const CHANGE_DATE = "CHANGE_DATE"
 export const CHANGE_TITLEDATE = "CHANGE_TITLEDATE"
 export const CHANGE_HEADDATE = "CHANGE_HEADDATE"
+export const CHANGE_FLEXRANGE = "CHANGE_FLEXRANGE"
 
 
 //action creator
@@ -24,12 +25,19 @@ export const changeDate = (value) => {
         payload: value
     }
  }
-
+ export const changeFlexRange=(value)=>{
+    return{
+        type: CHANGE_FLEXRANGE,
+        payload: value
+    }
+ }
+ 
 // state
 const initialState = {
     dates: [null,null],
     title: "",
-    head: ""
+    head: "",
+    flexRange:"normal"
 }
 
 //reducer
@@ -49,6 +57,11 @@ const calendarReducer = (state = initialState, action) => {
             return {
                 ...state,
                 head: action.payload
+            }
+            case CHANGE_FLEXRANGE:
+            return {
+                ...state,
+                flexRange: action.payload
             }
         default:
             return state
