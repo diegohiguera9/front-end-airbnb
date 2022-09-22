@@ -4,11 +4,12 @@ import "../styles/components/ButtonModal.scss"
 import { RangeCalendar } from '@mantine/dates';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { changeDate } from "../store/reducer/calendarReducer";
+import { changeDate, changeFlexRange } from "../store/reducer/calendarReducer";
 
 const CalendarSearch = () => {
     const [viewCalendar, setViewCalendar] = useState(true)
     const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
+
     const dispatch = useDispatch();
 
     const [buttonRoundSelected, setButtonRoundSelected] = useState({
@@ -38,6 +39,7 @@ const CalendarSearch = () => {
     }
 
     const handleClickDate = (who) => {
+
         if (who === "normal") {
             setButtonDatesRange({
                 normal: "selected",
@@ -67,8 +69,10 @@ const CalendarSearch = () => {
                 seven: "selected",
             })
         }
-    }
+        dispatch(changeFlexRange(who))
 
+    }
+ 
     return (
         <div>
 
@@ -84,10 +88,10 @@ const CalendarSearch = () => {
                         <div >
 
                             <RangeCalendar
-                                className="RangeCalendarModal" 
-                                minDate={new Date()} 
-                                amountOfMonths={2} 
-                                value={rentCalendarOne}   
+                                className="RangeCalendarModal"
+                                minDate={new Date()}
+                                amountOfMonths={2}
+                                value={rentCalendarOne}
                                 onChange={(e) => {
                                     dispatch(changeDate(e))
                                 }}
@@ -136,7 +140,7 @@ const CalendarSearch = () => {
                                         },
                                     },
                                 })}
-                                 />
+                            />
 
                         </div>
                         <div className="itemCalendario">
