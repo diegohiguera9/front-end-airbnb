@@ -5,9 +5,10 @@ import { useState } from 'react';
 import ModalCalendarSearch from "./ModalCalendarSearch";
 import ModalPersonas from "./ModalPersonas";
 import ModalLocation from "./ModalLocation";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { format } from 'date-fns'
+import { flip } from "../store/reducer/headerReducer";
 
 
 
@@ -18,7 +19,8 @@ const DropdownSearch = () => {
     const [fecha1, setFecha1] = useState(null)
     const [fecha2, setFecha2] = useState(null)
     const [totalPerson, setTotalPerson] = useState(null)
-
+    const dispatch = useDispatch();
+    const headerPopover = useSelector((state) => state.headerReducer.headerPopover);
 
     const addFechas = () => {
         let adicional_dates = ""
@@ -40,17 +42,7 @@ const DropdownSearch = () => {
 
     }
 
-    const changePeopleTotal = () => {
-        const { adults, children } = countPeople
-        const totalValue = adults + children
-        if (totalValue === 0) {
-            setTotalPerson("cuantos")
-        } else if (totalValue === 1) {
-            setTotalPerson(`${totalValue} húesped`)
-        } else {
-            setTotalPerson(`${totalValue} huéspedes`)
-        }
-    }
+
 
     useEffect(() => {
         addFechas();
@@ -58,6 +50,18 @@ const DropdownSearch = () => {
     }, [rentCalendar, flexRange]);
 
     useEffect(() => {
+        const changePeopleTotal = () => {
+            const { adults, children } = countPeople
+            const totalValue = adults + children
+            if (totalValue === 0) {
+                setTotalPerson("cuantos")
+            } else if (totalValue === 1) {
+                setTotalPerson(`${totalValue} húesped`)
+            } else {
+                setTotalPerson(`${totalValue} huéspedes`)
+            }
+        }
+        
         changePeopleTotal();
 
     }, [countPeople]);
@@ -79,6 +83,11 @@ const DropdownSearch = () => {
                 })
             )
         })
+        if(index==="4"){
+            console.log("1 headerPopover",headerPopover)
+            dispatch(flip())
+            console.log("2 headerPopover",headerPopover)
+        }
     }
 
     return (
