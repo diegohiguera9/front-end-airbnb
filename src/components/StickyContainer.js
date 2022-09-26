@@ -6,15 +6,15 @@ const StickyContainer = (props) => {
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
 
   const text = () => {
-        if (rentCalendar[0] && rentCalendar[1] === null) {
+    if (rentCalendar[0] === null && rentCalendar[1] === null) {
+      setTextDate(["Add Date", "Add Date"]);
+    } else if (rentCalendar[0] && rentCalendar[1] === null) {
       const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
       setTextDate([date1, "Add Date"]);
-      console.log(1)
     } else if (rentCalendar[0] && rentCalendar[1]) {
       const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
       const date2 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
       setTextDate([date1, date2]);
-      console.log(2)
     }
   };
 
