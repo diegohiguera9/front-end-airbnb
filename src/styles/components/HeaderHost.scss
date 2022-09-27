@@ -1,0 +1,44 @@
+.headerhost{
+    width: 100%;
+    height: 80px;
+    padding: 0px 20px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__menubar{
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.roundbuttonHost{
+    display: flex; 
+    justify-content: space-between;
+    column-gap: 25px;
+
+    &__each{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 1px solid var(--grey-med);
+        width: 40px;
+        height: 40px;
+        padding: 2px;
+
+        & img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: fill;
+        }
+    }
+}
+
+.mantine-Popover-dropdown{
+    border-radius: 15px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.08);
+    padding: 20px 0px;
+}
