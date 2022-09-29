@@ -1,8 +1,14 @@
+import { Modal } from "@mantine/core";
+import { useState } from "react";
 import "../styles/components/general.scss";
+import AirCoverModal from "./AirCoverModal";
 import Amenities from "./Amenities";
 import GeneralBeds from "./GeneralBeds";
 import RentCalendar from "./RentCalendar";
 const General = (props) => {
+  const [openedAirCover, setOpenedAirCover] = useState(false);
+  const [openShowMore, setOpenShowMore] = useState(false);
+  const [opened, setOpened] = useState(false);
   return (
     <div className="generalInfo">
       <div className="rentHostData">
@@ -122,7 +128,16 @@ const General = (props) => {
             Every booking includes free protection from Host cancellations,
             listing inaccuracies, and other issues like trouble checking in.
           </div>
-          <button className="airCoverBtn">
+          <Modal
+              opened={opened}
+              onClose={() => setOpened(false)}
+              overflow="outside"
+              withCloseButton={false}
+              size="65%"
+            >
+              <AirCoverModal setOpened={setOpened} />
+            </Modal>
+          <button className="airCoverBtn" onClick={() => setOpened(true)}>
             <u>Learn More</u>
           </button>
         </div>
@@ -145,6 +160,7 @@ const General = (props) => {
             <span className="traductionText">
               Some info is shown in its original language.
             </span>
+            
             <button className="traductionBtn">
               <u>Translate</u>
             </button>
@@ -165,7 +181,16 @@ const General = (props) => {
             </span>
           </div>
           <div className="descriptionMore">
-            <button className="descriptionBtn">
+          <Modal
+              opened={openShowMore}
+              onClose={() => setOpenShowMore(false)}
+              overflow="outside"
+              withCloseButton={false}
+              fullScreen
+            >
+              <AirCoverModal setOpened={setOpenShowMore}/>
+            </Modal>
+            <button className="descriptionBtn" onClick={() => setOpenShowMore(true)}>
               <span className="descBtnFlex">
                 <span className="descBtnTxt">
                   <u>Show more</u>
