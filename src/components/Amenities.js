@@ -1,8 +1,12 @@
+import { Modal } from "@mantine/core";
+import { useState } from "react";
 import "../styles/components/amenities.scss";
+import AmenitiesModal from "./AmenitiesModal";
 import AmenitieTag from "./AmenitieTag";
 import ButtonModal from "./ButtonModal";
 
 const Amenities = () => {
+  const [opened, setOpened] = useState(false);
   return (
     <div className="amenities">
       <div className="amenitiesTxt">
@@ -71,7 +75,17 @@ const Amenities = () => {
         />
       </div>
       <div className="ameBtn">
-          <ButtonModal texto={"Show all 31 amenities"} clase={"ameButton"}/>
+      <Modal
+              centered
+              opened={opened}
+              onClose={() => setOpened(false)}
+              overflow="outside"
+              withCloseButton={false}
+              size="45%"
+            >
+              <AmenitiesModal setOpened={setOpened} />
+            </Modal>
+          <ButtonModal texto={"Show all 31 amenities"} clase={"ameButton"} setClick={() => setOpened(true)}/>
       </div>
     </div>
   );
