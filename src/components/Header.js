@@ -20,7 +20,8 @@ const Header = () => {
     const [fechas, setFechas] = useState(null)
     const [totalPerson, setTotalPerson] = useState(null)
     const headerPopover = useSelector((state) => state.headerReducer.headerPopover);
-
+    const [opened, setOpened] = useState(false);
+    
     const addFechas = () => {
         let adicional_dates = ""
         if (flexRange === "normal") {
@@ -67,7 +68,7 @@ const Header = () => {
 
     }, [countPeople]);
 
-    const [opened, setOpened] = useState(false);
+   
 
     useEffect(() => {
         console.log("useeffect")
