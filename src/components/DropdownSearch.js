@@ -4,7 +4,7 @@ import { Popover } from '@mantine/core';
 import { useState } from 'react';
 import ModalCalendarSearch from "./ModalCalendarSearch";
 import ModalPersonas from "./ModalPersonas";
-import ModalLocation from "./ModalLocation";
+import ModalLocationSearch from "./ModalLocationSearch";
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { format } from 'date-fns'
@@ -114,7 +114,7 @@ const DropdownSearch = () => {
                         </div>
                     </Popover.Target>
                     <Popover.Dropdown>
-                        <ModalLocation></ModalLocation>
+                        <ModalLocationSearch></ModalLocationSearch>
                     </Popover.Dropdown>
                 </Popover>
 

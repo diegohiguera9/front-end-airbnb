@@ -80,7 +80,7 @@ const CalendarSearch = () => {
                 <div className="itemCalendario">
                     <div className="itemSelector">
                         <ButtonRound setClick={() => { handleClickType("pick") }} clase={"dateButtonType"} selected={`${buttonRoundSelected.pick}`} texto={"Elige las fechas"} />
-                        <ButtonRound setClick={() => { handleClickType("flex") }} clase={"dateButtonType"} selected={`${buttonRoundSelected.flex}`} texto={"Fechas flexibles"} />
+                        
                     </div>
                 </div>
                 {viewCalendar ? (
