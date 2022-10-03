@@ -1,13 +1,14 @@
 import "../styles/components/HeaderHost.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Popover } from "@mantine/core";
 import ButtonHeaderHome from "./ButtonHeaderHome";
 import DropDownMenuHost from "./DropDownMenuHost";
 
 const HeaderHost = () => {
+  const location = useLocation();
   const [selected, setSelected] = useState({
-    0: true,
+    0: location.pathname === "/hosting" ? true : false,
     1: false,
     2: false,
     3: false,
@@ -17,7 +18,6 @@ const HeaderHost = () => {
   const [opened, setOpened] = useState(false);
 
   const handleClick = (index) => {
-    console.log(index);
     let keys = Object.keys(selected);
     keys.map((item) => {
       return setSelected((prev) => {
@@ -46,7 +46,7 @@ const HeaderHost = () => {
       <div className="headerhost__menubar">
         {text.map((item, index) => {
           return (
-            <button onClick={() => handleClick(`${index}`)}  key={index}>
+            <button onClick={() => handleClick(`${index}`)} key={index}>
               <Link to="/hosting">
                 <ButtonHeaderHome
                   select={selected[index] ? "ButtonHeaderHome--closed" : ""}
@@ -65,13 +65,17 @@ const HeaderHost = () => {
                   setOpened((o) => !o);
                 }}
               >
-                <ButtonHeaderHome menu={opened ? "ButtonHeaderHome--menu" : ""}>
+                <ButtonHeaderHome
+                  menu={opened ? "ButtonHeaderHome--menu" : ""}
+                  fun={setSelected}
+                  prev={selected}
+                >
                   Menu
                 </ButtonHeaderHome>
               </button>
             </Popover.Target>
             <Popover.Dropdown>
-              <DropDownMenuHost />
+              <DropDownMenuHost fun={handleClick} />
             </Popover.Dropdown>
           </Popover>
         </div>
@@ -89,7 +93,7 @@ const HeaderHost = () => {
         </div>
         <div className="roundbuttonHost__each">
           <img
-            src={process.env.PUBLIC_URL + "cardhome/1.webp"}
+            src={process.env.PUBLIC_URL + "/cardhome/1.webp"}
             alt="userlogo"
           ></img>
         </div>
