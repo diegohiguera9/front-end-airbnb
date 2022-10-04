@@ -4,16 +4,20 @@ import hamburger from '../styles/icons/hamburger.svg';
 import account from '../styles/icons/account.svg';
 import { useState, useEffect } from 'react';
 import { Popover } from '@mantine/core';
-import ModalMenu from '../components/ModalMenu';
 import { useSelector } from 'react-redux';
-import ModalLogin from './ModalLogin';
 import { Modal } from '@mantine/core';
+import ModalMenu from '../components/ModalMenu';
+import ModalRegistro from '../components/ModalRegistro';
+import ModalLogin from './ModalLogin';
 
 const NavBar = () => {
   const [openedPop, setOpenedPop] = useState(false);
   const menuPopover = useSelector((state) => state.headerReducer.menuPopover);
   const [openedPop1, setOpenedPop1] = useState(false);
+  const [regisOrLogin, setregisOrLogin] = useState('');
+
   useEffect(() => {
+    setregisOrLogin(menuPopover);
     setOpenedPop1((o) => !o);
   }, [menuPopover]);
 
@@ -45,17 +49,33 @@ const NavBar = () => {
           <ModalMenu />
         </Popover.Dropdown>
       </Popover>
-      <Modal
-        opened={openedPop1}
-        onClose={() => setOpenedPop1(false)}
-        title="Iniciar sesión o registrarse"
-        size="550px"
-        overflow="inside"
-        radius="xl"
-        shadow="none"
-      >
-        <ModalLogin></ModalLogin>
-      </Modal>
+
+      {regisOrLogin === '1' ? (
+        <Modal
+          opened={openedPop1}
+          onClose={() => setOpenedPop1(false)}
+          title="Iniciar sesión"
+          size="550px"
+          overflow="inside"
+          radius="xl"
+          shadow="none"
+        >
+          <ModalLogin />
+        </Modal>
+      ) : regisOrLogin === '2' ? (
+        <Modal
+          opened={openedPop1}
+          onClose={() => setOpenedPop1(false)}
+          size="550px"
+          overflow="outside"
+          radius="xl"
+          shadow="none"
+        >
+          <ModalRegistro />
+        </Modal>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
