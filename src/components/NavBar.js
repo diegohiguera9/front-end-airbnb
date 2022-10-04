@@ -50,6 +50,7 @@ const NavBar = () => {
         </Popover.Dropdown>
       </Popover>
 
+
       {regisOrLogin === '1' ? (
         <Modal
           opened={openedPop1}
@@ -76,6 +77,7 @@ const NavBar = () => {
       ) : (
         <></>
       )}
+
     </div>
   );
 };

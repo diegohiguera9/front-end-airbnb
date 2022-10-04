@@ -1,29 +1,60 @@
-import '../styles/pages/rentElement.scss'
+import "../styles/pages/rentElement.scss";
 import HeaderName1 from "../components/HeaderComps";
 import HeaderSections1 from "../components/HeaderSections1";
 import ImgContainer1 from "../components/ImgContainer1";
 import General from "../components/General";
 import StickyContainer from "../components/StickyContainer";
-
-
+import RentReviews from "../components/RentReviews";
 
 const Element = () => {
+  const data = {
+    location: 'Centro,Bogotá D.C.,Colombia',
+    homeName:'Elemento 1',
+    host: 'jhon',
+    guest: 10,
+    bedrooms: 10,
+    beds:3,
+    baths: 5,
+    rating: 1.11,
+    reviews: 170,
+    available: '13 sept-10 oct',
+    price: 1848368,
+    img: [
+        process.env.PUBLIC_URL + 'cardhome/1.webp',
+        process.env.PUBLIC_URL + 'cardhome/2.webp',
+        process.env.PUBLIC_URL + 'cardhome/3.webp',
+        process.env.PUBLIC_URL + 'cardhome/4.webp',
+        process.env.PUBLIC_URL +'cardhome/5.webp',
+        process.env.PUBLIC_URL + 'cardhome/6.webp',
+    ]
+}
   return (
     <main className="rentMain">
       <div className="rentElement">
-      <div className="rentElementContainer">
-        <HeaderName1 children={"Elemento 1"} />
-        <HeaderSections1 rating={"1.11"} reviews={"10 Reviews"} location={"Centro,Bogotá D.C.,Colombia"}/>
-        <ImgContainer1 children={"1"}/>
-        <div className="rentInfoContainer">
-            <General host={"Jhon"} guest={"10 guest"} bedrooms={"10 bedrooms"} beds={"10 beds"} baths={"10 baths"} cancel={"8 Agust"}/>
-            <StickyContainer rating={"1.11"} reviews={"10 Reviews"}/>
+        <div className="rentElementContainer">
+          <HeaderName1 children={data.homeName} />
+          <HeaderSections1
+            rating={data.rating}
+            reviews={`${data.reviews} Reviews`}
+            location={data.location}
+          />
+          <ImgContainer1 imgs={data.img} />
+          <div className="rentInfoContainer">
+            <General
+              host={data.host}
+              guest={`${data.guest} guest`}
+              bedrooms={`${data.bedrooms} bedrooms`}
+              beds={`${data.beds} beds`}
+              baths={`${data.baths} baths`}
+              cancel={"8 october"}
+            />
+            <StickyContainer rating={data.rating} reviews={`${data.reviews} Reviews`} />
+          </div>
+          <hr className="hr1" />
+          <RentReviews />
         </div>
       </div>
-    </div>
     </main>
-    
-    
   );
 };
 export default Element;

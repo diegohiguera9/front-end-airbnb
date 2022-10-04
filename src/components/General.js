@@ -1,8 +1,14 @@
+import { Modal } from "@mantine/core";
+import { useState } from "react";
 import "../styles/components/general.scss";
+import AirCoverModal from "./AirCoverModal";
 import Amenities from "./Amenities";
+import DescriptionModal from "./DescriptionModal";
 import GeneralBeds from "./GeneralBeds";
 import RentCalendar from "./RentCalendar";
 const General = (props) => {
+  const [openShowMore, setOpenShowMore] = useState(false);
+  const [opened, setOpened] = useState(false);
   return (
     <div className="generalInfo">
       <div className="rentHostData">
@@ -122,7 +128,17 @@ const General = (props) => {
             Every booking includes free protection from Host cancellations,
             listing inaccuracies, and other issues like trouble checking in.
           </div>
-          <button className="airCoverBtn">
+          <Modal
+            centered
+            opened={opened}
+            onClose={() => setOpened(false)}
+            overflow="outside"
+            withCloseButton={false}
+            size="65%"
+          >
+            <AirCoverModal setOpened={setOpened} />
+          </Modal>
+          <button className="airCoverBtn" onClick={() => setOpened(true)}>
             <u>Learn More</u>
           </button>
         </div>
@@ -145,6 +161,7 @@ const General = (props) => {
             <span className="traductionText">
               Some info is shown in its original language.
             </span>
+
             <button className="traductionBtn">
               <u>Translate</u>
             </button>
@@ -165,7 +182,20 @@ const General = (props) => {
             </span>
           </div>
           <div className="descriptionMore">
-            <button className="descriptionBtn">
+            <Modal
+              centered
+              opened={openShowMore}
+              onClose={() => setOpenShowMore(false)}
+              overflow="outside"
+              withCloseButton={false}
+              size="45%"
+            >
+              <DescriptionModal setOpened={setOpenShowMore} />
+            </Modal>
+            <button
+              className="descriptionBtn"
+              onClick={() => setOpenShowMore(true)}
+            >
               <span className="descBtnFlex">
                 <span className="descBtnTxt">
                   <u>Show more</u>
@@ -177,10 +207,7 @@ const General = (props) => {
                     aria-hidden="true"
                     focusable="false"
                   >
-                    <path
-                      d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"
-                      
-                    ></path>
+                    <path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z"></path>
                   </svg>
                 </span>
               </span>
@@ -191,9 +218,9 @@ const General = (props) => {
       <hr className="hr2" />
       <GeneralBeds />
       <hr className="hr2" />
-      <Amenities/>
+      <Amenities />
       <hr className="hr2" />
-      <RentCalendar/>
+      <RentCalendar />
     </div>
   );
 };
