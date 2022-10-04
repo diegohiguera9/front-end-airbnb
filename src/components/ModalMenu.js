@@ -1,37 +1,39 @@
-import ButtonModal from "./ButtonModal";
-import "../styles/components/ModalMenu.scss"
-import { Modal } from '@mantine/core';
-import { useState } from "react";
-import ModalLogin from "./ModalLogin";
+import ButtonModal from './ButtonModal';
+import '../styles/components/ModalMenu.scss';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { flipMenu } from '../store/reducer/headerReducer';
 
 const ModalMenu = () => {
-    const [opened, setOpened] = useState(false);
-    return (
-        <>
+  const dispatch = useDispatch();
 
-            <div class="containerMenu">
-                <ButtonModal click={opened} setClick={() => { setOpened(true) }} clase={"whiteButton"} texto={"Regístrate"} />
-                <ButtonModal click={opened} setClick={() => { setOpened(true) }} clase={"whiteButton"} texto={"Inicia sesión"} />
-                <hr />
-                <ButtonModal clase={"whiteButton"} texto={"Recibe huéspedes en tu hogar"} />
-                <ButtonModal clase={"whiteButton"} texto={"Organiza una experiencia"} />
-                <ButtonModal clase={"whiteButton"} texto={"Ayuda"} />
-            </div>
-
-            <Modal
-                opened={opened}
-                onClose={() => setOpened(false)}
-                title="Iniciar sesión o registrarse"
-                size="550px"
-                overflow="inside"
-                radius="xl"
-                shadow="none"
-            >
-                <ModalLogin></ModalLogin>
-            </Modal>
-        </ >
-    )
-
-}
+  return (
+    <>
+      <div className="containerMenu">
+        <ButtonModal
+          setClick={() => {
+            dispatch(flipMenu());
+          }}
+          clase={'whiteButton'}
+          texto={'Regístrate'}
+        />
+        <ButtonModal
+          setClick={() => {
+            dispatch(flipMenu());
+          }}
+          clase={'whiteButton'}
+          texto={'Inicia sesión'}
+        />
+        <hr />
+        <ButtonModal
+          clase={'whiteButton'}
+          texto={'Recibe huéspedes en tu hogar'}
+        />
+        <ButtonModal clase={'whiteButton'} texto={'Organiza una experiencia'} />
+        <ButtonModal clase={'whiteButton'} texto={'Ayuda'} />
+      </div>
+    </>
+  );
+};
 
 export default ModalMenu;
