@@ -49,7 +49,7 @@ const NavBar = () => {
         opened={openedPop1}
         onClose={() => setOpenedPop1(false)}
         title="Iniciar sesión o registrarse"
-        size="550px"
+        
         overflow="inside"
         radius="xl"
         shadow="none"
