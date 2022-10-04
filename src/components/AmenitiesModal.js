@@ -1,4 +1,5 @@
 import "../styles/components/airCoverModal.scss";
+import Amenities from "./Amenities";
 
 const AmenitiesModal = ({setOpened}) => {
   return (
@@ -21,7 +22,7 @@ const AmenitiesModal = ({setOpened}) => {
         </div>
       </div>
       <div className="amenitiesTitle">
-        <h2>What this place offers</h2>
+      <Amenities />
       </div>
     </div>
   )
