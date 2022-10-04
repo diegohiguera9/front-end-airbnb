@@ -1,9 +1,17 @@
 import "../styles/components/stickyContainer.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Popover } from "@mantine/core";
+import StickyCalendarModal from "./StickyCalendarModal"
+import ModalPersonas from "./ModalPersonas"
+
 const StickyContainer = (props) => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
+  const [opened, setOpened] = useState(false);
+  const [openGuest, setOpenGuest] = useState(false)
+  const countPeople = useSelector((state) => state.peopleReducer.countPeople);
+  const [totalPerson, setTotalPerson] = useState(null)
 
   const text = () => {
     if (rentCalendar[0] === null && rentCalendar[1] === null) {
@@ -13,7 +21,7 @@ const StickyContainer = (props) => {
       setTextDate([date1, "Add Date"]);
     } else if (rentCalendar[0] && rentCalendar[1]) {
       const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
-      const date2 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
+      const date2 = `${rentCalendar[1].getMonth()}/${rentCalendar[1].getDate()}/${rentCalendar[1].getFullYear()}`;
       setTextDate([date1, date2]);
     }
   };
@@ -22,6 +30,22 @@ const StickyContainer = (props) => {
     text();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rentCalendar]);
+  useEffect(() => {
+    const changePeopleTotal = () => {
+        const { adults, children } = countPeople
+        const totalValue = adults + children
+        if (totalValue === 0) {
+            setTotalPerson("cuantos")
+        } else if (totalValue === 1) {
+            setTotalPerson(`${totalValue} húesped`)
+        } else {
+            setTotalPerson(`${totalValue} huéspedes`)
+        }
+    }
+    
+    changePeopleTotal();
+
+}, [countPeople]);
 
   return (
     <div className="bannerContainer">
@@ -29,8 +53,11 @@ const StickyContainer = (props) => {
         <div className="bookContainer">
           <div className="bookIt">
             <div className="bookSections">
-              <div className="estimatePricing">
+              <Popover opened={opened} position="bottom-end" onChange={setOpened}>
+                <Popover.Target>
+                  <div className="estimatePricing">
                 <div className="price">
+                  
                   <div className="priceflex">
                     <span className="span1">$1,642,053 COP</span>
                     <span className="span2">night</span>
@@ -56,10 +83,18 @@ const StickyContainer = (props) => {
                   </div>
                 </div>
               </div>
+              </Popover.Target>
+                <Popover.Dropdown>
+                  <StickyCalendarModal opened={opened} setOpened={setOpened}/>
+                </Popover.Dropdown>
+              </Popover>
+
+                
               <div className="checkinCheckout">
                 <div className="checkContainer">
                   <div className="checkFlex">
-                    <button className="checkBtn">
+                    
+                  <button className="checkBtn" onClick={() => setOpened((o) => !o)} >
                       <div className="checkFlexI">
                         <div className="check">CHECK-IN</div>
                         <div className="checkText">{texDate[0]}</div>
@@ -69,13 +104,16 @@ const StickyContainer = (props) => {
                         <div className="checkText">{texDate[1]}</div>
                       </div>
                     </button>
+                    
                   </div>
                   <div className="chekI">
+                  <Popover openGuest={openGuest} position="bottom" onChange={setOpenGuest}>
+                <Popover.Target>
                     <button className="checkBtn">
                       <div className="check" id="guests">
                         GUESTS
                       </div>
-                      <div className="checkText">11 Guests</div>
+                      <div className="checkText">{totalPerson}</div>
                       <svg
                         className="guestsSvg"
                         viewBox="0 0 32 32"
@@ -89,6 +127,11 @@ const StickyContainer = (props) => {
                         </g>
                       </svg>
                     </button>
+                    </Popover.Target>
+                <Popover.Dropdown>
+                  <ModalPersonas openGuest={openGuest} setOpened={setOpenGuest}/>
+                </Popover.Dropdown>
+              </Popover>
                   </div>
                 </div>
               </div>
