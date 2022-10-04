@@ -11,13 +11,10 @@ export const flip = () => {
         : (initialState.headerPopover = ''),
   };
 };
-export const flipMenu = () => {
+export const flipMenu = (value) => {
   return {
     type: FLIPMENU,
-    payload:
-      initialState.menuPopover === ''
-        ? (initialState.menuPopover = 'something')
-        : (initialState.menuPopover = ''),
+    payload: (initialState.menuPopover = value),
   };
 };
 // state

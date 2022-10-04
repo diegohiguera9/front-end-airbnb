@@ -69,7 +69,6 @@ const Header = () => {
   }, [countPeople]);
 
   useEffect(() => {
-    console.log('useeffect');
     setOpened((o) => !o);
   }, [headerPopover]);
 

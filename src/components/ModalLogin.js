@@ -16,6 +16,15 @@ const ModalLogin = () => {
             placeholder="Correo electrónico"
           ></input>
         </div>
+        <div className="wrapper">
+          <span htmlFor="password">Contraseña</span>
+          <input
+            className="loginEmail"
+            id="password"
+            type="password"
+            placeholder=""
+          ></input>
+        </div>
         <button className="aceptarButton"> Continúa </button>
         <p>o</p>
         <ButtonImg
