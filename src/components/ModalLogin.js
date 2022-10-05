@@ -24,6 +24,7 @@ const ModalLogin = () => {
         );
 
         localStorage.setItem('token', data.data.token);
+        localStorage.setItem('rol', data.data.rol);
         //  cookies.set('tokenCookie', data.data.token);
         localStorage.setItem('email', data.data.email);
         dispatch(flipMenu(''));

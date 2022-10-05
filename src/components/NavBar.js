@@ -11,6 +11,7 @@ import ModalRegistro from '../components/ModalRegistro';
 import ModalLogin from './ModalLogin';
 import { useDispatch } from 'react-redux';
 import { flipMenu } from '../store/reducer/headerReducer';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
   const [openedPop, setOpenedPop] = useState(false);
@@ -18,6 +19,7 @@ const NavBar = () => {
   const [openedPop1, setOpenedPop1] = useState(false);
   const [regisOrLogin, setregisOrLogin] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setregisOrLogin(menuPopover);
@@ -29,9 +31,29 @@ const NavBar = () => {
     setOpenedPop1(false);
     dispatch(flipMenu('0'));
   };
+
   return (
     <div className="header__nav">
-      <button className="header__nav__button-greyHover">Hazte anfitrion</button>
+      {localStorage.getItem('rol') === 'host' ? (
+        <button
+          className="header__nav__button-greyHover"
+          onClick={() => {
+            navigate(`/hosting`);
+          }}
+        >
+          Modo anfitrion
+        </button>
+      ) : (
+        <button
+          className="header__nav__button-greyHover"
+          onClick={() => {
+            navigate(`/becomehost`);
+          }}
+        >
+          Hazte anfitrion
+        </button>
+      )}
+
       <button className="header__nav__button-language-greyHover">
         <img src={globe} alt="Globe" />
       </button>
