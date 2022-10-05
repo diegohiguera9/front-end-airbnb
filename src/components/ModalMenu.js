@@ -28,7 +28,6 @@ const ModalMenu = () => {
           clase={'whiteButton'}
           texto={'Recibe huéspedes en tu hogar'}
         />
-        <ButtonModal clase={'whiteButton'} texto={'Organiza una experiencia'} />
         <ButtonModal clase={'whiteButton'} texto={'Ayuda'} />
       </div>
     </>
