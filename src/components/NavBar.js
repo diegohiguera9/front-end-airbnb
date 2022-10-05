@@ -46,10 +46,13 @@ const NavBar = () => {
           </button>
         </Popover.Target>
         <Popover.Dropdown>
-          <ModalMenu />
+          {localStorage.getItem('token') !== null ? (
+            <p>{`usuario ${localStorage.getItem('email')}`}</p>
+          ) : (
+            <ModalMenu />
+          )}
         </Popover.Dropdown>
       </Popover>
-
 
       {regisOrLogin === '1' ? (
         <Modal
@@ -77,7 +80,6 @@ const NavBar = () => {
       ) : (
         <></>
       )}
-
     </div>
   );
 };

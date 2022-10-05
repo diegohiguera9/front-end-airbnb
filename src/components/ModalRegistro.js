@@ -1,8 +1,11 @@
 import '../styles/components/ModalRegistro.scss';
+import axios from 'axios';
 import { useState } from 'react';
 import { Popover } from '@mantine/core';
 import { Calendar } from '@mantine/dates';
 import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { flipMenu } from '../store/reducer/headerReducer';
 const ModalRegistro = () => {
   const [calendar, setCalendar] = useState(null);
   const [userName, setUserName] = useState('');
@@ -11,6 +14,8 @@ const ModalRegistro = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [openedPop, setOpenedPop] = useState(false);
+  //const [infoUser, setInfoUser] = useState(undefined);
+  const dispatch = useDispatch();
 
   const HandleCalendar = (e) => {
     setCalendar(e);
@@ -21,10 +26,48 @@ const ModalRegistro = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (userEmail === '' && userPassword === '') console.log('submited');
-    else console.log('submited post');
+    if (userEmail === '' && userPassword === '' && userName === '') {
+      alert('Por favor llene el formulario antes de continuar');
+    } else {
+      console.log('submited post');
+
+      try {
+        const user = {
+          name: `${userName} ${userLastName}`,
+          email: userEmail,
+          password: userPassword,
+          rol: 'client',
+          location: '0.00,0.00',
+          estadias: '',
+          profileimg: '',
+        };
+        const { data } = await axios.post(
+          'http://localhost:8080/user/singup',
+          user,
+        );
+        console.log(data);
+        localStorage.setItem('token', data.data.token);
+        //  cookies.set('tokenCookie', data.data.token);
+        localStorage.setItem('email', data.data.email);
+
+        dispatch(flipMenu(''));
+
+        /* const dataUser = await axios.get('http://localhost:8080/', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setInfoUser({
+          name: dataUser.data.name,
+          city: dataUser.data.city,
+          age: dataUser.data.age,
+        });*/
+      } catch (err) {
+        alert('Ups! ocurrió algo en el login');
+      }
+    }
   };
 
   return (
