@@ -9,18 +9,26 @@ import { Modal } from '@mantine/core';
 import ModalMenu from '../components/ModalMenu';
 import ModalRegistro from '../components/ModalRegistro';
 import ModalLogin from './ModalLogin';
+import { useDispatch } from 'react-redux';
+import { flipMenu } from '../store/reducer/headerReducer';
 
 const NavBar = () => {
   const [openedPop, setOpenedPop] = useState(false);
   const menuPopover = useSelector((state) => state.headerReducer.menuPopover);
   const [openedPop1, setOpenedPop1] = useState(false);
   const [regisOrLogin, setregisOrLogin] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setregisOrLogin(menuPopover);
-    setOpenedPop1((o) => !o);
+    setOpenedPop1(true);
   }, [menuPopover]);
 
+  const handleCloseModal = () => {
+    console.log('handleclosemodal');
+    setOpenedPop1(false);
+    dispatch(flipMenu('0'));
+  };
   return (
     <div className="header__nav">
       <button className="header__nav__button-greyHover">Hazte anfitrion</button>
@@ -57,7 +65,7 @@ const NavBar = () => {
       {regisOrLogin === '1' ? (
         <Modal
           opened={openedPop1}
-          onClose={() => setOpenedPop1(false)}
+          onClose={() => handleCloseModal()}
           title="Iniciar sesión"
           size="550px"
           overflow="inside"
@@ -69,7 +77,7 @@ const NavBar = () => {
       ) : regisOrLogin === '2' ? (
         <Modal
           opened={openedPop1}
-          onClose={() => setOpenedPop1(false)}
+          onClose={() => handleCloseModal()}
           size="550px"
           overflow="outside"
           radius="xl"
