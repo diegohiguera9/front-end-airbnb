@@ -31,8 +31,6 @@ const ModalRegistro = () => {
     if (userEmail === '' && userPassword === '' && userName === '') {
       alert('Por favor llene el formulario antes de continuar');
     } else {
-      console.log('submited post');
-
       try {
         const user = {
           name: `${userName} ${userLastName}`,

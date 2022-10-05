@@ -13,8 +13,6 @@ const ModalLogin = () => {
     if (userEmail === '' && userPassword === '') {
       alert('Por favor llene el formulario antes de continuar');
     } else {
-      console.log('submited post');
-
       try {
         const user = {
           email: userEmail,
@@ -24,7 +22,7 @@ const ModalLogin = () => {
           'http://localhost:8080/user/singin',
           user,
         );
-        console.log(data);
+
         localStorage.setItem('token', data.data.token);
         //  cookies.set('tokenCookie', data.data.token);
         localStorage.setItem('email', data.data.email);
