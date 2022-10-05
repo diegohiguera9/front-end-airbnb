@@ -16,7 +16,10 @@ const CardHomeHost = ({
 
   return (
     <div className="CardHomeHost">
-      <Modal opened={opened} onClose={() => setOpened(false)} overflow="inside">
+      <Modal opened={opened} onClose={() => setOpened(false)} overflow="inside" styles={{modal:{
+        width:550,
+        borderRadius:20
+      }}}>
         <ModalCardHome
           name={name}
           date={date}
