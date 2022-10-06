@@ -49,7 +49,7 @@ const StickyCalendarModal = ({ setOpenedImgModal }) => {
 
   const closeModal = () => {
     if (rentCalendarOne[1]) {
-      setOpenedImgModal((o) => !o);
+      setOpenedImgModal(false);
     }
   };
   useEffect(() => {
