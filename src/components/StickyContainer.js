@@ -94,7 +94,7 @@ const StickyContainer = (props) => {
                 <div className="checkContainer">
                   <div className="checkFlex">
                     
-                  <button className="checkBtn" onClick={() => setOpenedImgModal((o) => !o)} >
+                  <button className="checkBtn" onClick={() => setOpenedImgModal(true)} >
                       <div className="checkFlexI">
                         <div className="check">CHECK-IN</div>
                         <div className="checkText">{texDate[0]}</div>
