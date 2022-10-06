@@ -2,16 +2,15 @@ import "../styles/components/stickyContainer.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Popover } from "@mantine/core";
-import StickyCalendarModal from "./StickyCalendarModal"
-import ModalPersonas from "./ModalPersonas"
+import StickyCalendarModal from "./StickyCalendarModal";
+import ModalPersonas from "./ModalPersonas";
 
 const StickyContainer = (props) => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
   const [opened, setOpened] = useState(false);
-  const [openGuest, setOpenGuest] = useState(false)
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
-  const [totalPerson, setTotalPerson] = useState(null)
+  const [totalPerson, setTotalPerson] = useState(null);
 
   const text = () => {
     if (rentCalendar[0] === null && rentCalendar[1] === null) {
@@ -32,20 +31,20 @@ const StickyContainer = (props) => {
   }, [rentCalendar]);
   useEffect(() => {
     const changePeopleTotal = () => {
-        const { adults, children } = countPeople
-        const totalValue = adults + children
-        if (totalValue === 0) {
-            setTotalPerson("cuantos")
-        } else if (totalValue === 1) {
-            setTotalPerson(`${totalValue} húesped`)
-        } else {
-            setTotalPerson(`${totalValue} huéspedes`)
-        }
-    }
-    
-    changePeopleTotal();
+      const { adults, children } = countPeople;
+      const totalValue = adults + children;
+      if (totalValue === 0) {
+        setTotalPerson("cuantos");
+      } else if (totalValue === 1) {
+        setTotalPerson(`${totalValue} húesped`);
+      } else {
+        setTotalPerson(`${totalValue} huéspedes`);
+      }
+    };
 
-}, [countPeople]);
+    changePeopleTotal();
+  }, [countPeople]);
+  console.log(opened)
 
   return (
     <div className="bannerContainer">
@@ -53,48 +52,52 @@ const StickyContainer = (props) => {
         <div className="bookContainer">
           <div className="bookIt">
             <div className="bookSections">
-              <Popover opened={opened} position="bottom-end" onChange={setOpened}>
+              <Popover
+                opened={opened}
+                position="bottom-end"
+                onChange={setOpened}
+              >
                 <Popover.Target>
                   <div className="estimatePricing">
-                <div className="price">
-                  
-                  <div className="priceflex">
-                    <span className="span1">$1,642,053 COP</span>
-                    <span className="span2">night</span>
+                    <div className="price">
+                      <div className="priceflex">
+                        <span className="span1">$1,642,053 COP</span>
+                        <span className="span2">night</span>
+                      </div>
+                      <div className="rentSection">
+                        <svg
+                          className="sectionSvg"
+                          viewBox="0 0 32 32"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          role="presentation"
+                          focusable="false"
+                        >
+                          <path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"></path>
+                        </svg>
+                        <span>
+                          <b>{props.rating}</b>
+                        </span>
+                        <span>.</span>
+                        <button>
+                          <u>{props.reviews}</u>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <div className="rentSection">
-                    <svg
-                      className="sectionSvg"
-                      viewBox="0 0 32 32"
-                      xmlns="http://www.w3.org/2000/svg"
-                      aria-hidden="true"
-                      role="presentation"
-                      focusable="false"
-                    >
-                      <path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.542 1.736l7.293 6.565-1.965 9.852a1 1 0 0 0 1.483 1.061L16 25.951l8.625 4.997a1 1 0 0 0 1.482-1.06l-1.965-9.853 7.293-6.565a1 1 0 0 0-.541-1.735l-9.86-1.271-4.127-8.885a1 1 0 0 0-1.814 0z"></path>
-                    </svg>
-                    <span>
-                      <b>{props.rating}</b>
-                    </span>
-                    <span>.</span>
-                    <button>
-                      <u>{props.reviews}</u>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              </Popover.Target>
+                </Popover.Target>
                 <Popover.Dropdown>
-                  <StickyCalendarModal opened={opened} setOpened={setOpened}/>
+                  <StickyCalendarModal opened={opened} setOpened={setOpened} />
                 </Popover.Dropdown>
               </Popover>
 
-                
               <div className="checkinCheckout">
                 <div className="checkContainer">
                   <div className="checkFlex">
-                    
-                  <button className="checkBtn" onClick={()=>setOpened((o) => !o)} >
+                    <button
+                      className="checkBtn"
+                      onClick={() => setOpened(true)}
+                    >
                       <div className="checkFlexI">
                         <div className="check">CHECK-IN</div>
                         <div className="checkText">{texDate[0]}</div>
@@ -104,34 +107,33 @@ const StickyContainer = (props) => {
                         <div className="checkText">{texDate[1]}</div>
                       </div>
                     </button>
-                    
                   </div>
                   <div className="chekI">
-                  <Popover openGuest={openGuest} position="bottom" onChange={setOpenGuest}>
-                <Popover.Target>
-                    <button className="checkBtn">
-                      <div className="check" id="guests">
-                        GUESTS
-                      </div>
-                      <div className="checkText">{totalPerson}</div>
-                      <svg
-                        className="guestsSvg"
-                        viewBox="0 0 32 32"
-                        xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true"
-                        role="presentation"
-                        focusable="false"
-                      >
-                        <g fill="none">
-                          <path d="m28 12-11.2928932 11.2928932c-.3905243.3905243-1.0236893.3905243-1.4142136 0l-11.2928932-11.2928932"></path>
-                        </g>
-                      </svg>
-                    </button>
-                    </Popover.Target>
-                <Popover.Dropdown>
-                  <ModalPersonas openGuest={openGuest} setOpened={setOpenGuest}/>
-                </Popover.Dropdown>
-              </Popover>
+                    <Popover position="bottom">
+                      <Popover.Target>
+                        <button className="checkBtn">
+                          <div className="check" id="guests">
+                            GUESTS
+                          </div>
+                          <div className="checkText">{totalPerson}</div>
+                          <svg
+                            className="guestsSvg"
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            role="presentation"
+                            focusable="false"
+                          >
+                            <g fill="none">
+                              <path d="m28 12-11.2928932 11.2928932c-.3905243.3905243-1.0236893.3905243-1.4142136 0l-11.2928932-11.2928932"></path>
+                            </g>
+                          </svg>
+                        </button>
+                      </Popover.Target>
+                      <Popover.Dropdown>
+                        <ModalPersonas />
+                      </Popover.Dropdown>
+                    </Popover>
                   </div>
                 </div>
               </div>
