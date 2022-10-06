@@ -48,10 +48,13 @@ const StickyCalendarModal = ({openedImgModal, setOpenedImgModal }) => {
   };
 
   const closeModal = () => {
-    if(rentCalendarOne[1]){
-      setOpenedImgModal((openedImgModal) => !openedImgModal)}
+    if(openedImgModal){
+      if(rentCalendarOne[1]){
+        setOpenedImgModal((openedImgModal) => !openedImgModal)}
+      
+    };
+    }
     
-  };
   useEffect(() => {
     textDateHeader();
     closeModal();
