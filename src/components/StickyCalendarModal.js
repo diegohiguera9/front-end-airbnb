@@ -57,6 +57,7 @@ const StickyCalendarModal = ({ setOpenedImgModal }) => {
   useEffect(() => {
     textDateHeader();
     closeModal();
+    // eslint-disable-next-line
   }, [rentCalendarOne]);
 
   return (
