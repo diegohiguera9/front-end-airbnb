@@ -5,13 +5,9 @@ import AmenitieTag from "./AmenitieTag";
 import { RangeCalendar } from "@mantine/dates";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeDate,
-  changeTitle,
-  changeDateHead,
-} from "../store/reducer/calendarReducer";
+import { changeDate } from "../store/reducer/calendarReducer";
 
-const StickyCalendarModal = ({ setOpened }) => {
+const StickyCalendarModal = ({ setOpenedImgModal }) => {
   const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
   const dispatch = useDispatch();
 
@@ -55,7 +51,7 @@ const StickyCalendarModal = ({ setOpened }) => {
 
   const closeModal = () => {
     if (rentCalendarOne[1]) {
-      setOpened((o) => !o);
+      setOpenedImgModal((o) => !o);
     }
   };
   useEffect(() => {
@@ -148,18 +144,17 @@ const StickyCalendarModal = ({ setOpened }) => {
             />
           </button>
           <div>
-          <RentCalendarBtn
-            clase={"clearDate"}
-            texto={"Clear Dates"}
-            evnt={clearCalendar}
-          />
-          <RentCalendarBtn
-            clase={"closeBt"}
-            texto={"Close"}
-            evnt={() => setOpened((o) => !o)}
-          />  
+            <RentCalendarBtn
+              clase={"clearDate"}
+              texto={"Clear Dates"}
+              evnt={clearCalendar}
+            />
+            <RentCalendarBtn
+              clase={"closeBt"}
+              texto={"Close"}
+              evnt={() => setOpenedImgModal((o) => !o)}
+            />
           </div>
-          
         </div>
       </div>
     </div>
