@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDate } from "../store/reducer/calendarReducer";
 
-const StickyCalendarModal = ({openedImgModal, setOpenedImgModal }) => {
+const StickyCalendarModal = ({opened, setOpened }) => {
   const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
   const dispatch = useDispatch();
 
@@ -48,9 +48,9 @@ const StickyCalendarModal = ({openedImgModal, setOpenedImgModal }) => {
   };
 
   const closeModal = () => {
-    if(openedImgModal){
+    if(opened){
       if(rentCalendarOne[1]){
-        setOpenedImgModal((openedImgModal) => !openedImgModal)}
+        setOpened((o) => !o)}
       
     };
     }
@@ -154,7 +154,7 @@ const StickyCalendarModal = ({openedImgModal, setOpenedImgModal }) => {
             <RentCalendarBtn
               clase={"closeBt"}
               texto={"Close"}
-              evnt={() => setOpenedImgModal((openedImgModal) => !openedImgModal)}
+              evnt={() => setOpened((o) => !o)}
             />
           </div>
         </div>

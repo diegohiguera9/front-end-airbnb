@@ -8,7 +8,7 @@ import ModalPersonas from "./ModalPersonas"
 const StickyContainer = (props) => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
-  const [openedImgModal, setOpenedImgModal] = useState(false);
+  const [opened, setOpened] = useState(false);
   const [openGuest, setOpenGuest] = useState(false)
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
   const [totalPerson, setTotalPerson] = useState(null)
@@ -53,7 +53,7 @@ const StickyContainer = (props) => {
         <div className="bookContainer">
           <div className="bookIt">
             <div className="bookSections">
-              <Popover opened={openedImgModal} position="bottom-end" onChange={setOpenedImgModal}>
+              <Popover opened={opened} position="bottom-end" onChange={setOpened}>
                 <Popover.Target>
                   <div className="estimatePricing">
                 <div className="price">
@@ -85,7 +85,7 @@ const StickyContainer = (props) => {
               </div>
               </Popover.Target>
                 <Popover.Dropdown>
-                  <StickyCalendarModal openedImgModal={openedImgModal} setOpenedImgModal={setOpenedImgModal}/>
+                  <StickyCalendarModal opened={opened} setOpened={setOpened}/>
                 </Popover.Dropdown>
               </Popover>
 
@@ -94,7 +94,7 @@ const StickyContainer = (props) => {
                 <div className="checkContainer">
                   <div className="checkFlex">
                     
-                  <button className="checkBtn" onClick={() => setOpenedImgModal(true)} >
+                  <button className="checkBtn" onClick={()=>setOpened((o) => !o)} >
                       <div className="checkFlexI">
                         <div className="check">CHECK-IN</div>
                         <div className="checkText">{texDate[0]}</div>
