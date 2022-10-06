@@ -6,12 +6,13 @@ import { useState, useEffect } from 'react';
 import { Popover } from '@mantine/core';
 import { useSelector } from 'react-redux';
 import { Modal } from '@mantine/core';
-import ModalMenu from '../components/ModalMenu';
-import ModalRegistro from '../components/ModalRegistro';
-import ModalLogin from './ModalLogin';
 import { useDispatch } from 'react-redux';
 import { flipMenu } from '../store/reducer/headerReducer';
 import { useNavigate } from 'react-router-dom';
+import ModalMenu from '../components/ModalMenu';
+import ModalRegistro from '../components/ModalRegistro';
+import ModalLogin from './ModalLogin';
+import ModalMenuLogged from '../components/ModalMenuLogged';
 
 const NavBar = () => {
   const [openedPop, setOpenedPop] = useState(false);
@@ -77,7 +78,7 @@ const NavBar = () => {
         </Popover.Target>
         <Popover.Dropdown>
           {localStorage.getItem('token') !== null ? (
-            <p>{`usuario ${localStorage.getItem('email')}`}</p>
+            <ModalMenuLogged />
           ) : (
             <ModalMenu />
           )}
