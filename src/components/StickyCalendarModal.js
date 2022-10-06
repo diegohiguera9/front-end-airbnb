@@ -16,9 +16,7 @@ const StickyCalendarModal = ({ setOpenedImgModal }) => {
     "Add your travel dates for exact pricing"
   );
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
-  //const [rentCalendarOne, setRentCalendarOne] = useState([null,null]);
-  //const [dateTitle, setDateTitle] = useState("")
-  //const [dateHeader, setDateHeader] = useState("");
+ 
 
   const clearCalendar = () => {
     dispatch(changeDate([null, null]));
