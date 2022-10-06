@@ -7,16 +7,14 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeDate } from "../store/reducer/calendarReducer";
 
-const StickyCalendarModal = ({opened, setOpened }) => {
+const StickyCalendarModal = ({ opened, setOpened }) => {
   const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
   const dispatch = useDispatch();
-
   const [dateTitle, setTitle] = useState("Select dates");
   const [dateHeader, setdateHeader] = useState(
     "Add your travel dates for exact pricing"
   );
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
- 
 
   const clearCalendar = () => {
     dispatch(changeDate([null, null]));
@@ -48,13 +46,11 @@ const StickyCalendarModal = ({opened, setOpened }) => {
   };
 
   const closeModal = () => {
-    if(opened){
-      if(rentCalendarOne[1]){
-        setOpened((o) => !o)}
-      
-    };
+    if (rentCalendarOne[1] && opened) {
+      setOpened((o) => !o);
     }
-    
+  };
+
   useEffect(() => {
     textDateHeader();
     closeModal();
