@@ -14,6 +14,7 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
   const [dateHeader, setdateHeader] = useState(
     "Add your travel dates for exact pricing"
   );
+  let flag = false;
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
 
   const clearCalendar = () => {
@@ -29,6 +30,7 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
       setTextDate([date1, "Add Date"]);
       setdateHeader("Minimum stay: 2 nights");
     } else if (rentCalendarOne[0] && rentCalendarOne[1]) {
+      flag= true;
       if (rentCalendarOne[0] && rentCalendarOne[1]) {
         let rentDates =
           rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
@@ -46,8 +48,9 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
   };
 
   const closeModal = () => {
-    if (rentCalendarOne[1] && opened) {
+    if (flag) {
       setOpened((o) => !o);
+      flag = false;
     }
   };
 
