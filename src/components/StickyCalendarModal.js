@@ -43,22 +43,22 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
       const date1 = `${rentCalendarOne[0].getMonth()}/${rentCalendarOne[0].getDate()}/${rentCalendarOne[0].getFullYear()}`;
       const date2 = `${rentCalendarOne[1].getMonth()}/${rentCalendarOne[1].getDate()}/${rentCalendarOne[1].getFullYear()}`;
       setTextDate([date1, date2]);
-      closeModal();
+      
       return setdateHeader(`${sDates[0]} - ${sDates[1]}`);
     }
   };
 
-  const closeModal = () => {
-    if (rentCalendarOne[1]) {
-      setOpened((o) => !o);
+  // const closeModal = () => {
+  //   if (rentCalendarOne[1]) {
+  //     setOpened((o) => !o);
       
-    }
-  };
+  //   }
+  // };
 
   useEffect(() => {
     
     textDateHeader();
-    
+    // closeModal();
     
     // eslint-disable-next-line
   }, [rentCalendarOne]);
