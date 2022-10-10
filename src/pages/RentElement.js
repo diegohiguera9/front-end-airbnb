@@ -5,6 +5,7 @@ import ImgContainer1 from "../components/ImgContainer1";
 import General from "../components/General";
 import StickyContainer from "../components/StickyContainer";
 import RentReviews from "../components/RentReviews";
+import Payment from "../components/Payment";
 
 const Element = () => {
   const data = {
@@ -52,6 +53,7 @@ const Element = () => {
           </div>
           <hr className="hr1" />
           <RentReviews />
+          <Payment/>
         </div>
       </div>
     </main>
