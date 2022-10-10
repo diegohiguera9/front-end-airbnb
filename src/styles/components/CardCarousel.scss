@@ -9,6 +9,10 @@
         border-radius: 15px;
         margin-bottom: 10px;
     }
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .container__carousel__main{

@@ -11,6 +11,16 @@
     margin: 0px;
     border: none;
     background-color: white;
+
+    &__link{
+        display: flex;
+        flex-flow: column;
+        width: 100%;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
 }
 
 .main__list__button__heart{

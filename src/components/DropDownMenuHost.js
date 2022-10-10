@@ -1,7 +1,9 @@
 import "../styles/components/DropDownMenuHost.scss";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
-const DropDownMenuHost = ({fun}) => {
+const DropDownMenuHost = ({fun,setOpened}) => {
+  const navigate = useNavigate()
+
   const firstText = [
     "Anuncio",
     "Reservaciones",
@@ -18,11 +20,17 @@ const DropDownMenuHost = ({fun}) => {
     "/hosting",
   ];
 
+  const handleClick = (nav)=>{
+    navigate(nav)
+    setOpened((o) => !o)
+    fun('5')
+  }
+
   return (
     <div className="DropDownMenuHost">
       {firstText.map((item, index) => {
         return (
-            <Link to={link[index]} className='DropDownMenuHost__Link' key={index}>{item}</Link>
+            <button onClick={()=>handleClick(link[index])} className='DropDownMenuHost__Link' key={index}>{item}</button>
           ) 
       })}
     </div>
