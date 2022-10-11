@@ -1,34 +1,54 @@
 import HostGradient from "../components/HostGradient";
 import "../styles/pages/HostForm.scss";
 import { useState, useRef } from "react";
-import { Autocomplete, Input } from "@mantine/core";
+import { Input, TransferList, NumberInput } from "@mantine/core";
 import {
   IconMapPin,
   IconHome,
-  IconCurrencyDollar,
   IconFriends,
   IconBed,
+  IconChevronDown,
 } from "@tabler/icons";
 import { useJsApiLoader, GoogleMap, Marker } from "@react-google-maps/api";
+import axios from "axios";
 
 const center = { lat: 4.650176467537301, lng: -74.08958383984998 };
 const libraries = ["places"];
 // const center = { lat: 48.8584, lng: 2.294 };
 
 const HostForm = () => {
-  const [homeType, setHomeType] = useState("");
   const homeLocation = useRef("");
+  const [locationResult, setLocationResult] = useState({});
+
+  const homeType = useRef("");
   const homePrice = useRef("");
   const homeCap = useRef("");
   const homeRooms = useRef("");
 
-  const [username, setUsername] = useState("");
   const [file, setFile] = useState(new DataTransfer());
   const [fileDataURL, setFileDataURL] = useState([]);
+  const [dataTranser, setDataTransfer] = useState([
+    [
+      { value: "Piscina", label: "Piscina" },
+      { value: "Jacuzzi", label: "Jacuzzi" },
+      { value: "Terraza", label: "Terraza" },
+      { value: "Parrilla", label: "Parrilla" },
+      { value: "Fogata", label: "Fogata" },
+      { value: "Mesa billar", label: "Mesa billar" },
+      { value: "Chimenea", label: "Chimenea" },
+      { value: "WiFi", label: "WiFi" },
+      { value: "Tv", label: "Tv" },
+      { value: "Cocina", label: "Cocina" },
+      { value: "Lavadora", label: "Lavadora" },
+      { value: "Estacionamiento", label: "Estacionamiento" },
+      { value: "Aire Acondicionado", label: "Aire Acondicionado" },
+    ],
+    [],
+  ]);
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: 'AIzaSyDADK25rjdH0W0WL0Kr35HJLTfOTG2z6Bk',
+    googleMapsApiKey: "AIzaSyDADK25rjdH0W0WL0Kr35HJLTfOTG2z6Bk",
     libraries: libraries,
   });
 
@@ -61,6 +81,8 @@ const HostForm = () => {
         map: map,
         position: results[0].geometry.location,
       });
+      console.log(results[0]);
+      setLocationResult(results[0].geometry.location);
     } catch (err) {
       console.log(err);
     }
@@ -91,7 +113,6 @@ const HostForm = () => {
 
     setFileDataURL((prevImage) => prevImage.concat(imageArray));
     event.target.value = "";
-    console.log(file);
   };
 
   const handleClcik = (image) => {
@@ -107,6 +128,43 @@ const HostForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const amenities = dataTranser[1].map((item) => item.value);
+
+    const data = new FormData();
+
+    data.append("hometype", homeType.current.value);
+    data.append("location", locationResult);
+    data.append("price", homePrice.current.value);
+    data.append("capacity", homeCap.current.value);
+    data.append("rooms", homeRooms.current.value);
+    data.append("amenities", amenities);
+
+    console.log([
+      homeType.current.value,
+      locationResult,
+      homePrice.current.value,
+      homeCap.current.value,
+      homeRooms.current.value,
+      amenities,
+      file.files,
+    ]);
+
+    const fileSend = file.files;
+
+    for (let i = 0; i < fileSend.length; i++) {
+      data.append(`file_${i}`, fileSend[i], fileSend[i].name);
+    }
+
+    await axios.post("http://localhost:8080", data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer jdkaljsdiwdfdhksldjkl",
+      },
+    });
+
+    setFile(new DataTransfer());
+    setFileDataURL([]);
   };
 
   return (
@@ -119,20 +177,20 @@ const HostForm = () => {
         <label>
           1. En qué tipo de espacio brindaras tus servicios como anfitrión
         </label>
-        <Autocomplete
+        <Input
+          ref={homeType}
           placeholder="Escoge uno"
-          data={[
-            "Aapartamento",
-            "Casa",
-            "Vivienda anexa",
-            "Alojamiento Unico",
-            "Hotel Boutique",
-          ]}
-          value={homeType}
-          onChange={setHomeType}
           className="hostform__auto"
           icon={<IconHome size={16} />}
-        />
+          component="select"
+          rightSection={<IconChevronDown size={14} stroke={1.5} />}
+        >
+          <option value="Aapartamento">Aapartamento</option>
+          <option value="Casa">Casa</option>
+          <option value="Vivienda anexa">Vivienda anexa</option>
+          <option value="Alojamiento Unico">Alojamiento Unico</option>
+          <option value="Hotel Boutique">Hotel Boutique</option>
+        </Input>
         <div className="hostform__mapcontainer">
           <label htmlFor={homeLocation}>2. Donde se encuentra tu espacio</label>
           <div className="hostform__mapcontainer__control">
@@ -161,30 +219,44 @@ const HostForm = () => {
         <label>
           3. Cuanto quieres que sea el precio de tu espacio (moneda local)
         </label>
-        <Input
+        <NumberInput
           ref={homePrice}
-          type="number"
-          placeholder="Ingresa tu precio"
-          icon={<IconCurrencyDollar size={16} />}
-          className='hostform__setmargin'
+          label="Price"
+          defaultValue={500000}
+          parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+          formatter={(value) =>
+            !Number.isNaN(parseFloat(value))
+              ? `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : "$ "
+          }
+          className="hostform__setmargin"
+          step={100000}
         />
         <label>4. Cuantas personas puedes albergar?</label>
-        <Input
+        <NumberInput
           ref={homeCap}
-          type="number"
-          placeholder="Ingresa capacidad"
+          label="Capacidad de personas"
+          description="Desde 1 hasta 16"
+          placeholder="Capacidad"
+          max={16}
+          min={1}
           icon={<IconFriends size={16} />}
-          className='hostform__setmargin'
+          className="hostform__setmargin"
         />
         <label>5. Cuantos cuartos tiene tu espacio?</label>
-        <Input
+        <NumberInput
           ref={homeRooms}
-          type="number"
-          placeholder="Ingresa capacidad"
+          label="Cantidad de cuartos"
+          description="Desde 1 hasta 16"
+          placeholder="Cuartos"
+          max={16}
+          min={1}
           icon={<IconBed size={16} />}
-          className='hostform__setmargin'
+          className="hostform__setmargin"
         />
-        <div className='hostform__setmargin'>6. Agrega las imagenes que coniseres representativas de tu espacio</div>
+        <div className="hostform__setmargin">
+          6. Agrega las imagenes que coniseres representativas de tu espacio
+        </div>
         <label htmlFor="file" className="hostform__label">
           + Agregar imagenes
           <input
@@ -196,19 +268,34 @@ const HostForm = () => {
             onChange={handleChange}
             className="hostform__inputtext"
           />
-        </label>        
-      <div className="hostform__imgprev">
-        {fileDataURL &&
-          fileDataURL.map((image, index) => {
-            return (
-              <div key={image} className='hostform__imgprev__card'>
-                <img src={image} alt="previe" height="200"></img>
-                <button onClick={() => handleClcik(image)}>Delete image</button>
-              </div>
-            );
-          })}
-      </div>
-        <button type="submit" className="hostform__submit">Enviar</button>
+        </label>
+        <div className="hostform__imgprev">
+          {fileDataURL &&
+            fileDataURL.map((image, index) => {
+              return (
+                <div key={image} className="hostform__imgprev__card">
+                  <img src={image} alt="previe" height="200"></img>
+                  <button onClick={() => handleClcik(image)}>
+                    Delete image
+                  </button>
+                </div>
+              );
+            })}
+        </div>
+        <div className="hostform__setmargin">
+          7. Selecciona las comididades que ofrece tu espacio
+        </div>
+        <TransferList
+          value={dataTranser}
+          onChange={setDataTransfer}
+          searchPlaceholder="Search..."
+          nothingFound="Nothing here"
+          titles={["Comodidades principales", "Comodidades ofrecidas"]}
+          breakpoint="sm"
+        />
+        <button type="submit" className="hostform__submit">
+          Enviar
+        </button>
       </form>
     </div>
   );
