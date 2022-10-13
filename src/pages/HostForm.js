@@ -19,6 +19,7 @@ const libraries = ["places"];
 const HostForm = () => {
   const homeLocation = useRef("");
   const [locationResult, setLocationResult] = useState({});
+  const [locationCity, setLocationCity] = useState("");
 
   const homeType = useRef("");
   const homePrice = useRef("");
@@ -48,7 +49,7 @@ const HostForm = () => {
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "AIzaSyDADK25rjdH0W0WL0Kr35HJLTfOTG2z6Bk",
+    googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
     libraries: libraries,
   });
 
@@ -81,8 +82,11 @@ const HostForm = () => {
         map: map,
         position: results[0].geometry.location,
       });
-      console.log(results[0]);
       setLocationResult(results[0].geometry.location);
+      setLocationCity(
+        results[0].address_components[6].long_name + ' ' +
+          results[0].address_components[5].long_name
+      );      
     } catch (err) {
       console.log(err);
     }
@@ -130,11 +134,11 @@ const HostForm = () => {
     e.preventDefault();
 
     const amenities = dataTranser[1].map((item) => item.value);
-
     const data = new FormData();
 
     data.append("hometype", homeType.current.value);
     data.append("location", locationResult);
+    data.append("city",locationCity)
     data.append("price", homePrice.current.value);
     data.append("capacity", homeCap.current.value);
     data.append("rooms", homeRooms.current.value);
@@ -142,7 +146,6 @@ const HostForm = () => {
 
     console.log([
       homeType.current.value,
-      locationResult,
       homePrice.current.value,
       homeCap.current.value,
       homeRooms.current.value,
