@@ -1,8 +1,19 @@
+import "../styles/components/comment.scss";
+import Comment from "./Comment"
 
-
-const RentComments = () => {
+const RentComments = ({comments}) => {
   return (
-    <div>RentComments</div>
+    <div className="rentComments">
+    {/* {comments.map((item)=>{
+      return(
+        <div className="comment">
+        <Comment item={item}/>
+        </div>
+        
+      )
+    })} */}
+    </div>
+    
   )
 }
 
