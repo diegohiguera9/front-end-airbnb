@@ -6,8 +6,16 @@ import General from "../components/General";
 import StickyContainer from "../components/StickyContainer";
 import RentReviews from "../components/RentReviews";
 import Payment from "../components/Payment";
+import Header from "../components/Header";
+import HeaderTouh from "../components/HeaderTouch";
+import RentMap from "../components/RentMap";
+
+
+
 
 const Element = () => {
+  
+   
   const data = {
     location: 'Centro,Bogotá D.C.,Colombia',
     homeName:'Elemento 1',
@@ -30,6 +38,9 @@ const Element = () => {
     ]
 }
   return (
+    <>
+    <Header/>
+    <HeaderTouh/>
     <main className="rentMain">
       <div className="rentElement">
         <div className="rentElementContainer">
@@ -52,11 +63,15 @@ const Element = () => {
             <StickyContainer rating={data.rating} reviews={`${data.reviews} Reviews`} />
           </div>
           <hr className="hr1" />
-          <RentReviews />
+          <RentReviews rating={data.rating} reviews={`${data.reviews} Reviews`} comments={data.comments} />
           <Payment/>
-        </div>
+          <RentMap/>
+          </div>
+          
       </div>
     </main>
+    </>
+    
   );
 };
 export default Element;

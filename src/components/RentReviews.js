@@ -2,12 +2,12 @@ import ReviewsPuntuation from "./ReviewsPuntuation";
 import ReviewScore from "./ReviewScore";
 import "../styles/components/rentReviews.scss"
 import RentComments from "./RentComments";
-const RentReviews = () => {
+const RentReviews = ({rating, reviews, comments}) => {
   return (
     <div className="reviewsContainer">
-      <ReviewsPuntuation rating={"1.11"} reviews={"10 Reviews"}/>
+      <ReviewsPuntuation rating={rating} reviews={reviews}/>
       <ReviewScore />
-      <RentComments/>
+      <RentComments comments={comments}/>
       <div></div>
     </div>
   );
