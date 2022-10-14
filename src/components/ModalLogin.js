@@ -19,7 +19,7 @@ const ModalLogin = () => {
           password: userPassword,
         };
         const { data } = await axios.post(
-          'http://localhost:8080/user/singin',
+          'https://airbnbclonetop24.herokuapp.com/user/singin',
           user,
         );
 
@@ -28,17 +28,6 @@ const ModalLogin = () => {
         //  cookies.set('tokenCookie', data.data.token);
         localStorage.setItem('email', data.data.email);
         dispatch(flipMenu(''));
-
-        /* const dataUser = await axios.get('http://localhost:8080/', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        setInfoUser({
-          name: dataUser.data.name,
-          city: dataUser.data.city,
-          age: dataUser.data.age,
-        });*/
       } catch (err) {
         //console.log(err.response.status);
         err.response.status === 400
