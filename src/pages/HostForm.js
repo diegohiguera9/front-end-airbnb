@@ -11,49 +11,58 @@ import {
 } from "@tabler/icons";
 import { useJsApiLoader, GoogleMap, Marker } from "@react-google-maps/api";
 import axios from "axios";
+import { useJwt } from "react-jwt";
+import { Navigate } from "react-router";
 
 const center = { lat: 4.650176467537301, lng: -74.08958383984998 };
 const libraries = ["places"];
-// const center = { lat: 48.8584, lng: 2.294 };
+const initialAmenities = [
+  [
+    { value: "Piscina", label: "Piscina" },
+    { value: "Jacuzzi", label: "Jacuzzi" },
+    { value: "Terraza", label: "Terraza" },
+    { value: "Parrilla", label: "Parrilla" },
+    { value: "Fogata", label: "Fogata" },
+    { value: "Mesa billar", label: "Mesa billar" },
+    { value: "Chimenea", label: "Chimenea" },
+    { value: "WiFi", label: "WiFi" },
+    { value: "Tv", label: "Tv" },
+    { value: "Cocina", label: "Cocina" },
+    { value: "Lavadora", label: "Lavadora" },
+    { value: "Estacionamiento", label: "Estacionamiento" },
+    { value: "Aire Acondicionado", label: "Aire Acondicionado" },
+  ],
+  [],
+]
 
 const HostForm = () => {
+  
   const homeLocation = useRef("");
   const [locationResult, setLocationResult] = useState({});
   const [locationCity, setLocationCity] = useState("");
-
+  
   const homeType = useRef("");
   const homePrice = useRef("");
   const homeCap = useRef("");
   const homeRooms = useRef("");
-
+  
   const [file, setFile] = useState(new DataTransfer());
   const [fileDataURL, setFileDataURL] = useState([]);
-  const [dataTranser, setDataTransfer] = useState([
-    [
-      { value: "Piscina", label: "Piscina" },
-      { value: "Jacuzzi", label: "Jacuzzi" },
-      { value: "Terraza", label: "Terraza" },
-      { value: "Parrilla", label: "Parrilla" },
-      { value: "Fogata", label: "Fogata" },
-      { value: "Mesa billar", label: "Mesa billar" },
-      { value: "Chimenea", label: "Chimenea" },
-      { value: "WiFi", label: "WiFi" },
-      { value: "Tv", label: "Tv" },
-      { value: "Cocina", label: "Cocina" },
-      { value: "Lavadora", label: "Lavadora" },
-      { value: "Estacionamiento", label: "Estacionamiento" },
-      { value: "Aire Acondicionado", label: "Aire Acondicionado" },
-    ],
-    [],
-  ]);
-
+  const [dataTranser, setDataTransfer] = useState(initialAmenities);
+  
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
     libraries: libraries,
   });
-
+  
   const [map, setMap] = useState(null);
+  
+  const token = localStorage.getItem("token")
+  const { isExpired } = useJwt(token);
+  if (isExpired) {
+    return <Navigate to="/" />;
+  }
 
   if (!isLoaded) {
     return <div>Loading</div>;
@@ -159,15 +168,26 @@ const HostForm = () => {
       data.append(`file_${i}`, fileSend[i], fileSend[i].name);
     }
 
-    await axios.post("http://localhost:8080", data, {
+    const res = await axios.post("https://airbnbclonetop24.herokuapp.com/homes", data, {
       headers: {
         "Content-Type": "multipart/form-data",
-        Authorization: "Bearer jdkaljsdiwdfdhksldjkl",
+        Authorization: `Bearer ${token}`,
       },
     });
 
+    console.log(res)
+
     setFile(new DataTransfer());
     setFileDataURL([]);
+    homeType.current.value =''
+    homePrice.current.value = ''
+    homeCap.current.value = ''
+    homeRooms.current.value = ''
+    homeLocation.current.value = ''
+    setDataTransfer(initialAmenities);
+    setLocationResult({})
+    setLocationCity('')
+
   };
 
   return (
