@@ -1,4 +1,5 @@
 import HostGradient from "../components/HostGradient";
+import GoogleAdressFilter from "../components/GoogleAdressFilter";
 import "../styles/pages/HostForm.scss";
 import { useState, useRef } from "react";
 import { Input, TransferList, NumberInput } from "@mantine/core";
@@ -91,11 +92,9 @@ const HostForm = () => {
         map: map,
         position: results[0].geometry.location,
       });
+      console.log(results)
       setLocationResult(results[0].geometry.location);
-      setLocationCity(
-        results[0].address_components[6].long_name + ' ' +
-          results[0].address_components[5].long_name
-      );      
+      setLocationCity(GoogleAdressFilter(results[0].address_components,results[0].types));      
     } catch (err) {
       console.log(err);
     }
@@ -154,6 +153,7 @@ const HostForm = () => {
     data.append("amenities", amenities);
 
     console.log([
+      locationResult,
       homeType.current.value,
       homePrice.current.value,
       homeCap.current.value,
@@ -181,8 +181,8 @@ const HostForm = () => {
     setFileDataURL([]);
     homeType.current.value =''
     homePrice.current.value = ''
-    homeCap.current.value = ''
-    homeRooms.current.value = ''
+    homeCap.current.value = 1
+    homeRooms.current.value = 1
     homeLocation.current.value = ''
     setDataTransfer(initialAmenities);
     setLocationResult({})
@@ -223,7 +223,7 @@ const HostForm = () => {
               placeholder="Ingresa tu ubicacion"
               icon={<IconMapPin size={16} />}
             />
-            <button onClick={getLocation}>Buscar</button>
+            <button type="button" onClick={getLocation}>Buscar</button>
           </div>
           <GoogleMap
             center={center}
