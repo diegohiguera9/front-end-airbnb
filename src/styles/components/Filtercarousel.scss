@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-    column-gap: 10px;
+    column-gap: 25px;
     align-items: center;
     position: fixed;
     top: 80px;
@@ -15,6 +15,7 @@
 
 .filter__carousel{
     width: 100%;
+    overflow: hidden;
     
     &__item{
         display: flex;
