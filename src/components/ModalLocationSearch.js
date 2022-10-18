@@ -14,7 +14,7 @@ const ModalLocationSearch = () => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
-    libraries: libraries,
+    libraries,
   });
 
   const [map, setMap] = useState(null);
@@ -37,6 +37,7 @@ const ModalLocationSearch = () => {
 
   // eslint-disable-next-line
   new google.maps.places.Autocomplete(homeLocation.current, options);
+
   const test = () => {
     if (homeLocation) {
       dispatch(locate(homeLocation.current.value));
@@ -48,7 +49,7 @@ const ModalLocationSearch = () => {
       <Input
         ref={homeLocation}
         type="text"
-        onChange={test()}
+        // onClick={test()}
         placeholder="Ingresa tu ubicacion"
         icon={<IconMapPin size={16} />}
       />
@@ -56,7 +57,7 @@ const ModalLocationSearch = () => {
       <GoogleMap
         center={center}
         zoom={15}
-        mapContainerStyle={{ width: '100', height: '100' }}
+        mapContainerStyle={{ width: '0', height: '0' }}
         onLoad={(map) => setMap(map)}
         options={{
           zoomControl: false,
