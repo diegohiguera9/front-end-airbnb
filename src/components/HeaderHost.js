@@ -5,8 +5,12 @@ import { Popover } from "@mantine/core";
 import ButtonHeaderHome from "./ButtonHeaderHome";
 import DropDownMenuHost from "./DropDownMenuHost";
 import { Outlet } from "react-router-dom";
+import { useJwt } from "react-jwt";
+import { Navigate } from "react-router";
 
 const HeaderHost = () => {
+  const { isExpired } = useJwt(localStorage.getItem("token"));
+
   const location = useLocation();
   const [selected, setSelected] = useState({
     0: location.pathname === "/hosting" ? true : false,
@@ -15,9 +19,12 @@ const HeaderHost = () => {
     3: false,
     4: false,
   });
-
+  
   const [opened, setOpened] = useState(false);
-
+  
+  if (isExpired) {
+    return <Navigate to="/" />;
+  }
   const handleClick = (index) => {
     let keys = Object.keys(selected);
     keys.map((item) => {

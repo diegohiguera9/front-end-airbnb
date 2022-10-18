@@ -2,7 +2,7 @@ import HostGradient from "../components/HostGradient";
 import GoogleAdressFilter from "../components/GoogleAdressFilter";
 import "../styles/pages/HostForm.scss";
 import { useState, useRef } from "react";
-import { Input, TransferList, NumberInput, Loader  } from "@mantine/core";
+import { Input, TransferList, NumberInput, Loader } from "@mantine/core";
 import {
   IconMapPin,
   IconHome,
@@ -34,33 +34,35 @@ const initialAmenities = [
     { value: "Aire Acondicionado", label: "Aire Acondicionado" },
   ],
   [],
-]
+];
 
 const HostForm = () => {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const homeLocation = useRef("");
   const [locationResult, setLocationResult] = useState({});
   const [locationCity, setLocationCity] = useState("");
-  
+
+  const city = useRef("");
+  const country = useRef('')
   const homeType = useRef("");
   const homePrice = useRef("");
   const homeCap = useRef("");
   const homeRooms = useRef("");
-  
+
   const [file, setFile] = useState(new DataTransfer());
   const [fileDataURL, setFileDataURL] = useState([]);
   const [dataTranser, setDataTransfer] = useState(initialAmenities);
-  
+
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
     libraries: libraries,
   });
-  
+
   const [map, setMap] = useState(null);
-  
-  const token = localStorage.getItem("token")
+
+  const token = localStorage.getItem("token");
   const { isExpired } = useJwt(token);
   if (isExpired) {
     return <Navigate to="/" />;
@@ -68,11 +70,11 @@ const HostForm = () => {
 
   if (!isLoaded) {
     return (
-    <div className="hostform_loader">
-        <Loader/>
+      <div className="hostform_loader">
+        <Loader />
         <p>Loading...</p>
-    </div>
-    ) 
+      </div>
+    );
   }
 
   async function getLocation() {
@@ -98,9 +100,11 @@ const HostForm = () => {
         map: map,
         position: results[0].geometry.location,
       });
-      console.log(results)
+      console.log(results);
       setLocationResult(results[0].geometry.location);
-      setLocationCity(GoogleAdressFilter(results[0].address_components,results[0].types));      
+      setLocationCity(
+        GoogleAdressFilter(results[0].address_components, results[0].types)
+      );
     } catch (err) {
       console.log(err);
     }
@@ -145,20 +149,22 @@ const HostForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    try{
+    try {
       e.preventDefault();
 
       const amenities = dataTranser[1].map((item) => item.value);
       const data = new FormData();
-  
+
       data.append("hometype", homeType.current.value);
       data.append("location", locationResult);
-      data.append("city",locationCity)
+      data.append("city2", locationCity);
       data.append("price", homePrice.current.value);
       data.append("capacity", homeCap.current.value);
       data.append("rooms", homeRooms.current.value);
       data.append("amenities", amenities);
-  
+      data.append('city',city)
+      data.append('country',country)
+
       console.log([
         locationResult,
         homeType.current.value,
@@ -168,41 +174,42 @@ const HostForm = () => {
         amenities,
         file.files,
       ]);
-  
+
       const fileSend = file.files;
-  
+
       for (let i = 0; i < fileSend.length; i++) {
         data.append(`file_${i}`, fileSend[i], fileSend[i].name);
       }
-  
-      const res = await axios.post("https://airbnbclonetop24.herokuapp.com/homes", data, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-  
-      console.log(res.data)
-  
+
+      const res = await axios.post(
+        "https://airbnbclonetop24.herokuapp.com/homes",
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(res.data);
+
       setFile(new DataTransfer());
       setFileDataURL([]);
-      homeType.current.value =''
-      homePrice.current.value = ''
-      homeCap.current.value = 1
-      homeRooms.current.value = 1
-      homeLocation.current.value = ''
+      homeType.current.value = "";
+      homePrice.current.value = "";
+      homeCap.current.value = 1;
+      homeRooms.current.value = 1;
+      homeLocation.current.value = "";
       setDataTransfer(initialAmenities);
-      setLocationResult({})
-      setLocationCity('')
-  
-      navigate('/hosting')
-      alert('')
+      setLocationResult({});
+      setLocationCity("");
 
-    } catch (err){
-      alert('Something went wrong, please review your information')
+      navigate("/hosting");
+      alert("");
+    } catch (err) {
+      alert("Something went wrong, please review your information");
     }
-
-
   };
 
   return (
@@ -229,16 +236,36 @@ const HostForm = () => {
           <option value="Alojamiento Unico">Alojamiento Unico</option>
           <option value="Hotel Boutique">Hotel Boutique</option>
         </Input>
+        <Input.Wrapper
+          label="2. Donde se encuentra tu espacio"
+          description="Ingresa tu ciudad"
+        >          
+          <Input
+            ref={city}
+            placeholder="Ingresa tu ciudad"
+            className="hostform__setmargin"
+          ></Input>
+        </Input.Wrapper>
+        <Input.Wrapper
+          description="Ingresa tu pais"
+        >          
+          <Input
+            ref={country}
+            placeholder="Ingresa tu pais"
+            className="hostform__setmargin"
+          ></Input>
+        </Input.Wrapper>
         <div className="hostform__mapcontainer">
-          <label htmlFor={homeLocation}>2. Donde se encuentra tu espacio</label>
           <div className="hostform__mapcontainer__control">
             <Input
               ref={homeLocation}
               type="text"
-              placeholder="Ingresa tu ubicacion"
+              placeholder="Ingresa tu ubicacion exacta"
               icon={<IconMapPin size={16} />}
             />
-            <button type="button" onClick={getLocation}>Buscar</button>
+            <button type="button" onClick={getLocation}>
+              Buscar
+            </button>
           </div>
           <GoogleMap
             center={center}
