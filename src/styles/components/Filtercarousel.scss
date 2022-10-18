@@ -21,6 +21,7 @@
         display: flex;
         flex-flow: column;
         align-items: center;
+        justify-content: center;
         width: max-content;
         white-space: nowrap;
         row-gap: 8px;
@@ -32,11 +33,18 @@
             height: 24px;
             width: 24px;
         }
+
+        & span{
+            padding-bottom: 3px;
+        }
     }
 
     &__item:hover{
         cursor: pointer;
-        border-bottom: solid 1px black;
+
+        & span{
+            border-bottom: 2px solid black;
+        }
     }
 }
 
