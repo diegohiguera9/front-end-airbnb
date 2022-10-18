@@ -2,7 +2,7 @@ import HostGradient from "../components/HostGradient";
 import GoogleAdressFilter from "../components/GoogleAdressFilter";
 import "../styles/pages/HostForm.scss";
 import { useState, useRef } from "react";
-import { Input, TransferList, NumberInput } from "@mantine/core";
+import { Input, TransferList, NumberInput, Loader  } from "@mantine/core";
 import {
   IconMapPin,
   IconHome,
@@ -13,7 +13,7 @@ import {
 import { useJsApiLoader, GoogleMap, Marker } from "@react-google-maps/api";
 import axios from "axios";
 import { useJwt } from "react-jwt";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 const center = { lat: 4.650176467537301, lng: -74.08958383984998 };
 const libraries = ["places"];
@@ -37,6 +37,7 @@ const initialAmenities = [
 ]
 
 const HostForm = () => {
+  const navigate = useNavigate()
   
   const homeLocation = useRef("");
   const [locationResult, setLocationResult] = useState({});
@@ -66,7 +67,12 @@ const HostForm = () => {
   }
 
   if (!isLoaded) {
-    return <div>Loading</div>;
+    return (
+    <div className="hostform_loader">
+        <Loader/>
+        <p>Loading...</p>
+    </div>
+    ) 
   }
 
   async function getLocation() {
@@ -139,54 +145,63 @@ const HostForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try{
+      e.preventDefault();
 
-    const amenities = dataTranser[1].map((item) => item.value);
-    const data = new FormData();
+      const amenities = dataTranser[1].map((item) => item.value);
+      const data = new FormData();
+  
+      data.append("hometype", homeType.current.value);
+      data.append("location", locationResult);
+      data.append("city",locationCity)
+      data.append("price", homePrice.current.value);
+      data.append("capacity", homeCap.current.value);
+      data.append("rooms", homeRooms.current.value);
+      data.append("amenities", amenities);
+  
+      console.log([
+        locationResult,
+        homeType.current.value,
+        homePrice.current.value,
+        homeCap.current.value,
+        homeRooms.current.value,
+        amenities,
+        file.files,
+      ]);
+  
+      const fileSend = file.files;
+  
+      for (let i = 0; i < fileSend.length; i++) {
+        data.append(`file_${i}`, fileSend[i], fileSend[i].name);
+      }
+  
+      const res = await axios.post("https://airbnbclonetop24.herokuapp.com/homes", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      console.log(res.data)
+  
+      setFile(new DataTransfer());
+      setFileDataURL([]);
+      homeType.current.value =''
+      homePrice.current.value = ''
+      homeCap.current.value = 1
+      homeRooms.current.value = 1
+      homeLocation.current.value = ''
+      setDataTransfer(initialAmenities);
+      setLocationResult({})
+      setLocationCity('')
+  
+      navigate('/hosting')
+      alert('')
 
-    data.append("hometype", homeType.current.value);
-    data.append("location", locationResult);
-    data.append("city",locationCity)
-    data.append("price", homePrice.current.value);
-    data.append("capacity", homeCap.current.value);
-    data.append("rooms", homeRooms.current.value);
-    data.append("amenities", amenities);
-
-    console.log([
-      locationResult,
-      homeType.current.value,
-      homePrice.current.value,
-      homeCap.current.value,
-      homeRooms.current.value,
-      amenities,
-      file.files,
-    ]);
-
-    const fileSend = file.files;
-
-    for (let i = 0; i < fileSend.length; i++) {
-      data.append(`file_${i}`, fileSend[i], fileSend[i].name);
+    } catch (err){
+      alert('Something went wrong, please review your information')
     }
 
-    const res = await axios.post("https://airbnbclonetop24.herokuapp.com/homes", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    console.log(res)
-
-    setFile(new DataTransfer());
-    setFileDataURL([]);
-    homeType.current.value =''
-    homePrice.current.value = ''
-    homeCap.current.value = 1
-    homeRooms.current.value = 1
-    homeLocation.current.value = ''
-    setDataTransfer(initialAmenities);
-    setLocationResult({})
-    setLocationCity('')
 
   };
 
