@@ -17,7 +17,7 @@ const RentMap = () => {
       };
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyDADK25rjdH0W0WL0Kr35HJLTfOTG2z6Bk"
+        googleMapsApiKey: process.env.REACT_APP_API_GOOGLE
       })
     
       const [map, setMap] = React.useState(null)
