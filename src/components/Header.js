@@ -21,6 +21,7 @@ const Header = () => {
   const headerPopover = useSelector(
     (state) => state.headerReducer.headerPopover,
   );
+  const location = useSelector((state) => state.headerReducer.location);
   const [opened, setOpened] = useState(false);
 
   const addFechas = () => {
@@ -95,7 +96,7 @@ const Header = () => {
               }}
             >
               <SearchBar
-                first="En cualquier lugar del mundo"
+                first={!location ? 'En cualquier lugar del mundo' : location}
                 second={`${fechas}`}
                 third={`${totalPerson}`}
               />
