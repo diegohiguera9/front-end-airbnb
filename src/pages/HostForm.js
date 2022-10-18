@@ -162,8 +162,8 @@ const HostForm = () => {
       data.append("capacity", homeCap.current.value);
       data.append("rooms", homeRooms.current.value);
       data.append("amenities", amenities);
-      data.append('city',city)
-      data.append('country',country)
+      data.append('city',city.current.value)
+      data.append('country',country.current.value)
 
       console.log([
         locationResult,
@@ -206,7 +206,6 @@ const HostForm = () => {
       setLocationCity("");
 
       navigate("/hosting");
-      alert("");
     } catch (err) {
       alert("Something went wrong, please review your information");
     }
