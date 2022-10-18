@@ -88,7 +88,7 @@ const DropdownSearch = () => {
   return (
     <div className="wraper__searchbar__pop">
       <div className="searchbar__pop">
-        <Popover width={'100px'} opened={clase[0]}>
+        <Popover width={'600px'} opened={clase[0]}>
           <Popover.Target>
             <div>
               <button onClick={() => handleClick('0')}>
