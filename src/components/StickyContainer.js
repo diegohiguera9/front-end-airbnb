@@ -44,8 +44,7 @@ const StickyContainer = (props) => {
 
     changePeopleTotal();
   }, [countPeople]);
-  console.log(opened)
-
+  
   return (
     <div className="bannerContainer">
       <div className="styckyContainer">
