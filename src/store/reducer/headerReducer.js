@@ -26,9 +26,10 @@ export const locate = (value) => {
   };
 };
 export const coordinates = (value) => {
+  console.log(value);
   return {
     type: LOCATE,
-    payload: (initialState.coordenates = value),
+    payload: (initialState.coordinates = value),
   };
 };
 // state
@@ -36,7 +37,7 @@ const initialState = {
   headerPopover: '',
   menuPopover: '',
   location: '',
-  coordinates: {},
+  coordinates: [],
 };
 
 //reducer

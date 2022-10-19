@@ -1,7 +1,6 @@
 import { Input } from '@mantine/core';
 import { IconMapPin } from '@tabler/icons';
 import { useState, useRef } from 'react';
-import GoogleAdressFilter from '../components/GoogleAdressFilter';
 import { useDispatch } from 'react-redux';
 import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
 import { locate, coordinates } from '../store/reducer/headerReducer';
@@ -52,7 +51,7 @@ const ModalLocationSearch = () => {
     // eslint-disable-next-line
     const bounds = new google.maps.LatLngBounds(center);
     const place = autocomplete.getPlace();
-    console.log(place.formatted_address);
+    //console.log(place.formatted_address);
     const GeocoderRequest = {
       address: place.formatted_address,
       bounds: bounds,
@@ -65,8 +64,14 @@ const ModalLocationSearch = () => {
       map: map,
       position: results[0].geometry.location,
     });
+
+    dispatch(
+      coordinates([
+        results[0].geometry.location.lat(),
+        results[0].geometry.location.lng(),
+      ]),
+    );
     dispatch(locate(place.formatted_address));
-    dispatch(coordinates(results[0].address_components[0].long_name));
   }
 
   return (
