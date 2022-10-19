@@ -1,9 +1,11 @@
 import "../styles/components/stickyContainer.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Popover } from "@mantine/core";
+import { Modal, Popover } from "@mantine/core";
 import StickyCalendarModal from "./StickyCalendarModal";
 import ModalPersonas from "./ModalPersonas";
+import ImgModal from "./ImgModal";
+import ReserveModal from "./ReserveModal";
 
 const StickyContainer = (props) => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
@@ -11,6 +13,7 @@ const StickyContainer = (props) => {
   const [opened, setOpened] = useState(false);
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
   const [totalPerson, setTotalPerson] = useState(null);
+  const [openReserve, setOpenReserve] = useState(false)
 
   const text = () => {
     if (rentCalendar[0] === null && rentCalendar[1] === null) {
@@ -137,7 +140,16 @@ const StickyContainer = (props) => {
                 </div>
               </div>
               <div className="reserve">
-                <button className="reserveBtn">
+              <Modal
+              opened={openReserve}
+              onClose={() => setOpenReserve(false)}
+              overflow="outside"
+              withCloseButton={false}
+              fullScreen
+            >
+              <ReserveModal setOpenReserve={setOpenReserve} />
+            </Modal>
+                <button className="reserveBtn" onClick={() => setOpenReserve(true)}>
                   <span className="reserveIt">Reserve</span>
                 </button>
               </div>
