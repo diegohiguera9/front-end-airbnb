@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import GoogleAdressFilter from '../components/GoogleAdressFilter';
 import { useDispatch } from 'react-redux';
 import { useJsApiLoader, GoogleMap, Marker } from '@react-google-maps/api';
-import { locate } from '../store/reducer/headerReducer';
+import { locate, coordinates } from '../store/reducer/headerReducer';
 const ModalLocationSearch = () => {
   const dispatch = useDispatch();
   const homeLocation = useRef('');
@@ -14,7 +14,7 @@ const ModalLocationSearch = () => {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
-    libraries: libraries,
+    libraries,
   });
 
   const [map, setMap] = useState(null);
@@ -36,19 +36,45 @@ const ModalLocationSearch = () => {
   };
 
   // eslint-disable-next-line
-  new google.maps.places.Autocomplete(homeLocation.current, options);
-  const test = () => {
-    if (homeLocation) {
-      dispatch(locate(homeLocation.current.value));
-      console.log(homeLocation.current.value);
-    }
-  };
+  const autocomplete = new google.maps.places.Autocomplete(
+    homeLocation.current,
+    options,
+  );
+  // eslint-disable-next-line
+  google.maps.event.addListener(autocomplete, 'place_changed', function () {
+    testo_geo();
+  });
+
+  async function testo_geo() {
+    //  console.log('ahlgo');
+    // eslint-disable-next-line
+    const geocoder = new google.maps.Geocoder();
+    // eslint-disable-next-line
+    const bounds = new google.maps.LatLngBounds(center);
+    const place = autocomplete.getPlace();
+    console.log(place.formatted_address);
+    const GeocoderRequest = {
+      address: place.formatted_address,
+      bounds: bounds,
+    };
+
+    const { results } = await geocoder.geocode(GeocoderRequest);
+    map.setCenter(results[0].geometry.location);
+    // eslint-disable-next-line
+    new google.maps.Marker({
+      map: map,
+      position: results[0].geometry.location,
+    });
+    dispatch(locate(place.formatted_address));
+    dispatch(coordinates(results[0].address_components[0].long_name));
+  }
+
   return (
     <div className="hostform__mapcontainer__control">
       <Input
         ref={homeLocation}
         type="text"
-        onChange={test()}
+        // onClick={test()}
         placeholder="Ingresa tu ubicacion"
         icon={<IconMapPin size={16} />}
       />
@@ -56,7 +82,7 @@ const ModalLocationSearch = () => {
       <GoogleMap
         center={center}
         zoom={15}
-        mapContainerStyle={{ width: '100', height: '100' }}
+        mapContainerStyle={{ width: '0', height: '0' }}
         onLoad={(map) => setMap(map)}
         options={{
           zoomControl: false,
