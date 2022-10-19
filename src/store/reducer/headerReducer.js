@@ -2,6 +2,7 @@ export const FLIP = 'FLIP';
 export const FLIPMENU = 'FLIPMENU';
 export const FALSE = 'FALSE';
 export const LOCATE = 'LOCATE';
+export const COORDINATES = 'COORDINATES';
 //action creator
 export const flip = () => {
   return {
@@ -24,11 +25,18 @@ export const locate = (value) => {
     payload: (initialState.location = value),
   };
 };
+export const coordinates = (value) => {
+  return {
+    type: LOCATE,
+    payload: (initialState.coordenates = value),
+  };
+};
 // state
 const initialState = {
   headerPopover: '',
   menuPopover: '',
   location: '',
+  coordinates: {},
 };
 
 //reducer
@@ -48,6 +56,11 @@ const headerReducer = (state = initialState, action) => {
       return {
         ...state,
         location: action.payload,
+      };
+    case COORDINATES:
+      return {
+        ...state,
+        coordinates: action.payload,
       };
     default:
       return state;
