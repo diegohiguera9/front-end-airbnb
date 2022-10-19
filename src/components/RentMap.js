@@ -7,6 +7,7 @@ import React from 'react'
   
 
 const RentMap = () => {
+  const libraries = ['places'];
     const containerStyle = {
         width: '100%',
         height: '450px'
@@ -17,7 +18,8 @@ const RentMap = () => {
       };
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_API_GOOGLE
+        googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
+        libraries,
       })
     
       const [map, setMap] = React.useState(null)
