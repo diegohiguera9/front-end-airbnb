@@ -6,9 +6,10 @@ import ButtonHeaderHome from "./ButtonHeaderHome";
 import DropDownMenuHost from "./DropDownMenuHost";
 import { Outlet } from "react-router-dom";
 import { useJwt } from "react-jwt";
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 
 const HeaderHost = () => {
+  const navigate = useNavigate()
   const { isExpired } = useJwt(localStorage.getItem("token"));
 
   const location = useLocation();
@@ -19,9 +20,10 @@ const HeaderHost = () => {
     3: false,
     4: false,
   });
-  
+
   const [opened, setOpened] = useState(false);
-  
+  const [opened2, setOpened2] = useState(false);
+
   if (isExpired) {
     return <Navigate to="/" />;
   }
@@ -34,6 +36,13 @@ const HeaderHost = () => {
     });
   };
   const text = ["Hoy", "Mensajes", "Calendario", "Info"];
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    localStorage.removeItem('rol');
+    navigate('/')
+  };
 
   return (
     <>
@@ -88,6 +97,9 @@ const HeaderHost = () => {
           </div>
         </div>
         <div className="roundbuttonHost">
+          <Link to="/" className="roundbuttonHost__modo">
+            Modo Viajero
+          </Link>
           <div className="roundbuttonHost__each">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,12 +110,26 @@ const HeaderHost = () => {
               <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
             </svg>
           </div>
-          <div className="roundbuttonHost__each">
-            <img
-              src={process.env.PUBLIC_URL + "/cardhome/1.webp"}
-              alt="userlogo"
-            ></img>
-          </div>
+          <Popover 
+          opened={opened2} 
+          onChange={setOpened2}
+          width={200}
+          position='bottom-end'
+          >
+            <Popover.Target>
+              <button className="roundbuttonHost__each" onClick={() => setOpened2((o) => !o)}>
+                <img
+                  src={process.env.PUBLIC_URL + "/cardhome/1.webp"}
+                  alt="userlogo"
+                ></img>
+              </button>
+            </Popover.Target>
+            <Popover.Dropdown>
+              <div>
+                <button className="logout__host" onClick={handleLogout}>Cerrar sesion</button>
+              </div>
+            </Popover.Dropdown>
+          </Popover>
         </div>
       </div>
       <section>
