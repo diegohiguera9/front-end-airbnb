@@ -9,71 +9,79 @@ import Payment from "../components/Payment";
 import Header from "../components/Header";
 import HeaderTouh from "../components/HeaderTouch";
 import RentMap from "../components/RentMap";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
 
-const Element = () => {
-  
+const RentElement = () => {
+  let params = useParams();
+  const [item, setItem] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const {location, userId} = item
+
    
-  const data = {
-    location: 'Centro,Bogotá D.C.,Colombia',
-    homeName:'Elemento 1',
-    host: 'jhon',
-    guest: 10,
-    bedrooms: 10,
-    beds:3,
-    baths: 5,
-    rating: 1.11,
-    reviews: 170,
-    available: '13 sept-10 oct',
-    price: 1848368,
-    img: [
-        process.env.PUBLIC_URL + 'cardhome/1.webp',
-        process.env.PUBLIC_URL + 'cardhome/2.webp',
-        process.env.PUBLIC_URL + 'cardhome/3.webp',
-        process.env.PUBLIC_URL + 'cardhome/4.webp',
-        process.env.PUBLIC_URL +'cardhome/5.webp',
-        process.env.PUBLIC_URL + 'cardhome/6.webp',
-    ]
-}
+  
+  useEffect(() => {
+    axios
+      .get(`https://airbnbclonetop24.herokuapp.com/homes/${params.id}`)
+      .then((response) => {
+        
+        setItem(response.data.data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+  
   return (
     <>
     <Header/>
     <HeaderTouh/>
     <main className="rentMain">
       <div className="rentElement">
+      {loading ? (
+          <p>Loading</p>
+        ) : (
         <div className="rentElementContainer">
-          <HeaderName1 children={data.homeName} />
+          <HeaderName1 children={location.city} />
+          
           <HeaderSections1
-            rating={data.rating}
-            reviews={`${data.reviews} Reviews`}
-            location={data.location}
+            rating={item.totalScore}
+            reviews={`${item.totalreviews} Reviews`}
+            location={location.city}
           />
-          <ImgContainer1 imgs={data.img} />
+          <ImgContainer1 imgs={item.images} />
           <div className="rentInfoContainer">
             <General
-              host={data.host}
-              guest={`${data.guest} guest`}
-              bedrooms={`${data.bedrooms} bedrooms`}
-              beds={`${data.beds} beds`}
-              baths={`${data.baths} baths`}
-              cancel={"8 october"}
+            profileImg = {userId.profileimg}
+              host={userId.name}
+              guest={`${item.capacity} guest`}
+              bedrooms={`${item.rooms} bedrooms`}
+              beds={`${item.rooms} beds`}
+              baths={`${item.rooms} baths`}
+              cancel={"8 noviembre"}
             />
-            <StickyContainer rating={data.rating} reviews={`${data.reviews} Reviews`} />
+            <StickyContainer price ={item.price} rating={item.totalScore} reviews={`${item.totalreviews} Reviews`} />
           </div>
           <hr className="hr1" />
-          <RentReviews rating={data.rating} reviews={`${data.reviews} Reviews`} comments={data.comments} />
+          <RentReviews item={item} rating={item.totalScore} reviews={`${item.totalreviews} Reviews`} comments={item.comments} />
           <Payment/>
           <RentMap/>
+
           </div>
-          
+  )}
       </div>
     </main>
     </>
     
   );
 };
-export default Element;
+export default RentElement;
 
 //si realizo un componente para ser container RentElement, no funciona asignarle propiedades en sass.

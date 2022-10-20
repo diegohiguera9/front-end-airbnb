@@ -9,11 +9,22 @@ import ReserveModal from "./ReserveModal";
 
 const StickyContainer = (props) => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
+  const nights = useSelector((state)=> state.calendarReducer.nights)
   const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
   const [opened, setOpened] = useState(false);
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
   const [totalPerson, setTotalPerson] = useState(null);
   const [openReserve, setOpenReserve] = useState(false)
+  const price = Intl.NumberFormat('de-DE').format(props.price)
+  const total1 = props.price * nights;
+  const total1format = Intl.NumberFormat('de-DE').format(total1);
+  const serviceFee = 43000;
+  const serviceFormat = Intl.NumberFormat('de-DE').format(serviceFee);
+  const cleaningFee = 30000;
+  const cleaningFormat= Intl.NumberFormat('de-DE').format(cleaningFee);
+  const totalReserve = Intl.NumberFormat('de-DE').format(total1 +serviceFee +cleaningFee);
+
+  
 
   const text = () => {
     if (rentCalendar[0] === null && rentCalendar[1] === null) {
@@ -63,7 +74,7 @@ const StickyContainer = (props) => {
                   <div className="estimatePricing">
                     <div className="price">
                       <div className="priceflex">
-                        <span className="span1">$1,642,053 COP</span>
+                        <span className="span1">{`$${price} COP`}</span>
                         <span className="span2">night</span>
                       </div>
                       <div className="rentSection">
@@ -162,10 +173,10 @@ const StickyContainer = (props) => {
                 <div className="values">
                   <button className="valuesBtn">
                     <div className="nightValues">
-                      <u>$1,642,053 COP x 6 nights</u>
+                      <u>{`$${price} COP x ${nights} nights`}</u>
                     </div>
                   </button>
-                  <span className="valueResult">$9,852,316 COP</span>
+                  <span className="valueResult">{`$${total1format} COP`}</span>
                 </div>
                 <div className="values">
                   <button className="valuesBtn">
@@ -173,7 +184,7 @@ const StickyContainer = (props) => {
                       <u>Cleaning fee</u>
                     </div>
                   </button>
-                  <span className="valueResult">$43,855 COP</span>
+                  <span className="valueResult">{`$${cleaningFormat} COP`}</span>
                 </div>
                 <div className="values">
                   <button className="valuesBtn">
@@ -181,13 +192,13 @@ const StickyContainer = (props) => {
                       <u>Service fee</u>
                     </div>
                   </button>
-                  <span className="valueResult">$1,399,250 COP</span>
+                  <span className="valueResult">{`$${serviceFormat} COP`}</span>
                 </div>
               </div>
               <hr className="hr1" />
               <div className="section2">
                 <div className="totaltext">Total before taxes</div>
-                <span className="total">$11,310,568 COP</span>
+                <span className="total">{`$${totalReserve} COP`}</span>
               </div>
             </div>
           </div>

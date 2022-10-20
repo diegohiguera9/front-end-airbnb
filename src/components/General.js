@@ -45,8 +45,7 @@ const General = (props) => {
                 alt="Learn more about the host, Mario."
                 decoding="async"
                 elementtiming="LCP-target"
-                src="https://a0.muscache.com/im/pictures/user/3d5f33d9-153e-4d00-9798-7749b4928a64.jpg?im_w=240"
-                data-original-uri="https://a0.muscache.com/im/pictures/user/3d5f33d9-153e-4d00-9798-7749b4928a64.jpg?im_w=240"
+                src={props.profileImg}
               />
             </div>
           </button>

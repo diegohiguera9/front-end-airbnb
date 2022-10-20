@@ -12,7 +12,7 @@ const ScoreApart = (props) => {
                         <span className="chartSpan" style={props.widthStyle}></span>
                     </div>
                 </div>
-                <div className="chartNumber">4.8</div>
+                <div className="chartNumber">{props.total}</div>
             </div>
         </div>
     </div>

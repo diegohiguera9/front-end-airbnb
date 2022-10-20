@@ -17,7 +17,6 @@ const ReserveModal = ({setOpenReserve}) => {
             </svg>
           </button>
         </div>
-        
       </div>
       <div className="imgsContainer">
       </div>

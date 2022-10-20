@@ -2,16 +2,17 @@ import "../styles/components/comment.scss";
 import Comment from "./Comment"
 
 const RentComments = ({comments}) => {
+  console.log('coment',comments)
   return (
     <div className="rentComments">
-    {/* {comments.map((item)=>{
+    {comments.map((item)=>{
       return(
-        <div className="comment">
+        <div className="comment" key={item._id}>
         <Comment item={item}/>
         </div>
         
       )
-    })} */}
+    })}
     </div>
     
   )
