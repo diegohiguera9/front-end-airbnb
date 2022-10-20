@@ -14,7 +14,7 @@ const ListingContainer = ({ img, location, capacity, rooms, score, price }) => {
       <div>{`${capacity}`}</div>
       <div>{`${rooms}`}</div>
       <div>{`${score}`}</div>
-      <div>{`${price}`}</div>
+      <div>{`$ ${new Intl.NumberFormat('de-DE').format(price)} COP`}</div>
     </Link>
   );
 };
