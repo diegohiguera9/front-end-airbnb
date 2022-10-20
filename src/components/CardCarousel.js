@@ -42,7 +42,7 @@ function CardCarousel(props) {
       {data.map((item, index) => {
         return (
           <Carousel.Slide key={index}>
-            <button className="carousel__list__button__heart" onClick={()=>navigate('/rent')}>
+            <button className="carousel__list__button__heart" onClick={()=>navigate(`/rent/${props.linkto}`)}>
               <img src={item} alt={index} />
             </button>
           </Carousel.Slide>
