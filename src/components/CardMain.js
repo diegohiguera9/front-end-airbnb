@@ -59,7 +59,7 @@ const CardMain = ({item}) => {
         <span className="light">{`${item.totalreviews} Reviews`}</span>
         <span className="light">{item.dates}</span>
         <span className="bold">
-          {`$${item.price} COP`} <span className="nBold">noche</span>
+          {`$ ${new Intl.NumberFormat('de-DE').format(item.price)} COP`} <span className="nBold">noche</span>
         </span>
       </button>
     </div>
