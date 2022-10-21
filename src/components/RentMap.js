@@ -3,33 +3,30 @@ import React from 'react'
 /*global google*/
 
 
-  
-  
 
-const RentMap = () => {
-  const libraries = ['places'];
+const RentMap = ({location}) => {
     const containerStyle = {
         width: '100%',
         height: '450px'
       };
       
-      const center = {
-        lat: 4.655351022105508, lng: -74.10845345099511
-      };
+      const center = location.coordinates;
+      
+      
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_API_GOOGLE,
-        libraries,
       })
-    
+      // eslint-disable-next-line
       const [map, setMap] = React.useState(null)
     
       const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds(center);
         map.fitBounds(bounds);
+        
         setMap(map)
+        // eslint-disable-next-line
       }, [])
-    
       const onUnmount = React.useCallback(function callback(map) {
         setMap(null)
       }, [])
@@ -38,7 +35,7 @@ const RentMap = () => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             center={center}
-            zoom={14}
+            zoom={13}
             onLoad={onLoad}
             onUnmount={onUnmount}
             options={{
@@ -52,12 +49,13 @@ const RentMap = () => {
                 },
                 mapTypeControl: false,
                 fullscreenControl:false,
+                
               }}
           >
-            { /* Child components, such as markers, info windows, etc. */ }
+            
             <Marker position={center} />
           </GoogleMap>
-      ) : <></>
+      ) : <> <p>cargando</p></>
 }
 
 export default RentMap

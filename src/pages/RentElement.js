@@ -16,6 +16,7 @@ import axios from "axios";
 
 
 
+
 const RentElement = () => {
   let params = useParams();
   const [item, setItem] = useState([]);
@@ -37,6 +38,7 @@ const RentElement = () => {
       .finally(() => {
         setLoading(false);
       });
+      // eslint-disable-next-line
   }, []);
   
   return (
@@ -72,7 +74,7 @@ const RentElement = () => {
           <hr className="hr1" />
           <RentReviews item={item} rating={item.totalScore} reviews={`${item.totalreviews} Reviews`} comments={item.comments} />
           <Payment/>
-          <RentMap/>
+          <RentMap location={location}/>
 
           </div>
   )}
