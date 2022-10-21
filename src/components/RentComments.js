@@ -2,7 +2,7 @@ import "../styles/components/comment.scss";
 import Comment from "./Comment"
 
 const RentComments = ({comments}) => {
-  console.log('coment',comments)
+  
   return (
     <div className="rentComments">
     {comments.map((item)=>{
