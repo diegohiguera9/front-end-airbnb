@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 const CardHomeContainer = () => {
   const [reservations, setReservations] = useState("");
+  const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
 
   const getReservations = async () => {
@@ -17,15 +18,16 @@ const CardHomeContainer = () => {
           },
         }
       );
-      setReservations(data.data);
+      setReservations(data.data.homes);
+      setLoading(false);
     } catch (err) {
       alert(err);
     }
   };
 
   useEffect(() => {
-    // eslint-disable-next-line
     getReservations();
+    // eslint-disable-next-line
   }, []);
 
   // const data = [
@@ -61,26 +63,35 @@ const CardHomeContainer = () => {
   //   },
   // ];
 
+  console.log(reservations);
+
+  if (loading) {
+    return <p>loading</p>;
+  }
   return (
     <div className="CardHomeContainer">
       {reservations.length === 0 ? (
         <h1>No reservations found, get ready to be the greatest host</h1>
-
       ) : (
         reservations.map((item, index) => {
-          return (
-            <div key={index}>
-              <CardHomeHost
-                name={item.user.name}
-                date={item.fechas}
-                img={item.user.profileimg}
-                huespedes={item.guests.adults}
-                llegada={item.fechas}
-                salida={item.fechas}
-                codigo={item._id}
-              />
-            </div>
-          );
+          if (item.reservations.length > 0) {
+            return item.reservations.map(item=>{
+              return (
+                <div key={index}>
+                  <CardHomeHost
+                    name={item.user.name}
+                    date={item.createdAt}
+                    img={item.user.profileimg}
+                    huespedes={item.guests.adults}
+                    llegada={item.initialDdate}
+                    salida={item.finalDate}
+                    codigo={item._id}
+                  />
+                </div>
+              );
+            })
+            
+          }
         })
       )}
     </div>

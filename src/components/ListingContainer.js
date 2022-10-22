@@ -1,12 +1,12 @@
 import "../styles/components/ListingContainer.scss";
 import { Link } from "react-router-dom";
 
-const ListingContainer = ({ img, location, capacity, rooms, score, price }) => {
+const ListingContainer = ({ img, location, capacity, rooms, score, price,id }) => {
   return (
-    <Link to='/hosting' className="listingcontainer">
+    <Link to={`/hosting/editing/${id}`} className="listingcontainer">
       <div className="listingcontainer__img">
         <div className="listingcontainer__img__cont">
-          <img src={img}></img>
+          <img src={img} alt='imgdes'></img>
         </div>
         <span>{`Villa para descanso en ${location}`}</span>
       </div>

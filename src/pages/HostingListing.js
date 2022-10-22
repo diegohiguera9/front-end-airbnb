@@ -26,9 +26,9 @@ const HostingListing = () => {
     }
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line
+  useEffect(() => {    
     getHomes();
+    // eslint-disable-next-line
   }, []);
 
   if (loading) {
@@ -52,16 +52,18 @@ const HostingListing = () => {
       {homes.length === 0 ? (
         <h1>No homes found</h1>
       ) : (
-        homes.map((item) => {
+        homes.map((item,index) => {
           return (
             <>
               <ListingContainer
+                key={index}
                 img={item.images[0]}
                 location={item.location.city}
                 capacity={item.capacity}
                 rooms={item.rooms}
                 score={item.scorevalue}
                 price={item.price}
+                id={item._id}
               />
             </>
           );
