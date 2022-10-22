@@ -22,11 +22,13 @@ const ModalLogin = () => {
           'https://airbnbclonetop24.herokuapp.com/user/singin',
           user,
         );
+        console.log(data)
 
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('rol', data.data.rol);
         //  cookies.set('tokenCookie', data.data.token);
         localStorage.setItem('email', data.data.email);
+        localStorage.setItem('img',data.data.profileimg);
         dispatch(flipMenu(''));
       } catch (err) {
         //console.log(err.response.status);

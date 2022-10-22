@@ -28,7 +28,7 @@ export const locate = (value) => {
 export const coordinates = (value) => {
   console.log(value);
   return {
-    type: LOCATE,
+    type: COORDINATES,
     payload: (initialState.coordinates = value),
   };
 };
