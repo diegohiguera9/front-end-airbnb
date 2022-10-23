@@ -35,7 +35,7 @@ const HeaderHost = () => {
       });
     });
   };
-  const text = ["Hoy", "Mensajes", "Calendario", "Info"];
+  const text = ["Hoy",  ];
 
   const handleLogout = () => {
     localStorage.removeItem('token');

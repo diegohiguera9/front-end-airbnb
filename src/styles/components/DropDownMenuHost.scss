@@ -5,6 +5,8 @@
     border: none;
 
     &__Link{
+        display: flex;
+        justify-content: flex-start;
         color: black;
         padding: 15px 30px;
         &:hover{
@@ -14,6 +16,8 @@
     }
 
     & a{
+        display: flex;
+        justify-content: flex-start;
         color:black;
     }
 }
