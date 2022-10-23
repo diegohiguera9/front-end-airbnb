@@ -73,19 +73,21 @@ const CardHomeContainer = () => {
       {reservations.length === 0 ? (
         <h1>No reservations found, get ready to be the greatest host</h1>
       ) : (
-        reservations.map((item, index) => {
-          if (item.reservations.length > 0) {
-            return item.reservations.map(item=>{
+        reservations.map((home, index) => {
+          if (home.reservations.length > 0) {
+            return home.reservations.map(item=>{
               return (
                 <div key={index}>
                   <CardHomeHost
                     name={item.user.name}
                     date={item.createdAt}
                     img={item.user.profileimg}
-                    huespedes={item.guests.adults}
+                    huespedes={item.guests}
                     llegada={item.initialDdate}
                     salida={item.finalDate}
                     codigo={item._id}
+                    price = {item.price}
+                    location ={home.location.city}
                   />
                 </div>
               );

@@ -8,7 +8,6 @@ const DropDownMenuHost = ({fun,setOpened}) => {
     "Anuncio",
     "Reservaciones",
     "Crea un nuevo anuncio",
-    "Guias",
     "Historial de transacciones",
   ];
 

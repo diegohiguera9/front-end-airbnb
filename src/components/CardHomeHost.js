@@ -11,8 +11,12 @@ const CardHomeHost = ({
   llegada,
   salida,
   codigo,
+  price,
+  location
 }) => {
   const [opened, setOpened] = useState(false);
+  const llegadaShow = new Date(llegada);
+  const salidaShow = new Date(salida);
 
   return (
     <div className="CardHomeHost">
@@ -28,13 +32,15 @@ const CardHomeHost = ({
           llegada={llegada}
           salida={salida}
           codigo={codigo}
+          price={price}
         />
       </Modal>
       <button onClick={() => setOpened(true)}>
         <div className="CardHomeHost__row">
           <div className="CardHomeHost__column">
             <span>{name}</span>
-            <span>{date}</span>
+            <span>{`${llegadaShow.toDateString().slice(4,-4)} - ${salidaShow.toDateString().slice(4,-4)}`}</span>
+            <span className="CardHomeHost__column__ligth">{`Villa de descanso en ${location}`}</span>
           </div>
           <div className="CardHomeHost__row__img">
             <img src={img} alt="profile logo"></img>
@@ -42,7 +48,7 @@ const CardHomeHost = ({
         </div>
       </button>
       <hr className="CardHomeHost__span"></hr>
-      <div className="CardHomeHost__message">Mensaje</div>
+      <button onClick={() => setOpened(true)} className="CardHomeHost__message">Ver mas</button>
     </div>
   );
 };
