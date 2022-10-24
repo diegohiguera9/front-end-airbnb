@@ -1,4 +1,4 @@
-import "../styles/components/HomeHostFilter.scss";
+import "../styles/components/HomeHostFilter.scss"; 
 import { useState } from "react";
 import HomeHostFilterButton from "./HomeHostFilterButton";
 
