@@ -17,8 +17,7 @@ const SearchBar = (props)=>{
             dates,
             people,
             flexRange,
-        }        
-        console.log(data)
+        }  
         dispatch(getPosts(data))
     }
    

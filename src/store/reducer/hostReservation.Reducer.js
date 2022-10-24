@@ -1,12 +1,15 @@
 export const RESERV_LOADING = "RESERV_LOADING";
 export const RESERV_AGENDED = "RESERV_AGENDED";
 export const RESERV_All = "RESERV_All";
+export const RESERV_SHOW = 'RESERV_SHOW'
 export const RESERV_PASSED = "RESERV_PASSED";
 export const RESERV_ERROR = "RESERV_ERROR";
 
 const initialState = {
   agended: [],
   passed: [],
+  all:[],
+  show:[],
   loading: true,
   error: "",
 };
@@ -21,18 +24,25 @@ const reservationReducer = (state = initialState, action) => {
     case RESERV_All:
       return {
         ...state,
-        post: action.payload,
+        all: action.payload,
       };
     case RESERV_AGENDED:
       return {
         ...state,
-        post: action.payload,
+        agended: action.payload,
       };
     case RESERV_PASSED:
       return {
         ...state,
-        post: action.payload,
+        passed: action.payload,
       };
+    case RESERV_SHOW:
+      const filter = state[action.payload]
+      console.log(state.passed)
+      return {
+        ...state,
+        show: filter
+      }
     case RESERV_ERROR:
       return {
         ...state,
