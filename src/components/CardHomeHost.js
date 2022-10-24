@@ -40,7 +40,7 @@ const CardHomeHost = ({
           <div className="CardHomeHost__column">
             <span>{name}</span>
             <span>{`${llegadaShow.toDateString().slice(4,-4)} - ${salidaShow.toDateString().slice(4,-4)}`}</span>
-            <span className="CardHomeHost__column__ligth">{`Villa de descanso en ${location}`}</span>
+            <span className="CardHomeHost__column__ligth">{`Villa en ${location}`}</span>
           </div>
           <div className="CardHomeHost__row__img">
             <img src={img} alt="profile logo"></img>
