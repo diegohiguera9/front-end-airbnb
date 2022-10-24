@@ -5,7 +5,6 @@ import ImgContainer1 from "../components/ImgContainer1";
 import General from "../components/General";
 import StickyContainer from "../components/StickyContainer";
 import RentReviews from "../components/RentReviews";
-import Payment from "../components/Payment";
 import Header from "../components/Header";
 import HeaderTouh from "../components/HeaderTouch";
 import RentMap from "../components/RentMap";
@@ -55,7 +54,7 @@ const RentElement = () => {
           
           <HeaderSections1
             rating={item.totalScore}
-            reviews={`${item.totalreviews} Reviews`}
+            reviews={`${item.totalreviews} evaluaciones`}
             location={location.city}
           />
           <ImgContainer1 imgs={item.images} />
@@ -63,17 +62,17 @@ const RentElement = () => {
             <General
             profileImg = {userId.profileimg}
               host={userId.name}
-              guest={`${item.capacity} guest`}
-              bedrooms={`${item.rooms} bedrooms`}
-              beds={`${item.rooms} beds`}
-              baths={`${item.rooms} baths`}
+              guest={`${item.capacity} huespedes`}
+              bedrooms={`${item.rooms} habitaciones`}
+              beds={`${item.rooms} camas`}
+              baths={`${item.rooms} baños`}
               cancel={"8 noviembre"}
             />
-            <StickyContainer price ={item.price} rating={item.totalScore} reviews={`${item.totalreviews} Reviews`} />
+            <StickyContainer item={item} price ={item.price} rating={item.totalScore}  reviews={`${item.totalreviews} evaluaciones`} />
           </div>
           <hr className="hr1" />
-          <RentReviews item={item} rating={item.totalScore} reviews={`${item.totalreviews} Reviews`} comments={item.comments} />
-          <Payment/>
+          <RentReviews item={item} rating={item.totalScore} reviews={`${item.totalreviews} evaluaciones`} comments={item.comments} />
+          
           <RentMap location={location}/>
 
           </div>

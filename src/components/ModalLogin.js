@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { flipMenu } from '../store/reducer/headerReducer';
-const ModalLogin = () => {
+const ModalLogin = ({setExpired}) => {
   const dispatch = useDispatch();
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -30,6 +30,7 @@ const ModalLogin = () => {
         localStorage.setItem('email', data.data.email);
         localStorage.setItem('img',data.data.profileimg);
         dispatch(flipMenu(''));
+        setExpired(false)
       } catch (err) {
         //console.log(err.response.status);
         err.response.status === 400

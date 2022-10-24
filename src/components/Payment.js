@@ -1,6 +1,6 @@
 
 
-const Payment = () => {
+const Payment = ({className, invoice, price, name}) => {
 
     var handler = window.ePayco.checkout.configure({
         key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
@@ -10,11 +10,11 @@ const Payment = () => {
       const handleClick = () => {
         handler.open({
           //Parametros compra (obligatorio)
-          name: "Casa",
-          description: "casa en el centro de bogota",
-          invoice: "001",
+          name: name,
+          description: name,
+          invoice: invoice,
           currency: "cop",
-          amount: "100000",
+          amount: price,
           tax_base: "0",
           tax: "0",
           country: "co",
@@ -31,8 +31,8 @@ const Payment = () => {
           response: "http://localhost:3000/",
     
           //Atributos cliente
-          name_billing: "Jhon vasquez",
-          address_billing: "Cra 70c",
+          name_billing: localStorage.getItem('email'),
+          address_billing: localStorage.getItem('email'),
           type_doc_billing: "cc",
           mobilephone_billing: "3101234567",
           number_doc_billing: "1234567896",
@@ -44,9 +44,11 @@ const Payment = () => {
       }
     
   return (
-    <div className="App">
+    <div className="reserve">
       
-      <button onClick={handleClick}>Pagar</button>
+      <button type="submit" className={className} onClick={handleClick}>
+      <span className="reserveIt">Reservar</span>
+      </button>
       
     </div>
     

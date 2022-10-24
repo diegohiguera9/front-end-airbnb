@@ -162,19 +162,23 @@
 
 .reserve {
   height: 48px;
-  /*width: 324.33px;*/
+  width: 100%;
   .reserveBtn {
     height: 100%;
     width: 100%;
     background-color: rgb(255, 56, 92);
     border: none;
     border-radius: 8px;
+    cursor: pointer;
   }
   .reserveIt {
     color: white;
     font-size: 16px;
     font-weight: lighter;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Cereal Book';
+  }
+  .enableBtn{
+    cursor: not-allowed;
   }
 }
 
