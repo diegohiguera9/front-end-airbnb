@@ -1,11 +1,14 @@
 import "../styles/components/stickyContainer.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Modal, Popover } from "@mantine/core";
+import { Modal, Popover, Alert } from "@mantine/core";
+
+import { IconAlertCircle } from '@tabler/icons';
 import StickyCalendarModal from "./StickyCalendarModal";
 import ModalPersonas from "./ModalPersonas";
 import ImgModal from "./ImgModal";
 import ReserveModal from "./ReserveModal";
+
 
 const StickyContainer = (props) => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
@@ -15,6 +18,8 @@ const StickyContainer = (props) => {
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
   const [totalPerson, setTotalPerson] = useState(null);
   const [openReserve, setOpenReserve] = useState(false)
+  const {adults} = countPeople;
+
   const price = Intl.NumberFormat('de-DE').format(props.price)
   const total1 = props.price * nights;
   const total1format = Intl.NumberFormat('de-DE').format(total1);
@@ -23,21 +28,29 @@ const StickyContainer = (props) => {
   const cleaningFee = 30000;
   const cleaningFormat= Intl.NumberFormat('de-DE').format(cleaningFee);
   const totalReserve = Intl.NumberFormat('de-DE').format(total1 +serviceFee +cleaningFee);
+  const [enableBtn, setEnableBtn] = useState("")
 
   
 
+
   const text = () => {
     if (rentCalendar[0] === null && rentCalendar[1] === null) {
-      setTextDate(["Add Date", "Add Date"]);
+      setTextDate(["Agregar fecha", "Agregar fecha"]);
     } else if (rentCalendar[0] && rentCalendar[1] === null) {
       const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
-      setTextDate([date1, "Add Date"]);
+      setTextDate([date1, "Agregar fecha"]);
     } else if (rentCalendar[0] && rentCalendar[1]) {
       const date1 = `${rentCalendar[0].getMonth()}/${rentCalendar[0].getDate()}/${rentCalendar[0].getFullYear()}`;
       const date2 = `${rentCalendar[1].getMonth()}/${rentCalendar[1].getDate()}/${rentCalendar[1].getFullYear()}`;
       setTextDate([date1, date2]);
     }
   };
+  const reserveOk =() =>{
+   
+    setOpenReserve(true)
+    setEnableBtn("")
+    
+  }
 
   useEffect(() => {
     text();
@@ -75,7 +88,7 @@ const StickyContainer = (props) => {
                     <div className="price">
                       <div className="priceflex">
                         <span className="span1">{`$${price} COP`}</span>
-                        <span className="span2">night</span>
+                        <span className="span2">noche</span>
                       </div>
                       <div className="rentSection">
                         <svg
@@ -112,11 +125,11 @@ const StickyContainer = (props) => {
                       onClick={() => setOpened(true)}
                     >
                       <div className="checkFlexI">
-                        <div className="check">CHECK-IN</div>
+                        <div className="check">LLEGADA</div>
                         <div className="checkText">{texDate[0]}</div>
                       </div>
                       <div className="checkFlexI" id="i2">
-                        <div className="check">CHECKOUT</div>
+                        <div className="check">SALIDA</div>
                         <div className="checkText">{texDate[1]}</div>
                       </div>
                     </button>
@@ -126,7 +139,7 @@ const StickyContainer = (props) => {
                       <Popover.Target>
                         <button className="checkBtn">
                           <div className="check" id="guests">
-                            GUESTS
+                            HUESPEDES
                           </div>
                           <div className="checkText">{totalPerson}</div>
                           <svg
@@ -158,22 +171,22 @@ const StickyContainer = (props) => {
               withCloseButton={false}
               fullScreen
             >
-              <ReserveModal setOpenReserve={setOpenReserve} />
+              <ReserveModal setOpenReserve={setOpenReserve} item={props.item} dates={texDate} guest={totalPerson} />
             </Modal>
-                <button className="reserveBtn" onClick={() => setOpenReserve(true)}>
-                  <span className="reserveIt">Reserve</span>
+                <button className={`reserveBtn ${enableBtn}`} onClick={reserveOk}>
+                  <span className="reserveIt">Reservar</span>
                 </button>
               </div>
             </div>
             <div className="message">
-              <span className="messageStyle">You won't be charged yet</span>
+              <span className="messageStyle">Aún no se te cobrará nada</span>
             </div>
             <div className="totals">
               <div className="section1">
                 <div className="values">
                   <button className="valuesBtn">
                     <div className="nightValues">
-                      <u>{`$${price} COP x ${nights} nights`}</u>
+                      <u>{`$${price} COP x ${nights} noches`}</u>
                     </div>
                   </button>
                   <span className="valueResult">{`$${total1format} COP`}</span>
@@ -181,7 +194,7 @@ const StickyContainer = (props) => {
                 <div className="values">
                   <button className="valuesBtn">
                     <div className="nightValues">
-                      <u>Cleaning fee</u>
+                      <u>Tarifa de limpieza</u>
                     </div>
                   </button>
                   <span className="valueResult">{`$${cleaningFormat} COP`}</span>
@@ -189,15 +202,15 @@ const StickyContainer = (props) => {
                 <div className="values">
                   <button className="valuesBtn">
                     <div className="nightValues">
-                      <u>Service fee</u>
+                      <u>Comisión por servicio</u>
                     </div>
                   </button>
                   <span className="valueResult">{`$${serviceFormat} COP`}</span>
                 </div>
               </div>
-              <hr className="hr1" />
+              <hr className="hr2" />
               <div className="section2">
-                <div className="totaltext">Total before taxes</div>
+                <div className="totaltext">Total antes de impuestos</div>
                 <span className="total">{`$${totalReserve} COP`}</span>
               </div>
             </div>
@@ -216,7 +229,7 @@ const StickyContainer = (props) => {
                 <path d="M28 6H17V4a2 2 0 0 0-2-2H3v28h2V18h10v2a2 2 0 0 0 2 2h11l.115-.006a1 1 0 0 0 .847-1.269L27.039 14l1.923-6.724A1 1 0 0 0 28 6z"></path>
               </svg>
               <span>
-                <u>Report this listing</u>
+                <u>Reportar este anuncio</u>
               </span>
             </span>
           </button>

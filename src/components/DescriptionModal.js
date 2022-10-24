@@ -22,7 +22,7 @@ const DescriptionModal = ({ setOpened }) => {
       </div>
       <div className="descriptionContainer">
         <div className="descTitle">
-          <h2>About this space</h2>
+          <h2>Acerca del espacio</h2>
         </div>
         <div className="descText">
           <span>

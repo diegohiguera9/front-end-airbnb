@@ -10,32 +10,32 @@ import { changeDate } from "../store/reducer/calendarReducer";
 const StickyCalendarModal = ({ opened, setOpened }) => {
   const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
   const dispatch = useDispatch();
-  const [dateTitle, setTitle] = useState("Select dates");
+  const [dateTitle, setTitle] = useState("Selecciona las fechas");
   const [dateHeader, setdateHeader] = useState(
-    "Add your travel dates for exact pricing"
+    "Ingresa tus fechas de viaje para ver el precio exacto"
   );
   
-  const [texDate, setTextDate] = useState(["Add Date", "Add Date"]);
+  const [texDate, setTextDate] = useState(["Agregar fecha", "Agregar fecha"]);
 
   const clearCalendar = () => {
     dispatch(changeDate([null, null]));
   };
   const textDateHeader = () => {
     if (rentCalendarOne[0] === null && rentCalendarOne[1] === null) {
-      setTitle("Select dates");
-      setdateHeader("Add your travel dates for exact pricing");
-      setTextDate(["Add Date", "Add Date"]);
+      setTitle("Selecciona las fechas");
+      setdateHeader("Ingresa tus fechas de viaje para ver el precio exacto");
+      setTextDate(["Agregar fecha", "Agregar fecha"]);
     } else if (rentCalendarOne[0] && rentCalendarOne[1] === null) {
       const date1 = `${rentCalendarOne[0].getMonth()}/${rentCalendarOne[0].getDate()}/${rentCalendarOne[0].getFullYear()}`;
-      setTextDate([date1, "Add Date"]);
-      setdateHeader("Minimum stay: 2 nights");
+      setTextDate([date1, "Agregar fecha"]);
+      setdateHeader("Estancia mínima: 2 noches");
     } else if (rentCalendarOne[0] && rentCalendarOne[1]) {
       
       if (rentCalendarOne[0] && rentCalendarOne[1]) {
         let rentDates =
           rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
         rentDates = rentDates / (1000 * 3600 * 24);
-        setTitle(`${rentDates} nights`);
+        setTitle(`${rentDates} noches`);
       }
       const sDates = rentCalendarOne.map((item) => {
         return [`${item.getMonth()}, ${item.getDate()}, ${item.getFullYear()}`];
@@ -73,11 +73,11 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
           </div>
           <div className="section">
             <div className="checkFlexI">
-              <div className="check">CHECK-IN</div>
+              <div className="check">LLEGADA</div>
               <div className="checkText">{texDate[0]}</div>
             </div>
             <div className="checkFlexI" id="i2">
-              <div className="check">CHECKOUT</div>
+              <div className="check">SALIDA</div>
               <div className="checkText">{texDate[1]}</div>
             </div>
           </div>
@@ -150,12 +150,12 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
           <div>
             <RentCalendarBtn
               clase={"clearDate"}
-              texto={"Clear Dates"}
+              texto={"Borrar fechas"}
               evnt={clearCalendar}
             />
             <RentCalendarBtn
               clase={"closeBt"}
-              texto={"Close"}
+              texto={"Cerrar"}
               evnt={() => setOpened((o) => !o)}
             />
           </div>

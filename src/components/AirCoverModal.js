@@ -30,47 +30,37 @@ const AirCoverModal = ({ setOpened }) => {
           />
         </h2>
         <div className="airCoverText">
-          AirCover is comprehensive protection included for free with every
-          booking.
+        AirCover es una protección completa que se incluye gratis en cada reservación.
         </div>
         <hr className="hr3" />
       </div>
       <div className="airCoverProtections">
         <div className="protection">
-          <h3 className="protectionTitle">Booking Protection Guarantee</h3>
+          <h3 className="protectionTitle">Garantía de protección de la reservación</h3>
           <div className="protectionText">
-            In the unlikely event a Host needs to cancel your booking within 30
-            days of check-in, we’ll find you a similar or better home, or we’ll
-            refund you.
+          En el improbable caso de que un anfitrión tenga que cancelar tu reservación en los 30 días previos a la llegada, te encontraremos un alojamiento similar o mejor, o te enviaremos un reembolso.
           </div>
         </div>
         <div className="protection">
-          <h3 className="protectionTitle">Check-In Guarantee</h3>
+          <h3 className="protectionTitle">Garantía de cambio de reservación</h3>
           <div className="protectionText">
-            If you can’t check into your home and the Host cannot resolve the
-            issue, we’ll find you a similar or better home for the length of
-            your original stay, or we’ll refund you.
+          Si no puedes registrar la llegada en tu alojamiento y el anfitrión no logra resolver el problema, te encontraremos un alojamiento similar o mejor para la duración de tu estancia original, o te enviaremos un reembolso.
           </div>
         </div>
         <div className="protection">
-          <h3 className="protectionTitle">Get-What-You-Booked Guarantee</h3>
+          <h3 className="protectionTitle">Garantía de fidelidad al anuncio</h3>
           <div className="protectionText">
-            If at any time during your stay you find your listing isn't as
-            advertised—for example, the refrigerator stops working and your Host
-            can’t easily fix it, or it has fewer bedrooms than listed—you'll
-            have three days to report it and we’ll find you a similar or better
-            home, or we’ll refund you.
+          Si durante tu estancia te das cuenta de que el alojamiento no coincide con lo que aparecía en el anuncio (p. ej.: si se daña el refrigerador y el anfitrión no puede arreglarlo o si el espacio tiene menos habitaciones que las que dice el anuncio), tendrás tres días para avisarnos. Una vez que lo hagas, buscaremos un alojamiento similar o mejor, o te enviaremos un reembolso.
           </div>
         </div>
         <div className="protection">
-          <h3 className="protectionTitle">24-hour Safety Line</h3>
+          <h3 className="protectionTitle">Línea de protección 24 horas</h3>
           <div className="protectionText">
-            If you ever feel unsafe, you’ll get priority access to
-            specially-trained safety agents, day or night.
+          Si en algún momento te sientes en una situación insegura, tendrás acceso prioritario a agentes especializados en seguridad, sea la hora que sea.
           </div>
         </div>
       </div>
-      <div className="coverHelpCenter">Find complete details on how AirCover protects your booking in our <b><u>Help Center</u></b></div>
+      <div className="coverHelpCenter">Encontrarás más información sobre qué protección te ofrece AirCover para tu reserva en nuestro <b><u>Centro de ayuda</u></b></div>
     </div>
   );
 };
