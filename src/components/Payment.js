@@ -29,7 +29,7 @@ const Payment = ({className, invoice, price, name}) => {
           extra2: "extra2",
           extra3: "extra3",
           response: "",
-          acepted: "http://localhost:3000/confirmationPay",
+          acepted: "https://front-end-airbnb-six.vercel.app/confirmationPay",
     
           //Atributos cliente
           name_billing: "",
