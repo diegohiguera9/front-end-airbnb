@@ -12,6 +12,7 @@ const ModalComment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     console.log('1', calificacion1);
     console.log('2', calificacion2);
     console.log('3', calificacion3);

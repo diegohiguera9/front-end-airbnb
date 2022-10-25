@@ -11,14 +11,14 @@ const CardHomeClientContainer = () => {
   const getReservations = async () => {
     try {
       const { data } = await axios.get(
-        'https://airbnbclonetop24.herokuapp.com/reservations/showHost',
+        'https://airbnbclonetop24.herokuapp.com/user/',
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         },
       );
-      setReservations(data.data.homes);
+      setReservations(data.data.reservations);
       setLoading(false);
     } catch (err) {
       alert(err);
@@ -29,8 +29,6 @@ const CardHomeClientContainer = () => {
     getReservations();
     // eslint-disable-next-line
   }, []);
-
-  console.log(reservations);
 
   if (loading) {
     return <p>loading</p>;
@@ -43,26 +41,22 @@ const CardHomeClientContainer = () => {
           viaje!
         </h1>
       ) : (
-        reservations.map((home, index) => {
-          if (home.reservations.length > 0) {
-            return home.reservations.map((item) => {
-              return (
-                <div key={index}>
-                  <CardHomeClient
-                    name={item.user.name}
-                    date={item.createdAt}
-                    img={item.user.profileimg}
-                    huespedes={item.guests}
-                    llegada={item.initialDdate}
-                    salida={item.finalDate}
-                    codigo={item._id}
-                    price={item.price}
-                    location={home.location.city}
-                  />
-                </div>
-              );
-            });
-          }
+        reservations.map((item, index) => {
+          return (
+            <div key={index}>
+              <CardHomeClient
+                name={item.home.userId.name}
+                date={item.createdAt}
+                img={item.home.userId.profileimg}
+                huespedes={item.guests}
+                llegada={item.initialDdate}
+                salida={item.finalDate}
+                codigo={item._id}
+                price={item.price}
+                location={item.home.location.city}
+              />
+            </div>
+          );
         })
       )}
     </div>
