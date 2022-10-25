@@ -51,17 +51,6 @@ const ModalRegistro = () => {
         localStorage.setItem('email', data.data.email);
 
         dispatch(flipMenu(''));
-
-        /* const dataUser = await axios.get('http://localhost:8080/', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        setInfoUser({
-          name: dataUser.data.name,
-          city: dataUser.data.city,
-          age: dataUser.data.age,
-        });*/
       } catch (err) {
         alert('Ups! ocurrió algo en el login');
       }
@@ -84,7 +73,7 @@ const ModalRegistro = () => {
               className="loginEmail"
               id="name"
               type="text"
-              placeholder="Nombre"
+              placeholder="Digite su nombre "
             ></input>
           </div>
           <div className="wrapper">
@@ -97,7 +86,7 @@ const ModalRegistro = () => {
               }}
               id="lastName"
               type="text"
-              placeholder="Apellido"
+              placeholder="Digite su apellido"
             ></input>
           </div>
           <p>
@@ -124,7 +113,7 @@ const ModalRegistro = () => {
                   className="loginEmail"
                   id="date"
                   type="text"
-                  placeholder="Fecha Nacimiento"
+                  placeholder="dd/mm/yyyy"
                 ></input>
               </div>
             </Popover.Target>
@@ -153,7 +142,7 @@ const ModalRegistro = () => {
               }}
               id="email"
               type="email"
-              placeholder="Correo electrónico"
+              placeholder="correo@mail.com"
             ></input>
           </div>
           <p>
@@ -170,7 +159,7 @@ const ModalRegistro = () => {
               }}
               id="password"
               type="password"
-              placeholder=""
+              placeholder="*******"
             ></input>
           </div>
           <p>

@@ -14,9 +14,11 @@ const DropdownSearch = () => {
   const rentCalendar = useSelector((state) => state.calendarReducer.dates);
   const flexRange = useSelector((state) => state.calendarReducer.flexRange);
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
+  const location = useSelector((state) => state.headerReducer.location);
   const [fecha1, setFecha1] = useState(null);
   const [fecha2, setFecha2] = useState(null);
   const [totalPerson, setTotalPerson] = useState(null);
+  const [locationName, setLocationName] = useState('');
   const dispatch = useDispatch();
 
   const addFechas = () => {
@@ -66,6 +68,11 @@ const DropdownSearch = () => {
 
     changePeopleTotal();
   }, [countPeople]);
+  useEffect(() => {
+    location === ''
+      ? setLocationName('Explora destinos')
+      : setLocationName(location);
+  }, [location]);
 
   const [clase, setClase] = useState({
     0: false,
@@ -93,7 +100,7 @@ const DropdownSearch = () => {
             <div>
               <button onClick={() => handleClick('0')}>
                 <DropdownSearchButton
-                  text={['Donde', 'Explora destinos']}
+                  text={['Donde', `${locationName}`]}
                   styles={{ width: '300px', paddingLeft: '20px' }}
                   clase={clase[0] ? 'selected' : ''}
                 />
