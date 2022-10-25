@@ -1,22 +1,12 @@
-import CalendarSearch from "../components/ModalCalendarSearch";
-import ModalMenu from "../components/ModalMenu";
-import ModalLogin from "../components/ModalLogin";
-import ModalPersonas from "../components/ModalPersonas";
-import ModalLocation from "../components/ModalLocation";
+import ModalComment from '../components/ModalComment';
 
 const Modal = () => {
-
-    return (
-        <>
-            <h1> Pruebas de modales</h1>
-            <ModalLocation/>
-            <CalendarSearch/>
-            <ModalMenu/>
-            <ModalLogin/>
-            <ModalPersonas/>
-        </ >
-    )
-
-}
+  return (
+    <>
+      <h1> Pruebas de modales</h1>
+      <ModalComment></ModalComment>
+    </>
+  );
+};
 
 export default Modal;
