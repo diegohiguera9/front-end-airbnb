@@ -43,7 +43,7 @@ const CardHomeClientContainer = () => {
       ) : (
         reservations.map((item, index) => {
           return (
-            <div key={index}>
+            <div key={item._id}>
               <CardHomeClient
                 name={item.home.userId.name}
                 date={item.createdAt}
@@ -54,6 +54,7 @@ const CardHomeClientContainer = () => {
                 codigo={item._id}
                 price={item.price}
                 location={item.home.location.city}
+                HomeId={item.home._id}
               />
             </div>
           );
