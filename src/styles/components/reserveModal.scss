@@ -2,6 +2,34 @@
     display: flex;
   align-items: center;
   justify-content: center;
+  .reserver{
+    
+    display: flex;
+    justify-content: center;
+    
+}
+.reserve {
+    margin-top: 60px;
+    height: 48px;
+    width: 50%;
+    .reserveBtn {
+      height: 100%;
+    width: 100%;
+      background-color: rgb(255, 56, 92);
+      border: none;
+      border-radius: 8px;
+    }
+    .reserveIt {
+      color: white;
+      font-size: 16px;
+      font-weight: lighter;
+      font-family: "Cereal Book";
+    }
+    .enableBtn{
+      cursor: not-allowed;
+    }
+     
+  }
 }
 .reserveContainer{
     margin: 15px 80px 15px 80px ;
@@ -70,32 +98,5 @@
     }
   }
 }
-.reserver{
-    
-    display: flex;
-    justify-content: center;
-    
-}
-.reserve {
-    margin-top: 60px;
-    height: 48px;
-    width: 50%;
-    .reserveBtn {
-      height: 100%;
-    width: 100%;
-      background-color: rgb(255, 56, 92);
-      border: none;
-      border-radius: 8px;
-    }
-    .reserveIt {
-      color: white;
-      font-size: 16px;
-      font-weight: lighter;
-      font-family: "Cereal Book";
-    }
-    .enableBtn{
-      cursor: not-allowed;
-    }
-     
-  }
+
  
