@@ -41,7 +41,7 @@ const ConfirmationPay = () => {
       );
         localStorage.removeItem('reserve')
         localStorage.removeItem('location')
-        navigate(-1);
+        navigate(`/trips`)
       console.log(res.data);
     } catch (err) {
       alert("Something went wrong, please review your information");

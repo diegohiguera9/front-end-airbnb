@@ -1,12 +1,12 @@
 .rentComments{
     display: flex;
+    flex-wrap: wrap;
     .comment{
         width: 50%;
     }
 }
 
 .commentContainer{
-    width: 50%;
     margin-bottom: 40px;
 
 }
