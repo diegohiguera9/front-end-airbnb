@@ -53,6 +53,8 @@ const StickyContainer = (props) => {
 
   useEffect(()=>{
     const {adults} = countPeople;
+
+    
     if(adults >= 1 && texDate[1] !== 'Agregar fecha'){
       setIsDisabled(false)
     }
