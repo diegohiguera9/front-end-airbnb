@@ -1,7 +1,10 @@
 import '../styles/components/ModalComment.scss';
 import { useState } from 'react';
+import axios from 'axios';
 import Header from './Header';
-const ModalComment = () => {
+import Swal from 'sweetalert2';
+
+const ModalComment = ({ id, set, state }) => {
   const [calificacion1, setCalificacion1] = useState(5);
   const [calificacion2, setCalificacion2] = useState(5);
   const [calificacion3, setCalificacion3] = useState(5);
@@ -9,17 +12,59 @@ const ModalComment = () => {
   const [calificacion5, setCalificacion5] = useState(5);
   const [calificacion6, setCalificacion6] = useState(5);
   const [comment, setComment] = useState('');
+  const token = localStorage.getItem('token');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('1', calificacion1);
-    console.log('2', calificacion2);
-    console.log('3', calificacion3);
-    console.log('4', calificacion4);
-    console.log('5', calificacion5);
-    console.log('6', calificacion6);
-    console.log('--', comment);
+    if (comment === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Por favor escribir un comentario.',
+      });
+      return;
+    }
+    const score = {
+      cleanliness: parseInt(calificacion1, 10),
+      accuracy: parseInt(calificacion2, 10),
+      communication: parseInt(calificacion3, 10),
+      location: parseInt(calificacion4, 10),
+      checkin: parseInt(calificacion5, 10),
+      value: parseInt(calificacion6, 10),
+    };
+    const dataSend = {
+      message: comment,
+      score,
+    };
+    // console.log(id, dataSend);
+
+    try {
+      const { data } = await axios.post(
+        `https://airbnbclonetop24.herokuapp.com/comments/${id}`,
+        dataSend,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      Swal.fire({
+        title: 'Muchas Gracias',
+        text: 'Su comentario ha sido agregado correctamente',
+        icon: 'success',
+        confirmButtonText: 'Cool',
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          set(false);
+        }
+      });
+
+      //
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (

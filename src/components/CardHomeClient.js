@@ -14,6 +14,7 @@ const CardHomeClient = ({
   codigo,
   price,
   location,
+  HomeId,
 }) => {
   const [opened, setOpened] = useState(false);
   const [openedComment, setOpenedComment] = useState(false);
@@ -55,7 +56,11 @@ const CardHomeClient = ({
           },
         }}
       >
-        <ModalComment />
+        <ModalComment
+          id={HomeId}
+          set={setOpenedComment}
+          state={openedComment}
+        />
       </Modal>
       <button onClick={() => setOpened(true)}>
         <div className="CardHomeHost__row">
