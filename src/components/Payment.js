@@ -1,7 +1,8 @@
 
+import { useParams } from "react-router";
 
 const Payment = ({className, invoice, price, name}) => {
-
+  let params = useParams();
     var handler = window.ePayco.checkout.configure({
         key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
         test: true
@@ -12,7 +13,6 @@ const Payment = ({className, invoice, price, name}) => {
           //Parametros compra (obligatorio)
           name: name,
           description: name,
-          invoice: invoice,
           currency: "cop",
           amount: price,
           tax_base: "0",
@@ -25,14 +25,15 @@ const Payment = ({className, invoice, price, name}) => {
     
     
           //Atributos opcionales
-          extra1: "extra1",
+          extra1: `${params.id}`,
           extra2: "extra2",
           extra3: "extra3",
-          response: "http://localhost:3000/",
+          response: "",
+          acepted: "http://localhost:3000/confirmationPay",
     
           //Atributos cliente
-          name_billing: localStorage.getItem('email'),
-          address_billing: localStorage.getItem('email'),
+          name_billing: "",
+          address_billing: "Calle falsa 1233",
           type_doc_billing: "cc",
           mobilephone_billing: "3101234567",
           number_doc_billing: "1234567896",
@@ -46,8 +47,8 @@ const Payment = ({className, invoice, price, name}) => {
   return (
     <div className="reserve">
       
-      <button type="submit" className={className} onClick={handleClick}>
-      <span className="reserveIt">Reservar</span>
+      <button className={className} onClick={handleClick}>
+      <span className="reserveIt">Pagar</span>
       </button>
       
     </div>

@@ -19,6 +19,7 @@ const StickyContainer = (props) => {
   const [totalPerson, setTotalPerson] = useState(null);
   const [openReserve, setOpenReserve] = useState(false)
   const {adults} = countPeople;
+  const [isDisabled,setIsDisabled] =useState(true)
 
   const price = Intl.NumberFormat('de-DE').format(props.price)
   const total1 = props.price * nights;
@@ -28,7 +29,6 @@ const StickyContainer = (props) => {
   const cleaningFee = 30000;
   const cleaningFormat= Intl.NumberFormat('de-DE').format(cleaningFee);
   const totalReserve = Intl.NumberFormat('de-DE').format(total1 +serviceFee +cleaningFee);
-  const [enableBtn, setEnableBtn] = useState("")
 
   
 
@@ -48,9 +48,16 @@ const StickyContainer = (props) => {
   const reserveOk =() =>{
    
     setOpenReserve(true)
-    setEnableBtn("")
     
   }
+
+  useEffect(()=>{
+    const {adults} = countPeople;
+    if(adults >= 1 && texDate[1] !== 'Agregar fecha'){
+      setIsDisabled(false)
+    }
+
+  },[countPeople, texDate])
 
   useEffect(() => {
     text();
@@ -173,7 +180,7 @@ const StickyContainer = (props) => {
             >
               <ReserveModal setOpenReserve={setOpenReserve} item={props.item} dates={texDate} guest={totalPerson} />
             </Modal>
-                <button className={`reserveBtn ${enableBtn}`} onClick={reserveOk}>
+                <button disabled={isDisabled} className={`reserveBtn`} onClick={reserveOk}>
                   <span className="reserveIt">Reservar</span>
                 </button>
               </div>

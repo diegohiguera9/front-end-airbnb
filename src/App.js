@@ -1,3 +1,5 @@
+
+
 import './App.css';
 import * as React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -11,6 +13,8 @@ import HeaderHost from './components/HeaderHost';
 import HostingListingEditing from './pages/HostingListingEditing';
 import ClientTrips from './pages/ClientTrips';
 import HostingReservations from './pages/HostingReservations';
+import ConfirmationPay from "./pages/ConfirmationPay";
+
 
 function App() {
   return (
@@ -22,6 +26,7 @@ function App() {
           <Route exact path="/rent" element={<RentElement />}>
             <Route path=":id" element={<RentElement />} />
           </Route>
+          <Route path ="/confirmationPay" element={<ConfirmationPay/>} />
           <Route exact path="/becomehost" element={<HostForm />} />
           <Route path="/hosting" element={<HeaderHost />}>
             <Route index element={<HomeHost />} />
