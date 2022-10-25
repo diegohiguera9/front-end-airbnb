@@ -9,6 +9,8 @@
         height: 60px;
         width: 70%;
         margin-top: 10px;
+        border-radius: 8px;
+        border-spacing: 5px;
     }
 }
 .item{
@@ -18,6 +20,11 @@
     width: 70%;
     display: flex;
     justify-content: space-between;
+    border:none;
+    input{
+        border-radius: 8px;
+        text-align: center;
+    }
 }
 
     .Btn {
