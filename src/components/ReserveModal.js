@@ -8,33 +8,30 @@ import Payment from "./Payment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
-import axios from "axios";
 
-const ReserveModal = ({ setOpenReserve, item,dates, guest }) => {
-  
+const ReserveModal = ({ setOpenReserve, item, dates, guest }) => {
   let params = useParams();
   const token = localStorage.getItem("token");
   const { isExpired } = useJwt(token);
   const [expired, setExpired] = useState(true);
   const countPeople = useSelector((state) => state.peopleReducer.countPeople);
   const datesRent = useSelector((state) => state.calendarReducer.dates);
-  const nights = useSelector((state)=> state.calendarReducer.nights)
-  const price = Intl.NumberFormat('de-DE').format(item.price)
+  const nights = useSelector((state) => state.calendarReducer.nights);
+  const price = Intl.NumberFormat("de-DE").format(item.price);
   const total1 = item.price * nights;
-  const total1format = Intl.NumberFormat('de-DE').format(total1);
+  const total1format = Intl.NumberFormat("de-DE").format(total1);
   const serviceFee = 43000;
-  const serviceFormat = Intl.NumberFormat('de-DE').format(serviceFee);
+  const serviceFormat = Intl.NumberFormat("de-DE").format(serviceFee);
   const cleaningFee = 30000;
-  const cleaningFormat= Intl.NumberFormat('de-DE').format(cleaningFee);
-  const invoice =  localStorage.getItem('email') + Math.floor(Math.random())
-  const totalReserve = total1 +serviceFee +cleaningFee
-  const totalReserveFormat = Intl.NumberFormat('de-DE').format(totalReserve);
-  const discount = totalReserve - (totalReserve * 0.99)
-  const discountFormat = Intl.NumberFormat('de-DE').format(discount);
-  
-  const {location, userId} = item
+  const cleaningFormat = Intl.NumberFormat("de-DE").format(cleaningFee);
+  const totalReserve = total1 + serviceFee + cleaningFee;
+  const totalReserveFormat = Intl.NumberFormat("de-DE").format(totalReserve);
+  const discount = totalReserve - totalReserve * 0.99;
+  const discountFormat = Intl.NumberFormat("de-DE").format(discount);
 
-  const handleSubmit = async (e) => {
+  const { location, userId } = item;
+
+  const handleSubmit =  (e) => {
     try {
       e.preventDefault();
 
@@ -42,35 +39,26 @@ const ReserveModal = ({ setOpenReserve, item,dates, guest }) => {
         date: [datesRent[0].toString(), datesRent[1].toString()],
         price: discount,
         guests: {
-          adults:countPeople.adults,
+          adults: countPeople.adults,
           childs: countPeople.children,
           babys: countPeople.babies,
-          prependListener: countPeople.pets
-
+          prependListener: countPeople.pets,
         },
-        homeId: params.id
-      }
+        homeId: params.id,
+      };
+      localStorage.removeItem('reserve')
+      localStorage.setItem('reserve', JSON.stringify(reserve))
+      localStorage.removeItem('location')
+      localStorage.setItem('location', location.city)
 
-      console.log('reserva', reserve)
+      console.log("reserva", localStorage.getItem('reserve'));
+
       
-      const res = await axios.post(
-        "https://airbnbclonetop24.herokuapp.com/reservations/create",
-        reserve,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      console.log(res.data);
-
     } catch (err) {
       alert("Something went wrong, please review your information");
-      console.log(err)
+      console.log(err);
     }
   };
-
 
   useEffect(() => {
     setExpired(isExpired);
@@ -107,79 +95,82 @@ const ReserveModal = ({ setOpenReserve, item,dates, guest }) => {
               <h2>Tu viaje</h2>
             </div>
             <div className="dates">
-              <div className="flexContainer"><span>Fechas</span>
-              <span>{`${nights} noches`}</span>
+              <div className="flexContainer">
+                <span>Fechas</span>
+                <span>{`${nights} noches`}</span>
               </div>
-              
+
               <div className="flexContainer">
                 <span>{`${dates[0]}`}</span>
                 <span>a</span>
                 <span>{`${dates[1]}`}</span>
-
               </div>
-
             </div>
-            
+
             <div className="guests flexContainer">
               <span>Huespedes</span>
               <div className="guestsFlex">
                 <span>{`${guest}`}</span>
-                
               </div>
-
             </div>
-            
+
             <div className="">
               <div className="home flexContainer">
-              <span>Lugar</span>
-              <div className="homeName">
-                <span>{`${location.city}`}</span>
-              </div>  
+                <span>Lugar</span>
+                <div className="homeName">
+                  <span>{`${location.city}`}</span>
+                </div>
               </div>
-              
+
               <hr className="hr1" />
               <div className="totals">
-              <div className="section1">
-                <div className="values">
-                  <button className="valuesBtn">
-                    <div className="nightValues">
-                      <u>{`$${price} COP x ${nights} noches`}</u>
-                    </div>
-                  </button>
-                  <span className="valueResult">{`$${total1format} COP`}</span>
+                <div className="section1">
+                  <div className="values">
+                    <button className="valuesBtn">
+                      <div className="nightValues">
+                        <u>{`$${price} COP x ${nights} noches`}</u>
+                      </div>
+                    </button>
+                    <span className="valueResult">{`$${total1format} COP`}</span>
+                  </div>
+                  <div className="values">
+                    <button className="valuesBtn">
+                      <div className="nightValues">
+                        <u>Tarifa de limpieza</u>
+                      </div>
+                    </button>
+                    <span className="valueResult">{`$${cleaningFormat} COP`}</span>
+                  </div>
+                  <div className="values">
+                    <button className="valuesBtn">
+                      <div className="nightValues">
+                        <u>Comisión por servicio</u>
+                      </div>
+                    </button>
+                    <span className="valueResult">{`$${serviceFormat} COP`}</span>
+                  </div>
                 </div>
-                <div className="values">
-                  <button className="valuesBtn">
-                    <div className="nightValues">
-                      <u>Tarifa de limpieza</u>
-                    </div>
-                  </button>
-                  <span className="valueResult">{`$${cleaningFormat} COP`}</span>
+                <hr className="hr1" />
+                <div className="section2">
+                  <div className="totaltext">Total antes de impuestos</div>
+                  <span className="total">{`$${totalReserveFormat} COP`}</span>
                 </div>
-                <div className="values">
-                  <button className="valuesBtn">
-                    <div className="nightValues">
-                      <u>Comisión por servicio</u>
-                    </div>
-                  </button>
-                  <span className="valueResult">{`$${serviceFormat} COP`}</span>
+                <div className="section2 title">
+                  <div className="totaltext">Total con el 99% de descuento</div>
+                  <span className="total">{`$${discountFormat} COP`}</span>
                 </div>
               </div>
-              <hr className="hr1" />
-              <div className="section2">
-                <div className="totaltext">Total antes de impuestos</div>
-                <span className="total">{`$${totalReserveFormat} COP`}</span>
-              </div>
-              <div className="section2 title">
-                <div className="totaltext">Total con el 99% de descuento</div>
-                <span className="total">{`$${discountFormat} COP`}</span>
-              </div>
-            </div>
             </div>
 
             <div className="reserver">
-              <Payment className={"reserveBtn"} invoice ={invoice} price={discount} name= {location.city} />
+              <Payment 
+                type="submit"
+                className={"reserveBtn"}
+                price={discount}
+                name={location.city}
+              />
             </div>
+            
           </form>
         )}
       </div>

@@ -9,6 +9,7 @@ import HostingListing from "./pages/HostingListing";
 import HostForm from "./pages/HostForm";
 import HeaderHost from "./components/HeaderHost";
 import HostingListingEditing from "./pages/HostingListingEditing";
+import ConfirmationPay from "./pages/ConfirmationPay";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route exact path="/rent" element={<RentElement />}>
             <Route path=":id" element={<RentElement />} />
           </Route>
+          <Route path ="/confirmationPay" element={<ConfirmationPay/>} />
           <Route exact path="/becomehost" element={<HostForm />} />
           <Route path="/hosting" element={<HeaderHost />}>
             <Route index element={<HomeHost />} />
