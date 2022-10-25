@@ -2,7 +2,7 @@ import "../styles/components/stickyContainer.scss";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Modal, Popover, Alert } from "@mantine/core";
-
+import Swal from 'sweetalert2'
 import { IconAlertCircle } from '@tabler/icons';
 import StickyCalendarModal from "./StickyCalendarModal";
 import ModalPersonas from "./ModalPersonas";
@@ -19,7 +19,7 @@ const StickyContainer = (props) => {
   const [totalPerson, setTotalPerson] = useState(null);
   const [openReserve, setOpenReserve] = useState(false)
   const {adults} = countPeople;
-  const [isDisabled,setIsDisabled] =useState(true)
+  const [isDisabled,setIsDisabled] =useState("")
 
   const price = Intl.NumberFormat('de-DE').format(props.price)
   const total1 = props.price * nights;
@@ -46,7 +46,17 @@ const StickyContainer = (props) => {
     }
   };
   const reserveOk =() =>{
-   
+    if(adults === 0 || texDate[1] === 'Agregar fecha'){
+      console.log('adultos',adults)
+      Swal.fire({
+        title: 'Error',
+        text: 'Debes ingresar fechas y huespedes para continuar',
+        icon: 'error',
+        confirmButtonText: 'Perfecto'
+        
+      })
+      return
+    }
     setOpenReserve(true)
     
   }
@@ -54,10 +64,9 @@ const StickyContainer = (props) => {
   useEffect(()=>{
     const {adults} = countPeople;
 
-    
     if(adults >= 1 && texDate[1] !== 'Agregar fecha'){
       setIsDisabled(false)
-    }
+      }
 
   },[countPeople, texDate])
 
