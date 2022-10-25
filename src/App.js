@@ -10,6 +10,7 @@ import HostForm from './pages/HostForm';
 import HeaderHost from './components/HeaderHost';
 import HostingListingEditing from './pages/HostingListingEditing';
 import ClientTrips from './pages/ClientTrips';
+import HostingReservations from './pages/HostingReservations';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/hosting" element={<HeaderHost />}>
             <Route index element={<HomeHost />} />
             <Route path="listing" element={<HostingListing />} />
+            <Route path='reservs' element={<HostingReservations/>}/>
             <Route path="editing">
               <Route path=":id" element={<HostingListingEditing />} />
             </Route>
