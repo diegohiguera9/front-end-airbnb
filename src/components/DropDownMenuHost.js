@@ -13,7 +13,7 @@ const DropDownMenuHost = ({fun,setOpened}) => {
 
   const link = [
     "/hosting/listing",
-    "/hosting",
+    "/hosting/reservs",
     "/becomehost",
     "/hosting",
     "/hosting",

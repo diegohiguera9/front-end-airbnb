@@ -38,7 +38,6 @@ const reservationReducer = (state = initialState, action) => {
       };
     case RESERV_SHOW:
       const filter = state[action.payload]
-      console.log(state.passed)
       return {
         ...state,
         show: filter
