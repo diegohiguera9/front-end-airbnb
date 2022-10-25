@@ -8,6 +8,7 @@ import Payment from "./Payment";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
+import Swal from 'sweetalert2'
 
 const ReserveModal = ({ setOpenReserve, item, dates, guest }) => {
   let params = useParams();
@@ -50,12 +51,16 @@ const ReserveModal = ({ setOpenReserve, item, dates, guest }) => {
       localStorage.setItem('reserve', JSON.stringify(reserve))
       localStorage.removeItem('location')
       localStorage.setItem('location', location.city)
-
-      console.log("reserva", localStorage.getItem('reserve'));
-
+      
       
     } catch (err) {
-      alert("Something went wrong, please review your information");
+      Swal.fire({
+        title: 'Error',
+        text: 'Revisa la información',
+        icon: 'error',
+        confirmButtonText: 'Perfecto'
+        
+      })
       console.log(err);
     }
   };
