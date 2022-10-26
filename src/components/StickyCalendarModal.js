@@ -5,10 +5,12 @@ import AmenitieTag from "./AmenitieTag";
 import { RangeCalendar } from "@mantine/dates";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDate } from "../store/reducer/calendarReducer";
+import { changeDate, changeNights } from "../store/reducer/calendarReducer";
 
 const StickyCalendarModal = ({ opened, setOpened }) => {
   const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
+  const nights = useSelector((state) => state.calendarReducer.nights);
+
   const dispatch = useDispatch();
   const [dateTitle, setTitle] = useState("Selecciona las fechas");
   const [dateHeader, setdateHeader] = useState(
@@ -19,6 +21,7 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
 
   const clearCalendar = () => {
     dispatch(changeDate([null, null]));
+    dispatch(changeNights(0));
   };
   const textDateHeader = () => {
     if (rentCalendarOne[0] === null && rentCalendarOne[1] === null) {
@@ -35,6 +38,7 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
         let rentDates =
           rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
         rentDates = rentDates / (1000 * 3600 * 24);
+        dispatch(changeNights(rentDates))
         setTitle(`${rentDates} noches`);
       }
       const sDates = rentCalendarOne.map((item) => {
