@@ -22,27 +22,30 @@ const ConfirmationPay = () => {
   const { isExpired } = useJwt(token);
   const [expired, setExpired] = useState(true);
   
+  
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log('reserve', reserve)
-
+      console.log(reserve)
       const res = await axios.post(
         "https://airbnbclonetop24.herokuapp.com/reservations/create",
         reserve,
         {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
           },
         }
       );
+
+      console.log('reserve', reserve)
         localStorage.removeItem('reserve')
         localStorage.removeItem('location')
+        console.log('res', res.data.data)
         navigate(`/trips`)
-      console.log(res.data);
     } catch (err) {
       alert("Something went wrong, please review your information");
-      console.log(err);
+      console.log(err.toJSON());
     }
   };
 
