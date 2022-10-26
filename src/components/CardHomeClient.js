@@ -1,8 +1,8 @@
-import '../styles/components/CardHomeHost.scss';
-import { Modal } from '@mantine/core';
-import { useState } from 'react';
-import ModalCardHome from './ModalCardHome';
-import ModalComment from './ModalComment';
+import "../styles/components/CardHomeHost.scss";
+import { Modal } from "@mantine/core";
+import { useState } from "react";
+import ModalCardHome from "./ModalCardHome";
+import ModalComment from "./ModalComment";
 
 const CardHomeClient = ({
   name,

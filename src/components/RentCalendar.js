@@ -35,8 +35,8 @@ const RentCalendar = () => {
         let rentDates =
           rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
         rentDates = rentDates / (1000 * 3600 * 24);
-        dispatch(changeTitle(`${rentDates} nights in Bogota`));
         dispatch(changeNights(rentDates))
+        dispatch(changeTitle(`${rentDates} nights in Bogota`));
       }
       const sDates = rentCalendarOne.map((item) => {
         return [`${item.getMonth()}, ${item.getDate()}, ${item.getFullYear()}`];
