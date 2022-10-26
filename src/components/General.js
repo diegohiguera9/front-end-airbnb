@@ -69,7 +69,8 @@ const General = (props) => {
             <div className="highlightStyle">
               <div className="hi1">Excelente proceso de llegada</div>
               <div className="hi2">
-                El 90% de los huéspedes recientes calificaron con 5 estrellas el proceso de llegada.
+                El 90% de los huéspedes recientes calificaron con 5 estrellas el
+                proceso de llegada.
               </div>
             </div>
           </div>
@@ -88,7 +89,7 @@ const General = (props) => {
             <div className="highlightStyle">
               <div className="hi1">Sumérgete</div>
               <div className="hi2">
-              Este es uno de los pocos lugares en la zona con una alberca.
+                Este es uno de los pocos lugares en la zona con una alberca.
               </div>
             </div>
           </div>
@@ -124,7 +125,10 @@ const General = (props) => {
             />
           </h2>
           <div className="airCoverText">
-          Todas las reservaciones incluyen protección gratuita en caso de que el anfitrión cancele, de que haya imprecisiones en el anuncio o de que surjan otros inconvenientes, como problemas al momento de la llegada.
+            Todas las reservaciones incluyen protección gratuita en caso de que
+            el anfitrión cancele, de que haya imprecisiones en el anuncio o de
+            que surjan otros inconvenientes, como problemas al momento de la
+            llegada.
           </div>
           <Modal
             centered
@@ -156,8 +160,7 @@ const General = (props) => {
             </svg>
           </div>
           <div>
-            <span className="traductionText">
-            </span>
+            <span className="traductionText"></span>
 
             <button className="traductionBtn">
               <u>Translate</u>
@@ -169,7 +172,14 @@ const General = (props) => {
         <div className="rentDescription">
           <div>
             <span className="rentDescriptionTxt">
-            Hemos creado un espacio unico que te permitira vivir una experiencia única de inmersión en la naturaleza con excelente acceso vía asfaltada. armonía. Es una construcción única, una solución sustentable en armonía con la naturaleza. . Disfrutaras de conectividad excelente, 200 Megas de Velocidad vía fibra óptica.  Es un espacio innovador que te invitara a descubrir el concepto de confort escencial de nuestra Tiny House con un paisaje inolvidable sobre la Cordillera de los Andes Colombianos...
+              Hemos creado un espacio unico que te permitira vivir una
+              experiencia única de inmersión en la naturaleza con excelente
+              acceso vía asfaltada. armonía. Es una construcción única, una
+              solución sustentable en armonía con la naturaleza. . Disfrutaras
+              de conectividad excelente, 200 Megas de Velocidad vía fibra
+              óptica. Es un espacio innovador que te invitara a descubrir el
+              concepto de confort escencial de nuestra Tiny House con un paisaje
+              inolvidable sobre la Cordillera de los Andes Colombianos...
             </span>
           </div>
           <div className="descriptionMore">

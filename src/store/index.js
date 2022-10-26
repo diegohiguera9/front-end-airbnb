@@ -1,15 +1,19 @@
-import { legacy_createStore ,combineReducers, applyMiddleware} from 'redux';
+import { legacy_createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import calendarReducer from './reducer/calendarReducer';
-import peopleReducer from './reducer/peopleReducer'
-import headerReducer from './reducer/headerReducer'
-import filterReducer from './reducer/filterReducer';
-import reservationReducer from './reducer/hostReservation.Reducer';
+import calendarReducer from "./reducer/calendarReducer";
+import peopleReducer from "./reducer/peopleReducer";
+import headerReducer from "./reducer/headerReducer";
+import filterReducer from "./reducer/filterReducer";
+import reservationReducer from "./reducer/hostReservation.Reducer";
 
 const rootReducer = combineReducers({
-    calendarReducer,peopleReducer,headerReducer,filterReducer,reservationReducer
-})
+  calendarReducer,
+  peopleReducer,
+  headerReducer,
+  filterReducer,
+  reservationReducer,
+});
 
-const middleware = applyMiddleware(thunk)
+const middleware = applyMiddleware(thunk);
 
-export const store = legacy_createStore(rootReducer, middleware)
+export const store = legacy_createStore(rootReducer, middleware);

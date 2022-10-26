@@ -5,14 +5,20 @@ import AmenitieTag from "./AmenitieTag";
 import { RangeCalendar } from "@mantine/dates";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeDate, changeTitle, changeDateHead, changeNights } from "../store/reducer/calendarReducer";
+import {
+  changeDate,
+  changeTitle,
+  changeDateHead,
+  changeNights,
+} from "../store/reducer/calendarReducer";
 
 const RentCalendar = () => {
   const rentCalendarOne = useSelector((state) => state.calendarReducer.dates);
+  const nights = useSelector((state) => state.calendarReducer.nights);
   const dispatch = useDispatch();
   const dateTitle = useSelector((state) => state.calendarReducer.title);
-  const dateHeader= useSelector((state)=> state.calendarReducer.head)
-  
+  const dateHeader = useSelector((state) => state.calendarReducer.head);
+
   //const [rentCalendarOne, setRentCalendarOne] = useState([null,null]);
   //const [dateTitle, setDateTitle] = useState("")
   //const [dateHeader, setDateHeader] = useState("");
@@ -23,11 +29,9 @@ const RentCalendar = () => {
   };
   const textDateHeader = () => {
     if (rentCalendarOne[0] === null && rentCalendarOne[1] === null) {
-      dispatch(changeNights(0));
       dispatch(changeTitle("Select check-in date"));
       dispatch(changeDateHead("Add your travel dates for exact pricing"));
     } else if (rentCalendarOne[0] && rentCalendarOne[1] === null) {
-      dispatch(changeNights(0));
       dispatch(changeTitle("Select checkout date"));
       dispatch(changeDateHead("Minimum stay: 2 nights"));
     } else if (rentCalendarOne[0] && rentCalendarOne[1]) {
@@ -35,7 +39,7 @@ const RentCalendar = () => {
         let rentDates =
           rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
         rentDates = rentDates / (1000 * 3600 * 24);
-        dispatch(changeNights(rentDates))
+        dispatch(changeNights(rentDates));
         dispatch(changeTitle(`${rentDates} nights in Bogota`));
       }
       const sDates = rentCalendarOne.map((item) => {
