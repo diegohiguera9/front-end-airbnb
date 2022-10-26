@@ -1,7 +1,13 @@
 
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
+
 
 const Payment = ({className, invoice, price, name}) => {
+  const navigate = useNavigate()
+ const handleNavigate = () =>{
+  navigate('/confirmationPay')
+ }
   let params = useParams();
     var handler = window.ePayco.checkout.configure({
         key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
@@ -29,7 +35,7 @@ const Payment = ({className, invoice, price, name}) => {
           extra2: "extra2",
           extra3: "extra3",
           response: "",
-          acepted: "https://front-end-airbnb-six.vercel.app/confirmationPay",
+          acepted:`${window.location.href}/confirmationPay`,
     
           //Atributos cliente
           name_billing: "",
