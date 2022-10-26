@@ -47,7 +47,6 @@ const StickyContainer = (props) => {
   };
   const reserveOk =() =>{
     if(adults === 0 || texDate[1] === 'Agregar fecha'){
-      console.log('adultos',adults)
       Swal.fire({
         title: 'Error',
         text: 'Debes ingresar fechas y huespedes para continuar',

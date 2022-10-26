@@ -11,17 +11,13 @@ const ConfirmationPay = () => {
   const reserve = JSON.parse(localStorage.getItem("reserve"));
   const city = localStorage.getItem("location");
   const { date, guests } = reserve;
-  console.log("reserva", reserve);
   let date1 = new Date(date[0]).toDateString()
   
   let date2 = new Date(date[1]).toDateString()
   
-  const dates= useSelector((state) => state.calendarReducer.dates)
-  console.log(dates)
   
   const nights = useSelector((state) => state.calendarReducer.nights);
-  console.log('noches', nights)
-
+  
   const token = localStorage.getItem("token");
   const { isExpired } = useJwt(token);
   const [expired, setExpired] = useState(true);
@@ -29,6 +25,7 @@ const ConfirmationPay = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      console.log('reserve', reserve)
 
       const res = await axios.post(
         "https://airbnbclonetop24.herokuapp.com/reservations/create",
@@ -56,7 +53,7 @@ const ConfirmationPay = () => {
     <div className="confirmationContainer">
       <div className="headerSections">
         <div className="rentSection">
-          <button className="descriptionBtn" onClick={() => navigate(-1)}>
+          <button type="button" className="descriptionBtn" onClick={() => navigate(-1)}>
             <svg
               className="descSvg"
               viewBox="0 0 18 18"
@@ -73,7 +70,7 @@ const ConfirmationPay = () => {
         {expired ? (
           <ModalLogin setExpired={setExpired} />
         ) : (
-          <form onSubmit={handleSubmit} className="reserveContainer">
+          <div  className="reserveContainer">
             <div className="title">
               <h1>Falta poco para Reservar</h1>
             </div>
@@ -111,12 +108,12 @@ const ConfirmationPay = () => {
 
             <div className="reserver">
               <div className="reserve">
-                <button type="submit" className={"reserveBtn"} onClick={handleSubmit}>
+                <button type="button" className={"reserveBtn"} onClick={handleSubmit}>
                   <span className="reserveIt">reservar</span>
                 </button>
               </div>
             </div>
-          </form>
+          </div>
         )}
       </div>
     </div>
