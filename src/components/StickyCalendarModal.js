@@ -16,7 +16,7 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
   const [dateHeader, setdateHeader] = useState(
     "Ingresa tus fechas de viaje para ver el precio exacto"
   );
-  
+
   const [texDate, setTextDate] = useState(["Agregar fecha", "Agregar fecha"]);
 
   const clearCalendar = () => {
@@ -33,12 +33,11 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
       setTextDate([date1, "Agregar fecha"]);
       setdateHeader("Estancia mínima: 2 noches");
     } else if (rentCalendarOne[0] && rentCalendarOne[1]) {
-      
       if (rentCalendarOne[0] && rentCalendarOne[1]) {
         let rentDates =
           rentCalendarOne[1].getTime() - rentCalendarOne[0].getTime();
         rentDates = rentDates / (1000 * 3600 * 24);
-        dispatch(changeNights(rentDates))
+        dispatch(changeNights(rentDates));
         setTitle(`${rentDates} noches`);
       }
       const sDates = rentCalendarOne.map((item) => {
@@ -47,7 +46,7 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
       const date1 = `${rentCalendarOne[0].getMonth()}/${rentCalendarOne[0].getDate()}/${rentCalendarOne[0].getFullYear()}`;
       const date2 = `${rentCalendarOne[1].getMonth()}/${rentCalendarOne[1].getDate()}/${rentCalendarOne[1].getFullYear()}`;
       setTextDate([date1, date2]);
-      
+
       return setdateHeader(`${sDates[0]} - ${sDates[1]}`);
     }
   };
@@ -55,15 +54,14 @@ const StickyCalendarModal = ({ opened, setOpened }) => {
   // const closeModal = () => {
   //   if (rentCalendarOne[1]) {
   //     setOpened((o) => !o);
-      
+
   //   }
   // };
 
   useEffect(() => {
-    
     textDateHeader();
     // closeModal();
-    
+
     // eslint-disable-next-line
   }, [rentCalendarOne]);
 

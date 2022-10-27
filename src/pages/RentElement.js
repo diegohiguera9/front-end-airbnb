@@ -12,23 +12,16 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
-
-
-
 const RentElement = () => {
   let params = useParams();
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {location, userId} = item
+  const { location, userId } = item;
 
-   
-  
   useEffect(() => {
     axios
       .get(`https://airbnbclonetop24.herokuapp.com/homes/${params.id}`)
       .then((response) => {
-        
         setItem(response.data.data);
       })
       .catch((err) => {
@@ -37,50 +30,58 @@ const RentElement = () => {
       .finally(() => {
         setLoading(false);
       });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
-  
+
   return (
     <>
-    <Header/>
-    <HeaderTouh/>
-    <main className="rentMain">
-      <div className="rentElement">
-      {loading ? (
-          <p>Loading</p>
-        ) : (
-        <div className="rentElementContainer">
-          <HeaderName1 children={location.city} />
-          
-          <HeaderSections1
-            rating={item.totalScore}
-            reviews={`${item.totalreviews} evaluaciones`}
-            location={location.city}
-          />
-          <ImgContainer1 imgs={item.images} />
-          <div className="rentInfoContainer">
-            <General
-            profileImg = {userId.profileimg}
-              host={userId.name}
-              guest={`${item.capacity} huespedes`}
-              bedrooms={`${item.rooms} habitaciones`}
-              beds={`${item.rooms} camas`}
-              baths={`${item.rooms} baños`}
-              cancel={"8 noviembre"}
-            />
-            <StickyContainer item={item} price ={item.price} rating={item.totalScore}  reviews={`${item.totalreviews} evaluaciones`} />
-          </div>
-          <hr className="hr1" />
-          <RentReviews item={item} rating={item.totalScore} reviews={`${item.totalreviews} evaluaciones`} comments={item.comments} />
-          
-          <RentMap location={location}/>
+      <Header />
+      <HeaderTouh />
+      <main className="rentMain">
+        <div className="rentElement">
+          {loading ? (
+            <p>Loading</p>
+          ) : (
+            <div className="rentElementContainer">
+              <HeaderName1 children={location.city} />
 
-          </div>
-  )}
-      </div>
-    </main>
+              <HeaderSections1
+                rating={item.totalScore}
+                reviews={`${item.totalreviews} evaluaciones`}
+                location={location.city}
+              />
+              <ImgContainer1 imgs={item.images} />
+              <div className="rentInfoContainer">
+                <General
+                  profileImg={userId.profileimg}
+                  host={userId.name}
+                  guest={`${item.capacity} huespedes`}
+                  bedrooms={`${item.rooms} habitaciones`}
+                  beds={`${item.rooms} camas`}
+                  baths={`${item.rooms} baños`}
+                  cancel={"8 noviembre"}
+                />
+                <StickyContainer
+                  item={item}
+                  price={item.price}
+                  rating={item.totalScore}
+                  reviews={`${item.totalreviews} evaluaciones`}
+                />
+              </div>
+              <hr className="hr1" />
+              <RentReviews
+                item={item}
+                rating={item.totalScore}
+                reviews={`${item.totalreviews} evaluaciones`}
+                comments={item.comments}
+              />
+
+              <RentMap location={location} />
+            </div>
+          )}
+        </div>
+      </main>
     </>
-    
   );
 };
 export default RentElement;

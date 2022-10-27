@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useJwt } from "react-jwt";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ModalLogin from "../components/ModalLogin";
 import "../styles/pages/ConfirmationPay.scss";
@@ -11,22 +10,19 @@ const ConfirmationPay = () => {
   const reserve = JSON.parse(localStorage.getItem("reserve"));
   const city = localStorage.getItem("location");
   const { date, guests } = reserve;
-  let date1 = new Date(date[0]).toDateString()
-  
-  let date2 = new Date(date[1]).toDateString()
-  
-  
-  const nights = useSelector((state) => state.calendarReducer.nights);
+  let date1 = new Date(date[0])
+  let date2 = new Date(date[1])
+  const nights = (date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)
   
   const token = localStorage.getItem("token");
   const { isExpired } = useJwt(token);
   const [expired, setExpired] = useState(true);
-  
+  console.log('reserva antes del click',reserve)
   
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(reserve)
+      console.log('reserva despues del click',reserve)
       const res = await axios.post(
         "https://airbnbclonetop24.herokuapp.com/reservations/create",
         reserve,
@@ -38,7 +34,7 @@ const ConfirmationPay = () => {
         }
       );
 
-      console.log('reserve', reserve)
+      console.log('reserve despues del axios', reserve)
         localStorage.removeItem('reserve')
         localStorage.removeItem('location')
         console.log('res', res.data.data)
@@ -87,9 +83,9 @@ const ConfirmationPay = () => {
               </div>
 
               <div className="flexContainer">
-                <span>{`${date1}`}</span>
+                <span>{`${date1.toDateString()}`}</span>
                 <span>a</span>
-                <span>{`${date2}`}</span>
+                <span>{`${date2.toDateString()}`}</span>
               </div>
             </div>
 

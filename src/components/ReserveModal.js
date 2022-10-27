@@ -29,6 +29,8 @@ const ReserveModal = ({ setOpenReserve, item, dates, guest }) => {
   const totalReserveFormat = Intl.NumberFormat("de-DE").format(totalReserve);
   const discount = totalReserve - totalReserve * 0.99;
   const discountFormat = Intl.NumberFormat("de-DE").format(discount);
+  let date1 = datesRent[0].toDateString()
+  let date2 = datesRent[1].toDateString()
 
   const { location, userId } = item;
 
@@ -37,7 +39,7 @@ const ReserveModal = ({ setOpenReserve, item, dates, guest }) => {
       e.preventDefault();
 
       const reserve = {
-        date: [datesRent[0].toString(), datesRent[1].toString()],
+        date: datesRent,
         price: discount,
         guests: {
           adults: countPeople.adults,
@@ -106,9 +108,9 @@ const ReserveModal = ({ setOpenReserve, item, dates, guest }) => {
               </div>
 
               <div className="flexContainer">
-                <span>{`${dates[0]}`}</span>
+                <span>{`${date1}`}</span>
                 <span>a</span>
-                <span>{`${dates[1]}`}</span>
+                <span>{`${date2}`}</span>
               </div>
             </div>
 
