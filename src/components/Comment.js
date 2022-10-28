@@ -1,7 +1,7 @@
 import "../styles/components/comment.scss";
 const Comment = ({item}) => {
   const toDate = new Date (item.createdAt)
-  const date = `${toDate.getMonth()} ${toDate.getFullYear()}`
+  const date = toDate.toLocaleDateString('es-CO',{ weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
   const {userId} = item;
   return (
     <div className="commentContainer">

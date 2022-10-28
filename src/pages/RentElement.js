@@ -11,6 +11,9 @@ import RentMap from "../components/RentMap";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import RentLocation from "../components/RentLocation";
+import HostInfo from "../components/HostInfo";
+import FooterRent from "../components/FooterRent";
 
 const RentElement = () => {
   let params = useParams();
@@ -44,7 +47,6 @@ const RentElement = () => {
           ) : (
             <div className="rentElementContainer">
               <HeaderName1 children={location.city} />
-
               <HeaderSections1
                 rating={item.totalScore}
                 reviews={`${item.totalreviews} evaluaciones`}
@@ -75,8 +77,11 @@ const RentElement = () => {
                 reviews={`${item.totalreviews} evaluaciones`}
                 comments={item.comments}
               />
-
-              <RentMap location={location} />
+              <hr className="hr1" />
+              <RentLocation location={location} />
+              <hr className="hr1" />
+              <HostInfo userHost={userId} />
+              <FooterRent/>
             </div>
           )}
         </div>

@@ -9,7 +9,7 @@ const ConfirmationPay = () => {
   const navigate = useNavigate();
   const reserve = JSON.parse(localStorage.getItem("reserve"));
   const city = localStorage.getItem("location");
-  const { date, guests } = reserve;
+  const { date, guests, price } = reserve;
   let date1 = new Date(date[0])
   let date2 = new Date(date[1])
   const nights = (date2.getTime() - date1.getTime()) / (1000 * 3600 * 24)
