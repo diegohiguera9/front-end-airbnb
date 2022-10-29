@@ -127,10 +127,12 @@
   padding-top: 32px;
   padding-bottom: 48px;
   font-size: 16px;
-  font-weight: lighter;
+  
   line-height: 24px;
 
   .rentDescriptionTxt {
+    font-family: 'Cereal Book';
+    font-weight: lighter;
     padding: 0;
   }
 
@@ -140,6 +142,7 @@
     .descriptionBtn {
       padding: 0;
       font-size: 16px;
+      cursor: pointer;
     }
   }
 }

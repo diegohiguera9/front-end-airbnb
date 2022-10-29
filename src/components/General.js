@@ -9,6 +9,45 @@ import RentCalendar from "./RentCalendar";
 const General = (props) => {
   const [openShowMore, setOpenShowMore] = useState(false);
   const [opened, setOpened] = useState(false);
+  let textDesc = "";
+  if (props.randomNumber === 1) {
+    textDesc = {
+      text1: `Hemos creado un espacio unico que te permitira vivir una
+      experiencia única de inmersión en la naturaleza con excelente
+      acceso vía asfaltada. armonía. Es una construcción única, una
+      solución sustentable en armonía con la naturaleza. . Disfrutaras
+      de conectividad excelente, 200 Megas de Velocidad vía fibra
+      óptica. Es un espacio innovador que te invitara a descubrir el
+      concepto de confort escencial de nuestra Tiny House con un paisaje
+      inolvidable sobre la Cordillera de los Andes Colombianos...`,
+      text2: `Ideal para aventureros, y personas con intencion de vivir de una experiencia única.`,
+      text3: `Alquilaste toda la casa para ti. Se proporcionará un código único un día antes de la fecha de llegada.`,
+    };
+  } else if (props.randomNumber === 2) {
+    textDesc = {
+      text1: `¿Alguna vez te has alojado en un unicornio gigante de conchas marinas? No, no lo has hecho, pero ahora puedes tacharlo de tu lista de deseos. Esta mágica obra de arte forma parte de Willy Wonka, que forma parte de Big Lebowski, y no se parece en ningún otro lugar. Hazlo por el gramo, pero también por tu alma.`,
+      text2: `Venga a tomarse unas vacaciones del mundo real de los ángulos rectos y las cajas pegajosas. Situado en un lote aislado y maravillosamente restaurado, The Bloomhouse es una celebración de todas las cosas mágicas y místicas.`,
+      text3: `Alquilaste toda la casa para ti. Se proporcionará un código único un día antes de la fecha de llegada.`,
+    };
+  } else if (props.randomNumber === 3) {
+    textDesc = {
+      text1: `Este tipo de construcción está es indicada para viajeros que gustan de la aventura exótica. No posee aire acondicionado, pocas paredes y con wify rápido pero sin televisión. tiene unos cuatro pisos de altura, una de las vistas panorámicas más increíbles del mundo (algunos días pueden verse las montañas y parece estar en un lago Suizo)y se llega después de remar unos quince metros en dinghy y hay que subir a los pisos superiores en un pequeño elevador.Si usted ama el arte y aventura es ideal.`,
+      text2: `Todas mis creaciones arquitectónicas comienzan con un modelo en escala y en tres dimensiones de mi propia creación. Eventualmente uso artesanos locales para su construcción. La torre se encuentra ubicada sobre un fondo marino, de aguas transparentes poblada de una fauna marina variopinta que incluye desde barracudas hasta mantarrayas de diferentes tamaños y colores más miles de escuelas de peces en diferentes tamaños y etapas de crecimiento.`,
+      text3: `Alquilaste toda la casa para ti. Se proporcionará un código único un día antes de la fecha de llegada.`,
+    };
+  } else if (props.randomNumber === 4) {
+    textDesc = {
+      text1: `Un espacio pensado para parejas. Todas las comodidades de ciudad en el medio de las montañas Caleñas. Al lado del Parque Nacional Natural Los Farallones de Cali, despertarás todas las mañanas con la energía del sol sobre tu cabeza.`,
+      text2: `Una arquitectura sin igual para descansar en pareja.`,
+      text3: `Nuestros huéspedes tendrán acceso a los senderos de la propiedad en donde encontrarán una gran variedad de fauna y flora típica del Parque Natural Nacional Los Farallones de Cali`,
+    };
+  } else {
+    textDesc = {
+      text1: `Esta casa, una de las cuatro de este diseño único, ofrece comodidades premium con lo mejor de Puerto Escondido a la vuelta de la esquina. Situado en la moderna La Punta, está a 5 minutos a pie de la playa, los restaurantes, los bares y los cafés.`,
+      text2: `Diseñado por el renombrado arquitecto francés Ludwig Godefroy (ludwiggodefroy.com) en estilo "brutalista", la casa ofrece una experiencia de vida interior/exterior única, con jardines y piscina privada integrada en las áreas de estar.`,
+      text3: `La Punta está a unos 20 minutos en taxi del aeropuerto de Puerto Escondido (o más corto, si vienes de la terminal de autobuses de la ciudad.`,
+    };
+  }
   return (
     <div className="generalInfo">
       <div className="rentHostData">
@@ -141,46 +180,25 @@ const General = (props) => {
             <AirCoverModal setOpened={setOpened} />
           </Modal>
           <button className="airCoverBtn" onClick={() => setOpened(true)}>
-            <u>Learn More</u>
+            <u>Aprender más</u>
           </button>
         </div>
       </div>
       <hr className="hr2" />
       <div>
         <div className="traduction">
-          <div className="traductionsvg">
-            <svg
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              role="presentation"
-              focusable="false"
-            >
-              <path d="m30 13c.2652 0 .5196.1054.7071.2929s.2929.4419.2929.7071v16c0 .2652-.1054.5196-.2929.7071s-.4419.2929-.7071.2929h-16c-.2652 0-.5196-.1054-.7071-.2929s-.2929-.4419-.2929-.7071v-6.758l3.2407241-3.244 2.0572759.002.248.796.134.405c.4006 1.164 1.0174 2.2419 1.818 3.177-.862.563-1.985 1.077-3.37 1.532l-1.086.339 1.072 1.762.606-.191c1.763-.576 3.19-1.256 4.279-2.05 1 .727 2.284 1.36 3.848 1.904l1.038.336 1.073-1.761-1.051-.328c-1.4-.458-2.535-.975-3.401-1.543.7985-.9363 1.4139-2.0143 1.814-3.178l.134-.405.247-.797 1.799.002v-2l-4.546-.001c-.1642-.4623-.381-.9042-.646-1.317-.1643-.2493-.3461-.4865-.544-.71l-.168-.187-1.793.654 3.439-3.439zm-1.7071068-10.70710678 1.4142136 1.41421356-26.00000002 26.00000002-1.41421356-1.4142136zm-4.6868932 17.70710678-.061.205-.113.341c-.3163.9202-.8024 1.7729-1.433 2.514-.5479-.644-.9861-1.3737-1.297-2.16l-.133-.354-.113-.341-.063-.205zm-5.606-19c.2652 0 .5196.10536.7071.29289.1875.18754.2929.44189.2929.70711v6.757l-2 2v-7.757h-14v14h7.757l-2 2h-6.757c-.26522 0-.51957-.1054-.70711-.2929-.18753-.1875-.29289-.4419-.29289-.7071v-16c0-.26522.10536-.51957.29289-.70711.18754-.18753.44189-.29289.70711-.29289zm.242 17 1.372-1.372.075.071c.435.416.75.776.941 1.071l.138.229zm-7.053-13 3.1973479 8.3827979-1.5563479 1.5442021-.733-1.927h-4.194l-.763 2h-2.138l3.809-10zm-1.189 2.496-1.335 3.504h2.67z"></path>
-            </svg>
-          </div>
+          <div className="traductionsvg"></div>
           <div>
             <span className="traductionText"></span>
 
-            <button className="traductionBtn">
-              <u>Translate</u>
-            </button>
+            <button className="traductionBtn"></button>
           </div>
         </div>
       </div>
       <div>
         <div className="rentDescription">
           <div>
-            <span className="rentDescriptionTxt">
-              Hemos creado un espacio unico que te permitira vivir una
-              experiencia única de inmersión en la naturaleza con excelente
-              acceso vía asfaltada. armonía. Es una construcción única, una
-              solución sustentable en armonía con la naturaleza. . Disfrutaras
-              de conectividad excelente, 200 Megas de Velocidad vía fibra
-              óptica. Es un espacio innovador que te invitara a descubrir el
-              concepto de confort escencial de nuestra Tiny House con un paisaje
-              inolvidable sobre la Cordillera de los Andes Colombianos...
-            </span>
+            <span className="rentDescriptionTxt">{textDesc.text1}</span>
           </div>
           <div className="descriptionMore">
             <Modal
@@ -191,7 +209,10 @@ const General = (props) => {
               withCloseButton={false}
               size="45%"
             >
-              <DescriptionModal setOpened={setOpenShowMore} />
+              <DescriptionModal
+                textDesc={textDesc}
+                setOpened={setOpenShowMore}
+              />
             </Modal>
             <button
               className="descriptionBtn"
@@ -219,7 +240,7 @@ const General = (props) => {
       <hr className="hr2" />
       <GeneralBeds />
       <hr className="hr2" />
-      <Amenities />
+      <Amenities amenities={props.amenities} />
       <hr className="hr2" />
       <RentCalendar />
     </div>

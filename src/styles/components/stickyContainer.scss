@@ -136,11 +136,13 @@
     position: absolute;
     top: 12px;
     left: 12px;
+    font-family: 'Cereal Book';
     font-weight: bold;
     font-size: 10px;
   }
   .checkText {
     padding: 26px 12px 10px;
+    font-family: 'Cereal Book';
     font-size: 14px;
   }
   .chekI {
@@ -151,7 +153,6 @@
 
   #guests {
     position: absolute;
-    font-family: "Roboto", sans-serif;
   }
   .guestsSvg {
     display: flex;
