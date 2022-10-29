@@ -1,5 +1,5 @@
 import "../styles/components/ModalCardHome.scss";
-
+ 
 const ModalCardHome = ({
   name,
   date,

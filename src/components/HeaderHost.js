@@ -119,8 +119,8 @@ const HeaderHost = () => {
             <Popover.Target>
               <button className="roundbuttonHost__each" onClick={() => setOpened2((o) => !o)}>
                 <img
-                  src={localStorage.getItem('img')}
-                  // src={process.env.PUBLIC_URL + "/cardhome/1.webp"}
+                  // src={localStorage.getItem('img')}
+                  src='https://res.cloudinary.com/dvljusehm/image/upload/v1666440516/top24/202011910389_1_exu8mx.jpg'
                   alt="userlogo"
                 ></img>
               </button>

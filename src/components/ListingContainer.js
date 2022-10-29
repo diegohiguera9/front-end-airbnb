@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ListingContainer = ({ img, location, capacity, rooms, score, price,id,user }) => {
   return (
-    <Link to={`/hosting/editing/${id}`} className="listingcontainer">
+    <Link to={`/rent/${id}`} className="listingcontainer">
       <div className="listingcontainer__img">
         <div className="listingcontainer__img__cont">
           <img src={img} alt='imgdes'></img>
