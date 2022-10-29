@@ -5,13 +5,13 @@ const GeneralBeds = () => {
   return (
     <div className="generalBeds">
       <div className="bedsText">
-        <h2>Where you'll sleep</h2>
+        <h2>Dónde vas a dormir</h2>
       </div>
       <div>
         <div className="bedsFlex">
-          <BedCard bedroom={"Bedroom 1"} bedDesc={"1 double bed"} />
-          <BedCard bedroom={"Bedroom 2"} bedDesc={"3 double bed"} />
-          <BedCard bedroom={"Bedroom 3"} bedDesc={"2 single bed"} />
+          <BedCard bedroom={"Recamara 1"} bedDesc={"1 cama doble"} />
+          <BedCard bedroom={"Recamara 2"} bedDesc={"3 cama sencilla"} />
+          <BedCard bedroom={"Recamara 3"} bedDesc={"2 cama doble"} />
         </div>
       </div>
     </div>

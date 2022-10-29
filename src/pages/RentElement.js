@@ -20,12 +20,14 @@ const RentElement = () => {
   const [item, setItem] = useState([]);
   const [loading, setLoading] = useState(true);
   const { location, userId } = item;
+  const [randomNumber,setRandomNumber]= useState(0)
 
   useEffect(() => {
     axios
       .get(`https://airbnbclonetop24.herokuapp.com/homes/${params.id}`)
       .then((response) => {
         setItem(response.data.data);
+        setRandomNumber(Math.floor(Math.random() * 5 + 1))
       })
       .catch((err) => {
         alert(err.message);
@@ -62,6 +64,8 @@ const RentElement = () => {
                   beds={`${item.rooms} camas`}
                   baths={`${item.rooms} baños`}
                   cancel={"8 noviembre"}
+                  randomNumber={randomNumber}
+                  amenities={item.amenities}
                 />
                 <StickyContainer
                   item={item}
@@ -78,7 +82,7 @@ const RentElement = () => {
                 comments={item.comments}
               />
               <hr className="hr1" />
-              <RentLocation location={location} />
+              <RentLocation randonNumber={randomNumber}location={location} />
               <hr className="hr1" />
               <HostInfo userHost={userId} />
               <FooterRent/>

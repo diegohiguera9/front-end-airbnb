@@ -1,10 +1,11 @@
 import "../styles/components/airCoverModal.scss";
-import Amenities from "./Amenities";
+import "../styles/components/amenities.scss";
+import AmenitieTag from "./AmenitieTag";
 
-const AmenitiesModal = ({setOpened}) => {
+const AmenitiesModal = ({ amenities, setOpened }) => {
   return (
-    <div className="modalContainer" >
-        <div className="headerSections">
+    <div className="modalContainer">
+      <div className="headerSections">
         <div className="rentSection">
           <button className="closeBtn" onClick={() => setOpened(false)}>
             <svg
@@ -21,11 +22,19 @@ const AmenitiesModal = ({setOpened}) => {
           </button>
         </div>
       </div>
-      <div className="amenitiesTitle">
-      <Amenities />
+      <div className="amenities">
+        <div className="amenitiesFlex">
+          {amenities.map((item) => {
+            return (
+              <div className="ameniti" key={item}>
+                <AmenitieTag amenitie={item} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AmenitiesModal
+export default AmenitiesModal;
