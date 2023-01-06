@@ -12,7 +12,7 @@ const HostingListing = () => {
   const getHomes = async () => {
     try {
       const { data } = await axios.get(
-        "https://airbnbclonetop24.herokuapp.com/homes/listings",
+        `${process.env.REACT_APP_AIRBACK}/homes/listings`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -18,7 +18,7 @@ const HostingListingEditing = () => {
   const getHome = async () => {
     try {
       const { data } = await axios.get(
-        `https://airbnbclonetop24.herokuapp.com/homes/${params.id}`
+        `${process.env.REACT_APP_AIRBACK}/homes/${params.id}`
       );
       setHome(data.data);
       setLoading(false);

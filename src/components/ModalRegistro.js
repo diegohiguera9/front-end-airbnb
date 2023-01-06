@@ -42,7 +42,7 @@ const ModalRegistro = () => {
           profileimg: '',
         };
         const { data } = await axios.post(
-          'https://airbnbclonetop24.herokuapp.com/user/singup',
+          `${process.env.REACT_APP_AIRBACK}/user/singup`,
           user,
         );
         console.log(data);

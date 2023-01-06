@@ -11,7 +11,7 @@ const CardHomeClientContainer = () => {
   const getReservations = async () => {
     try {
       const { data } = await axios.get(
-        'https://airbnbclonetop24.herokuapp.com/user/',
+        `${process.env.REACT_APP_AIRBACK}/user/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

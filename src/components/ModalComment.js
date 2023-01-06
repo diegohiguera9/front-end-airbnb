@@ -41,7 +41,7 @@ const ModalComment = ({ id, set, state }) => {
 
     try {
       const { data } = await axios.post(
-        `https://airbnbclonetop24.herokuapp.com/comments/${id}`,
+        `${process.env.REACT_APP_AIRBACK}/comments/${id}`,
         dataSend,
         {
           headers: {

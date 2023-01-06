@@ -24,7 +24,7 @@ const RentElement = () => {
 
   useEffect(() => {
     axios
-      .get(`https://airbnbclonetop24.herokuapp.com/homes/${params.id}`)
+      .get(`${process.env.REACT_APP_AIRBACK}/homes/${params.id}`)
       .then((response) => {
         setItem(response.data.data);
         setRandomNumber(Math.floor(Math.random() * 5 + 1))

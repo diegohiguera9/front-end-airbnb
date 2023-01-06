@@ -24,7 +24,7 @@ const ConfirmationPay = () => {
       e.preventDefault();
       console.log('reserva despues del click',reserve)
       const res = await axios.post(
-        "https://airbnbclonetop24.herokuapp.com/reservations/create",
+        `${process.env.REACT_APP_AIRBACK}/reservations/create`,
         reserve,
         {
           headers: {

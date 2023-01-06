@@ -18,7 +18,7 @@ export const getPosts = (token) => {
         try{
             dispatch({ type: RESERV_LOADING, payload: true })
             const { data } = await axios.get(
-                "https://airbnbclonetop24.herokuapp.com/reservations/showHost",
+                `${process.env.REACT_APP_AIRBACK}/reservations/showHost`,
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,
